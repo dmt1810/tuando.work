@@ -55,6 +55,17 @@ const experiences = [
       "Designed end-to-end lifecycle campaigns using Insider with CRM integration",
     ],
   },
+  {
+    company: "Dichung.vn",
+    role: "Freelance Marketing Consultant",
+    period: "2018 – 2019",
+    description: "Independent consulting for ride-sharing startup.",
+    achievements: [
+      "Advised on performance marketing tactics for Google Ads and Facebook Ads",
+      "Implemented CRM marketing automation campaigns using HubSpot",
+      "Developed data-driven marketing strategies aligned with business objectives",
+    ],
+  },
 ];
 
 const Experience = () => {
