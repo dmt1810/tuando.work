@@ -4,10 +4,11 @@ import { Menu, X } from "lucide-react";
 
 const navItems = [
   { label: "About", href: "#about" },
-  { label: "Skills", href: "#skills" },
-  { label: "Tools", href: "#tools" },
-  { label: "Experience", href: "#experience" },
+  { label: "How I Grow", href: "#growth" },
+  { label: "Portfolio", href: "#portfolio" },
   { label: "Case Studies", href: "#case-studies" },
+  { label: "Experience", href: "#experience" },
+  { label: "Skills", href: "#skills" },
   { label: "Contact", href: "#contact" },
 ];
 
@@ -38,7 +39,7 @@ const Header = () => {
         </a>
 
         {/* Desktop Nav */}
-        <nav className="hidden md:flex items-center gap-8">
+        <nav className="hidden lg:flex items-center gap-6">
           {navItems.map((item) => (
             <a
               key={item.href}
@@ -59,7 +60,7 @@ const Header = () => {
         {/* Mobile Menu Button */}
         <button
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          className="md:hidden text-foreground p-2"
+          className="lg:hidden text-foreground p-2"
         >
           {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
         </button>
@@ -71,7 +72,7 @@ const Header = () => {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -20 }}
-          className="md:hidden absolute top-full left-0 right-0 glass border-t border-border"
+          className="lg:hidden absolute top-full left-0 right-0 glass border-t border-border"
         >
           <nav className="container px-6 py-6 flex flex-col gap-4">
             {navItems.map((item) => (
