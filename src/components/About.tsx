@@ -1,7 +1,13 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import { User } from "lucide-react";
+import { User, Lightbulb, Target, TrendingUp } from "lucide-react";
+
+const intersections = [
+  { icon: Lightbulb, label: "Data-driven experimentation" },
+  { icon: Target, label: "Full-funnel optimization" },
+  { icon: TrendingUp, label: "Brand-aware performance execution" },
+];
 
 const About = () => {
   const ref = useRef(null);
@@ -18,7 +24,7 @@ const About = () => {
           className="max-w-5xl mx-auto"
         >
           <h2 className="font-display text-3xl md:text-4xl font-bold mb-12 text-center">
-            Professional <span className="text-gradient">Summary</span>
+            About <span className="text-gradient">Me</span>
           </h2>
           
           <div className="glass rounded-2xl p-8 md:p-12">
@@ -31,7 +37,6 @@ const About = () => {
                 className="flex-shrink-0"
               >
                 <div className="w-40 h-40 md:w-48 md:h-48 rounded-2xl bg-secondary border-2 border-dashed border-primary/30 flex items-center justify-center overflow-hidden group hover:border-primary/50 transition-colors">
-                  {/* Replace this div with an img tag when you have a photo */}
                   <div className="flex flex-col items-center gap-2 text-muted-foreground">
                     <User className="w-12 h-12" />
                     <span className="text-xs">Profile Photo</span>
@@ -39,17 +44,38 @@ const About = () => {
                 </div>
               </motion.div>
 
-              {/* Summary Text */}
+              {/* About Text */}
               <div className="flex-1 text-center md:text-left">
-                <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
-                  Results-driven marketing professional with <span className="text-foreground font-medium">10+ years of experience</span> in 
-                  performance marketing, growth marketing, and digital strategy. Specialized in <span className="text-primary">PPC campaign management</span>, 
-                  CRM optimization, and multi-channel user acquisition across fintech, insurtech, and travel technology sectors.
+                <p className="text-lg md:text-xl text-muted-foreground leading-relaxed mb-6">
+                  I am a growth-focused marketing leader who combines{" "}
+                  <span className="text-foreground font-medium">performance marketing, data analytics, and product thinking</span>{" "}
+                  to build sustainable and scalable growth systems.
                 </p>
-                <p className="text-lg md:text-xl text-muted-foreground leading-relaxed mt-6">
-                  Proven track record of driving measurable ROI improvements and scaling B2B/B2C platforms 
-                  across <span className="text-foreground font-medium">Southeast Asian markets</span>.
+                
+                <p className="text-base text-muted-foreground leading-relaxed mb-8">
+                  Rather than chasing short-term wins, I design growth frameworks that scale across products, 
+                  channels, and markets. I have led growth initiatives for both early-stage platforms and 
+                  large-scale ecosystems, working closely with product, tech, and commercial teams.
                 </p>
+
+                {/* Intersection Points */}
+                <div className="space-y-3">
+                  <p className="text-sm text-muted-foreground font-medium mb-3">My work sits at the intersection of:</p>
+                  <div className="flex flex-wrap gap-3 justify-center md:justify-start">
+                    {intersections.map((item, index) => (
+                      <motion.div
+                        key={item.label}
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={isInView ? { opacity: 1, x: 0 } : {}}
+                        transition={{ duration: 0.4, delay: 0.3 + index * 0.1 }}
+                        className="flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20"
+                      >
+                        <item.icon className="w-4 h-4 text-primary" />
+                        <span className="text-sm text-foreground">{item.label}</span>
+                      </motion.div>
+                    ))}
+                  </div>
+                </div>
               </div>
             </div>
           </div>
