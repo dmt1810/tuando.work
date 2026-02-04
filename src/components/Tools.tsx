@@ -1,40 +1,56 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
+import { Award, CheckCircle } from "lucide-react";
 
 const toolCategories = [
   {
     category: "Advertising Platforms",
-    tools: [
-      { name: "Google Ads", level: 95 },
-      { name: "Facebook Ads", level: 90 },
-      { name: "Trivago", level: 85 },
-      { name: "Criteo", level: 80 },
-    ],
+    tools: ["Google Ads", "Facebook Ads", "Trivago", "Criteo", "TikTok Ads"],
   },
   {
     category: "CRM & Automation",
-    tools: [
-      { name: "HubSpot", level: 90 },
-      { name: "Insider", level: 88 },
-      { name: "Salesforce", level: 75 },
-    ],
+    tools: ["HubSpot", "Insider", "Salesforce", "Mailchimp", "Braze"],
   },
   {
     category: "Analytics & Data",
-    tools: [
-      { name: "Google Analytics", level: 95 },
-      { name: "BigQuery", level: 85 },
-      { name: "Data Studio", level: 80 },
-    ],
+    tools: ["Google Analytics", "BigQuery", "Data Studio", "Mixpanel", "Amplitude"],
   },
   {
     category: "Marketing Channels",
-    tools: [
-      { name: "SEM/PPC", level: 95 },
-      { name: "Email Marketing", level: 90 },
-      { name: "Content Marketing", level: 85 },
-      { name: "Social Media", level: 88 },
-    ],
+    tools: ["SEM/PPC", "Email Marketing", "Content Marketing", "Social Media", "Affiliate"],
+  },
+];
+
+const certifications = [
+  {
+    name: "Google Ads Search Certification",
+    issuer: "Google",
+    year: "2024",
+  },
+  {
+    name: "Google Analytics Individual Qualification",
+    issuer: "Google",
+    year: "2023",
+  },
+  {
+    name: "HubSpot Inbound Marketing",
+    issuer: "HubSpot Academy",
+    year: "2023",
+  },
+  {
+    name: "Meta Blueprint Certification",
+    issuer: "Meta",
+    year: "2023",
+  },
+  {
+    name: "Google Ads Display Certification",
+    issuer: "Google",
+    year: "2022",
+  },
+  {
+    name: "Google Ads Video Certification",
+    issuer: "Google",
+    year: "2022",
   },
 ];
 
@@ -53,45 +69,84 @@ const Tools = () => {
           className="text-center mb-16"
         >
           <h2 className="font-display text-3xl md:text-4xl font-bold mb-4">
-            MarTech <span className="text-gradient">Stack</span>
+            Skills & <span className="text-gradient">Credentials</span>
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Tools and platforms I use to drive marketing success
+            Tools, platforms, and certifications that power marketing success
           </p>
         </motion.div>
 
-        <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-8">
-          {toolCategories.map((category, catIndex) => (
-            <motion.div
-              key={category.category}
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: catIndex * 0.1 }}
-              className="glass rounded-xl p-6"
-            >
-              <h3 className="font-display font-semibold text-lg mb-6 text-primary">
-                {category.category}
-              </h3>
-              <div className="space-y-4">
-                {category.tools.map((tool, toolIndex) => (
-                  <div key={tool.name}>
-                    <div className="flex justify-between items-center mb-2">
-                      <span className="text-sm font-medium">{tool.name}</span>
-                      <span className="text-xs text-muted-foreground">{tool.level}%</span>
-                    </div>
-                    <div className="h-2 bg-secondary rounded-full overflow-hidden">
-                      <motion.div
-                        initial={{ width: 0 }}
-                        animate={isInView ? { width: `${tool.level}%` } : {}}
-                        transition={{ duration: 1, delay: catIndex * 0.1 + toolIndex * 0.05 }}
-                        className="h-full bg-gradient-primary rounded-full"
-                      />
-                    </div>
+        {/* MarTech Stack */}
+        <div className="max-w-5xl mx-auto mb-16">
+          <motion.h3
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="font-display text-xl font-semibold text-center mb-8"
+          >
+            MarTech Stack
+          </motion.h3>
+          <div className="grid md:grid-cols-2 gap-6">
+            {toolCategories.map((category, catIndex) => (
+              <motion.div
+                key={category.category}
+                initial={{ opacity: 0, y: 30 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.5, delay: catIndex * 0.1 }}
+                className="glass rounded-xl p-6"
+              >
+                <h4 className="font-display font-semibold text-lg mb-4 text-primary">
+                  {category.category}
+                </h4>
+                <div className="flex flex-wrap gap-2">
+                  {category.tools.map((tool) => (
+                    <span
+                      key={tool}
+                      className="px-3 py-1.5 text-sm rounded-full bg-secondary text-foreground/80 hover:bg-primary/20 hover:text-primary transition-colors"
+                    >
+                      {tool}
+                    </span>
+                  ))}
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+
+        {/* Certifications */}
+        <div className="max-w-5xl mx-auto">
+          <motion.h3
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            className="font-display text-xl font-semibold text-center mb-8 flex items-center justify-center gap-2"
+          >
+            <Award className="w-5 h-5 text-primary" />
+            Professional Certifications
+          </motion.h3>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {certifications.map((cert, index) => (
+              <motion.div
+                key={cert.name}
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={isInView ? { opacity: 1, scale: 1 } : {}}
+                transition={{ duration: 0.4, delay: 0.4 + index * 0.05 }}
+                className="glass rounded-lg p-4 hover:border-primary/30 transition-all group"
+              >
+                <div className="flex items-start gap-3">
+                  <CheckCircle className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+                  <div>
+                    <h4 className="font-medium text-sm text-foreground group-hover:text-primary transition-colors">
+                      {cert.name}
+                    </h4>
+                    <p className="text-xs text-muted-foreground mt-1">
+                      {cert.issuer} • {cert.year}
+                    </p>
                   </div>
-                ))}
-              </div>
-            </motion.div>
-          ))}
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
