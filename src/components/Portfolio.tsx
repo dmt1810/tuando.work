@@ -1,43 +1,51 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { Truck, ShoppingBag, Building2, GraduationCap, ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, ExternalLink } from "lucide-react";
+import catsaLogo from "@/assets/logos/catsa.png";
+import cenhomeLogo from "@/assets/logos/cenhome.svg";
+import dichungLogo from "@/assets/logos/dichung.svg";
+import hnccLogo from "@/assets/logos/hncc.jpg";
 
 const projects = [
   {
-    icon: Truck,
+    logo: dichungLogo,
     title: "Dichung.vn",
     subtitle: "Tech Transport Marketplace",
     industry: "Logistics / Tech",
+    url: "https://dichung.vn",
     description: "Vietnamese technology platform optimizing vehicle usage and reducing empty seats with a sustainability-driven mission.",
     role: "Performance Marketing Consultant",
     scope: ["Paid acquisition campaigns", "Funnel efficiency optimization", "Data-backed scaling recommendations"],
     impact: ["Improved lead quality", "Reduced acquisition cost"],
   },
   {
-    icon: ShoppingBag,
+    logo: catsaLogo,
     title: "CATSA",
     subtitle: "Fashion Retail Brand",
     industry: "Retail / Fashion",
+    url: "https://catsa.vn",
     description: "Well-established Vietnamese menswear brand with both offline retail presence and e-commerce operations.",
     role: "Digital Marketing Consultant",
     scope: ["Paid media campaigns", "ROAS optimization", "Customer acquisition tracking"],
     impact: ["Increased online revenue", "Improved ad efficiency"],
   },
   {
-    icon: Building2,
+    logo: cenhomeLogo,
     title: "Cenhome",
     subtitle: "Real Estate Marketplace",
     industry: "Real Estate / PropTech",
+    url: "https://cenhome.vn",
     description: "Part of the CEN Group ecosystem, providing digital real estate listing and brokerage solutions in Vietnam.",
     role: "Performance Marketing Consultant",
     scope: ["Lead generation funnels", "Analytics tracking", "Campaign targeting"],
     impact: ["Increased qualified leads", "Reduced cost per lead"],
   },
   {
-    icon: GraduationCap,
+    logo: hnccLogo,
     title: "Hanoi Community College",
     subtitle: "Education Institution",
     industry: "Education / Training",
+    url: "https://hncc.edu.vn",
     description: "Public vocational institution providing applied education and professional training programs.",
     role: "Digital Marketing Consultant",
     scope: ["Enrollment campaigns", "CRM workflows", "Paid search optimization"],
@@ -60,10 +68,10 @@ const Portfolio = () => {
           className="text-center mb-16"
         >
           <h2 className="font-display text-3xl md:text-4xl font-bold mb-4">
-            Selected <span className="text-gradient">Portfolio</span> Work
+            Freelance <span className="text-gradient">Portfolio</span>
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Freelance and consulting projects across diverse industries
+            Consulting projects across diverse industries
           </p>
         </motion.div>
 
@@ -77,12 +85,26 @@ const Portfolio = () => {
               className="group glass rounded-xl p-6 hover:border-primary/30 transition-all"
             >
               <div className="flex items-start justify-between mb-4">
-                <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-                  <project.icon className="w-7 h-7 text-primary" />
+                <div className="w-16 h-16 rounded-xl bg-white flex items-center justify-center overflow-hidden p-2">
+                  <img 
+                    src={project.logo} 
+                    alt={`${project.title} logo`}
+                    className="w-full h-full object-contain"
+                  />
                 </div>
-                <span className="px-3 py-1 rounded-full text-xs font-medium bg-secondary text-muted-foreground">
-                  {project.industry}
-                </span>
+                <div className="flex items-center gap-2">
+                  <span className="px-3 py-1 rounded-full text-xs font-medium bg-secondary text-muted-foreground">
+                    {project.industry}
+                  </span>
+                  <a 
+                    href={project.url} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center hover:bg-primary/20 transition-colors"
+                  >
+                    <ExternalLink className="w-4 h-4 text-primary" />
+                  </a>
+                </div>
               </div>
 
               <h3 className="font-display text-xl font-bold mb-1">{project.title}</h3>
