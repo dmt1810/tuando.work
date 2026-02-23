@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import { User, Lightbulb, Target, TrendingUp } from "lucide-react";
+import { Lightbulb, Target, TrendingUp } from "lucide-react";
 
 const intersections = [
   { icon: Lightbulb, label: "Data-driven experimentation" },
@@ -26,36 +26,42 @@ const About = () => {
           <h2 className="font-display text-3xl md:text-4xl font-bold mb-12 text-center">
             About <span className="text-gradient">Me</span>
           </h2>
-          
-          <div className="glass rounded-2xl p-8 md:p-12">
+
+          <div className="bg-card rounded-2xl p-8 md:p-12 shadow-lg border border-border/50">
             <div className="flex flex-col md:flex-row gap-8 md:gap-12 items-center md:items-start">
               {/* Profile Photo Placeholder */}
               <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={isInView ? { opacity: 1, scale: 1 } : {}}
                 transition={{ duration: 0.5, delay: 0.2 }}
-                className="flex-shrink-0"
+                className="flex-shrink-0 relative group"
               >
-                <div className="w-40 h-40 md:w-48 md:h-48 rounded-2xl bg-secondary border-2 border-dashed border-primary/30 flex items-center justify-center overflow-hidden group hover:border-primary/50 transition-colors">
-                  <div className="flex flex-col items-center gap-2 text-muted-foreground">
-                    <User className="w-12 h-12" />
-                    <span className="text-xs">Profile Photo</span>
-                  </div>
+                <div className="w-48 h-56 md:w-56 md:h-64 rounded-2xl bg-muted overflow-hidden border-2 border-white shadow-2xl transition-all duration-500 group-hover:-translate-y-2 group-hover:shadow-primary/20">
+                  <img
+                    src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=800&auto=format&fit=crop"
+                    alt="Tuan Do"
+                    className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
+                  />
+                </div>
+                {/* monday.com style colorful accent indicator */}
+                <div className="absolute -bottom-3 -right-3 w-12 h-12 bg-white rounded-xl shadow-lg border border-border flex items-center justify-center z-10">
+                  <div className="w-6 h-6 rounded-full bg-gradient-to-tr from-[#FF3D57] via-[#FFCB00] to-[#00D2D2] animate-spin-slow" />
                 </div>
               </motion.div>
 
               {/* About Text */}
               <div className="flex-1 text-center md:text-left">
                 <p className="text-lg md:text-xl text-muted-foreground leading-relaxed mb-6">
-                  I am a growth-focused marketing leader who combines{" "}
+                  I'm a growth-focused marketing leader who combines{" "}
                   <span className="text-foreground font-medium">performance marketing, data analytics, and product thinking</span>{" "}
-                  to build sustainable and scalable growth systems.
+                  to build sustainable, scalable growth systems.
                 </p>
-                
+
                 <p className="text-base text-muted-foreground leading-relaxed mb-8">
-                  Rather than chasing short-term wins, I design growth frameworks that scale across products, 
-                  channels, and markets. I have led growth initiatives for both early-stage platforms and 
-                  large-scale ecosystems, working closely with product, tech, and commercial teams.
+                  Rather than chasing short-term wins, I design growth frameworks that scale across
+                  products, channels, and markets — from early-stage platforms to large-scale
+                  ecosystems. I work closely with product, tech, and commercial teams to turn
+                  data into decisions and campaigns into compounding revenue.
                 </p>
 
                 {/* Intersection Points */}

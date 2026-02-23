@@ -93,7 +93,7 @@ const Tools = () => {
                 initial={{ opacity: 0, y: 30 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.5, delay: catIndex * 0.1 }}
-                className="glass rounded-xl p-6"
+                className="bg-card rounded-xl p-6 shadow-sm border border-border/50"
               >
                 <h4 className="font-display font-semibold text-lg mb-4 text-primary">
                   {category.category}
@@ -102,7 +102,7 @@ const Tools = () => {
                   {category.tools.map((tool) => (
                     <span
                       key={tool}
-                      className="px-3 py-1.5 text-sm rounded-full bg-secondary text-foreground/80 hover:bg-primary/20 hover:text-primary transition-colors"
+                      className="px-3 py-1.5 text-sm rounded-full bg-white border border-border text-foreground/80 hover:bg-primary/10 hover:text-primary hover:border-primary/30 transition-all duration-300"
                     >
                       {tool}
                     </span>
@@ -131,7 +131,7 @@ const Tools = () => {
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={isInView ? { opacity: 1, scale: 1 } : {}}
                 transition={{ duration: 0.4, delay: 0.4 + index * 0.05 }}
-                className="glass rounded-lg p-4 hover:border-primary/30 transition-all group"
+                className="bg-card rounded-lg p-4 border border-border/50 shadow-sm card-hover group"
               >
                 <div className="flex items-start gap-3">
                   <CheckCircle className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
@@ -140,7 +140,7 @@ const Tools = () => {
                       {cert.name}
                     </h4>
                     <p className="text-xs text-muted-foreground mt-1">
-                      {cert.issuer} • {cert.year}
+                      {cert.issuer}
                     </p>
                   </div>
                 </div>

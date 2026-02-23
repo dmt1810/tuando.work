@@ -1,48 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
-
 @layer base {
   :root {
-    --background: 220 20% 6%;
-    --foreground: 210 20% 95%;
+    --background: 210 20% 98%;
+    --foreground: 220 30% 15%;
 
-    --card: 220 20% 10%;
-    --card-foreground: 210 20% 95%;
+    --card: 0 0% 100%;
+    --card-foreground: 220 30% 15%;
 
-    --popover: 220 20% 10%;
-    --popover-foreground: 210 20% 95%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 30% 15%;
 
-    --primary: 174 72% 50%;
-    --primary-foreground: 220 20% 6%;
+    --primary: 162 72% 34%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 220 20% 14%;
-    --secondary-foreground: 210 20% 95%;
+    --secondary: 210 20% 95%;
+    --secondary-foreground: 220 30% 25%;
 
-    --muted: 220 15% 16%;
-    --muted-foreground: 215 15% 55%;
+    --muted: 210 15% 92%;
+    --muted-foreground: 220 10% 45%;
 
-    --accent: 174 72% 50%;
-    --accent-foreground: 220 20% 6%;
+    --accent: 162 72% 34%;
+    --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 220 15% 18%;
-    --input: 220 15% 18%;
-    --ring: 174 72% 50%;
+    --border: 220 10% 90%;
+    --input: 220 10% 90%;
+    --ring: 162 72% 34%;
 
     --radius: 0.75rem;
 
     /* Custom tokens */
-    --gradient-primary: linear-gradient(135deg, hsl(174 72% 50%), hsl(190 80% 45%));
-    --gradient-subtle: linear-gradient(135deg, hsl(220 20% 10%), hsl(220 20% 14%));
-    --gradient-hero: linear-gradient(180deg, hsl(220 20% 6%) 0%, hsl(220 25% 8%) 100%);
-    --glow-primary: 0 0 60px hsl(174 72% 50% / 0.15);
-    --glow-strong: 0 0 100px hsl(174 72% 50% / 0.25);
-    
+    --gradient-primary: linear-gradient(135deg, hsl(162 72% 34%), hsl(152 68% 40%));
+    --gradient-subtle: linear-gradient(135deg, hsl(210 20% 97%), hsl(210 20% 94%));
+    --gradient-hero: linear-gradient(180deg, hsl(210 20% 98%) 0%, hsl(210 25% 95%) 100%);
+    --glow-primary: 0 0 20px hsl(162 72% 34% / 0.08);
+    --glow-strong: 0 0 40px hsl(162 72% 34% / 0.12);
+
     --font-display: 'Space Grotesk', sans-serif;
     --font-body: 'Inter', sans-serif;
   }
@@ -62,7 +62,12 @@
     font-family: var(--font-body);
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     font-family: var(--font-display);
   }
 }
@@ -96,26 +101,62 @@
   }
 
   .glass {
-    background: hsl(220 20% 10% / 0.8);
-    backdrop-filter: blur(20px);
-    border: 1px solid hsl(220 15% 20% / 0.5);
+    background: hsla(0, 0%, 100%, 0.8);
+    backdrop-filter: blur(16px);
+    border: 1px solid hsla(220, 10%, 90%, 0.6);
+    box-shadow: 0 4px 24px hsla(220, 30%, 15%, 0.06);
   }
-}
 
-/* Custom scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-}
+  .card-hover {
+    @apply transition-all duration-500 ease-apple;
+  }
 
-::-webkit-scrollbar-track {
-  background: hsl(220 20% 6%);
-}
+  .card-hover:hover {
+    @apply -translate-y-2;
+    box-shadow:
+      0 10px 30px -10px rgba(0, 0, 0, 0.05),
+      0 20px 60px -15px rgba(0, 0, 0, 0.08);
+  }
 
-::-webkit-scrollbar-thumb {
-  background: hsl(220 15% 20%);
-  border-radius: 4px;
-}
+  /* Apple-style smooth ease */
+  .ease-apple {
+    transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1.0);
+  }
 
-::-webkit-scrollbar-thumb:hover {
-  background: hsl(220 15% 25%);
+  .section-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, hsl(220 10% 85%), transparent);
+  }
+
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+  }
+
+  /* monday.com inspired vibrant touches */
+  .animate-spin-slow {
+    animation: spin 12s linear infinite;
+  }
+
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  .bg-monday-rainbow {
+    background: linear-gradient(to right, #FF3D57, #FFCB00, #00D2D2, #6161FF);
+  }
 }

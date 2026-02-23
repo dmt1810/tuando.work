@@ -96,7 +96,7 @@ const Experience = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="experience" className="py-24 md:py-32 bg-secondary/30">
+    <section id="experience" className="py-24 md:py-32 bg-muted/50">
       <div className="container px-6">
         <motion.div
           ref={ref}
@@ -109,7 +109,7 @@ const Experience = () => {
             Professional <span className="text-gradient">Experience</span>
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            A decade of driving growth across diverse industries with measurable impact
+            A decade of driving growth across fintech, insurtech, travel tech, and more
           </p>
         </motion.div>
 
@@ -120,7 +120,7 @@ const Experience = () => {
               initial={{ opacity: 0, y: 40 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className={`glass rounded-2xl p-6 md:p-8 hover:border-primary/30 transition-all ${exp.current ? 'border-primary/30' : ''}`}
+              className={`bg-card rounded-2xl p-6 md:p-8 shadow-md border-y border-x border-border/50 card-hover ${exp.current ? 'border-l-4 border-l-primary' : ''}`}
             >
               <div className="grid lg:grid-cols-3 gap-8">
                 {/* Left: Header & Challenge */}
@@ -163,7 +163,7 @@ const Experience = () => {
                 </div>
 
                 {/* Right: Results */}
-                <div className="bg-secondary/50 rounded-xl p-6">
+                <div className="bg-muted/30 rounded-xl p-6 border border-border/50">
                   <h4 className="text-sm font-medium text-foreground/70 uppercase tracking-wide mb-4 text-center">Results</h4>
                   <div className="space-y-4">
                     {exp.results.map((result) => (

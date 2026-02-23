@@ -1,10 +1,10 @@
-import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
-import { ArrowUpRight, ExternalLink } from "lucide-react";
+import { motion, useInView, useScroll, useTransform } from "framer-motion";
+import { useRef, useState } from "react";
+import { ArrowUpRight, ExternalLink, ChevronLeft, ChevronRight } from "lucide-react";
 import catsaLogo from "@/assets/logos/catsa.png";
-import cenhomeLogo from "@/assets/logos/cenhome.svg";
+import cenhomeLogo from "@/assets/logos/cenhome.png";
 import dichungLogo from "@/assets/logos/dichung.svg";
-import hnccLogo from "@/assets/logos/hncc.jpg";
+import hnccLogo from "@/assets/logos/hncc.png";
 
 const projects = [
   {
@@ -54,85 +54,137 @@ const projects = [
 ];
 
 const Portfolio = () => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const containerRef = useRef<HTMLDivElement>(null);
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const isInView = useInView(containerRef, { once: true, margin: "-100px" });
+
+  const scrollLeft = () => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollBy({ left: -400, behavior: "smooth" });
+    }
+  };
+
+  const scrollRight = () => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollBy({ left: 400, behavior: "smooth" });
+    }
+  };
 
   return (
-    <section id="portfolio" className="py-24 md:py-32 bg-background">
-      <div className="container px-6">
-        <motion.div
-          ref={ref}
-          initial={{ opacity: 0, y: 40 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7 }}
-          className="text-center mb-16"
-        >
-          <h2 className="font-display text-3xl md:text-4xl font-bold mb-4">
-            Freelance <span className="text-gradient">Portfolio</span>
-          </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
-            Consulting projects across diverse industries
-          </p>
-        </motion.div>
+    <section id="portfolio" ref={containerRef} className="py-24 md:py-32 bg-background relative overflow-hidden">
+      {/* Background decoration */}
+      <div className="absolute top-1/2 left-0 w-full h-1/2 bg-muted/20 -z-10 -skew-y-3 translate-y-20" />
 
-        <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-6">
+      <div className="container px-6">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1.0] }}
+            className="max-w-2xl"
+          >
+            <h2 className="font-display text-3xl md:text-5xl font-bold mb-4 tracking-tight">
+              Selected <span className="text-gradient">Work</span>
+            </h2>
+            <p className="text-muted-foreground text-lg">
+              Driving measurable ROI for market leaders through performance-led digital transformations.
+            </p>
+          </motion.div>
+
+          {/* Navigation Controls */}
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            className="flex gap-3"
+          >
+            <button
+              onClick={scrollLeft}
+              className="w-12 h-12 rounded-full border border-border flex items-center justify-center hover:bg-primary hover:text-white hover:border-primary transition-all duration-300"
+              aria-label="Previous project"
+            >
+              <ChevronLeft className="w-5 h-5" />
+            </button>
+            <button
+              onClick={scrollRight}
+              className="w-12 h-12 rounded-full border border-border flex items-center justify-center hover:bg-primary hover:text-white hover:border-primary transition-all duration-300"
+              aria-label="Next project"
+            >
+              <ChevronRight className="w-5 h-5" />
+            </button>
+          </motion.div>
+        </div>
+
+        {/* Portfolio Slider Container */}
+        <div
+          ref={scrollRef}
+          className="flex gap-6 overflow-x-auto pb-12 snap-x snap-mandatory no-scrollbar -mx-6 px-6 md:px-[10%]"
+          style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+        >
           {projects.map((project, index) => (
             <motion.div
               key={project.title}
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="group glass rounded-xl p-6 hover:border-primary/30 transition-all"
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              animate={isInView ? { opacity: 1, scale: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, delay: index * 0.1, ease: [0.25, 0.1, 0.25, 1.0] }}
+              className="group min-w-[300px] md:min-w-[480px] snap-center bg-card rounded-3xl p-8 md:p-10 shadow-sm border border-border/50 transition-all duration-500 hover:shadow-2xl hover:-translate-y-2"
             >
-              <div className="flex items-start justify-between mb-4">
-                <div className="w-16 h-16 rounded-xl bg-white flex items-center justify-center overflow-hidden p-2">
-                  <img 
-                    src={project.logo} 
+              <div className="flex items-start justify-between mb-8">
+                <div className="w-20 h-20 rounded-2xl bg-muted flex items-center justify-center overflow-hidden p-3 transition-transform duration-500 group-hover:scale-110">
+                  <img
+                    src={project.logo}
                     alt={`${project.title} logo`}
                     className="w-full h-full object-contain"
                   />
                 </div>
-                <div className="flex items-center gap-2">
-                  <span className="px-3 py-1 rounded-full text-xs font-medium bg-secondary text-muted-foreground">
+                <div className="flex flex-col items-end gap-3">
+                  <span className="px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-widest bg-emerald-500/10 text-emerald-700 border border-emerald-500/20">
                     {project.industry}
                   </span>
-                  <a 
-                    href={project.url} 
-                    target="_blank" 
+                  <a
+                    href={project.url}
+                    target="_blank"
                     rel="noopener noreferrer"
-                    className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center hover:bg-primary/20 transition-colors"
+                    className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center hover:bg-primary hover:text-white transition-all duration-300"
                   >
-                    <ExternalLink className="w-4 h-4 text-primary" />
+                    <ExternalLink className="w-5 h-5" />
                   </a>
                 </div>
               </div>
 
-              <h3 className="font-display text-xl font-bold mb-1">{project.title}</h3>
-              <p className="text-primary text-sm font-medium mb-2">{project.subtitle}</p>
-              <p className="text-muted-foreground text-sm mb-4">{project.description}</p>
-              
-              <div className="mb-4">
-                <span className="text-xs font-medium text-foreground/70 uppercase tracking-wide">Role</span>
-                <p className="text-sm text-foreground">{project.role}</p>
+              <div className="mb-6">
+                <h3 className="font-display text-2xl md:text-3xl font-bold mb-2 group-hover:text-primary transition-colors duration-300">
+                  {project.title}
+                </h3>
+                <p className="text-primary font-semibold text-sm mb-4">{project.subtitle}</p>
+                <p className="text-muted-foreground leading-relaxed">
+                  {project.description}
+                </p>
               </div>
 
-              <div className="flex flex-wrap gap-2 mb-4">
-                {project.scope.map((item) => (
-                  <span key={item} className="px-2 py-1 text-xs rounded bg-secondary text-muted-foreground">
-                    {item}
-                  </span>
-                ))}
-              </div>
+              <div className="space-y-6 pt-6 border-t border-border/50">
+                <div>
+                  <span className="text-[10px] font-bold text-foreground/50 uppercase tracking-[0.2em] block mb-3">Core Scope</span>
+                  <div className="flex flex-wrap gap-2">
+                    {project.scope.map((item) => (
+                      <span key={item} className="px-3 py-1.5 text-[10px] font-bold rounded-lg bg-muted/50 text-muted-foreground border border-border/40">
+                        {item}
+                      </span>
+                    ))}
+                  </div>
+                </div>
 
-              <div className="pt-4 border-t border-border">
-                <span className="text-xs font-medium text-primary uppercase tracking-wide">Impact</span>
-                <div className="flex flex-wrap gap-2 mt-2">
-                  {project.impact.map((item) => (
-                    <span key={item} className="flex items-center gap-1 text-sm text-foreground">
-                      <ArrowUpRight className="w-3 h-3 text-primary" />
-                      {item}
-                    </span>
-                  ))}
+                <div>
+                  <span className="text-[10px] font-bold text-primary uppercase tracking-[0.2em] block mb-3">Key Impact</span>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                    {project.impact.map((item) => (
+                      <div key={item} className="flex items-center gap-2 p-3 rounded-xl bg-emerald-500/5 border border-emerald-500/10 group-hover:border-emerald-500/30 transition-colors duration-500">
+                        <div className="w-6 h-6 rounded-full bg-emerald-500/10 flex items-center justify-center">
+                          <ArrowUpRight className="w-4 h-4 text-emerald-600" />
+                        </div>
+                        <span className="text-xs font-semibold text-foreground/80">{item}</span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
             </motion.div>
