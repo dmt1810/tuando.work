@@ -1,6 +1,7 @@
 services:
   website:
     build: .
+    image: tuandowork-website:latest
     ports:
       - "80:80"
     restart: unless-stopped
