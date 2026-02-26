@@ -38,7 +38,7 @@ const About = () => {
               >
                 <div className="w-48 h-56 md:w-56 md:h-64 rounded-2xl bg-muted overflow-hidden border-2 border-white shadow-2xl transition-all duration-500 group-hover:-translate-y-2 group-hover:shadow-primary/20">
                   <img
-                    src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=800&auto=format&fit=crop"
+                    src="/tuan-profile.jpg"
                     alt="Tuan Do"
                     className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
                   />
