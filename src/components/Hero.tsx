@@ -1,30 +1,20 @@
-import { motion, useSpring, useTransform, useScroll } from "framer-motion";
-import { useState, useEffect, useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
 import { Mail, Linkedin, TrendingUp, Users, DollarSign, Layers } from "lucide-react";
+import Counter from "./ui/Counter";
 
 const highlights = [
-  { icon: TrendingUp, value: 150, suffix: "%", label: "YoY Growth Delivered" },
+  {
+    icon: TrendingUp,
+    value: 150,
+    suffix: "%",
+    label: "YoY Growth Delivered",
+    context: "at Igloo Insurtech · 2021–2024"
+  },
   { icon: Users, value: 10000, suffix: "+", label: "Agents Acquired" },
   { icon: DollarSign, value: 50, suffix: "K+", label: "Monthly Budgets Managed" },
   { icon: Layers, value: "Full Funnel", label: "Growth Ownership" },
 ];
-
-const Counter = ({ value, suffix }: { value: number | string, suffix?: string }) => {
-  if (typeof value === 'string') return <>{value}</>;
-
-  const spring = useSpring(0, { bounce: 0, duration: 2000 });
-  const displayValue = useTransform(spring, (current) =>
-    Math.floor(current).toLocaleString()
-  );
-
-  useEffect(() => {
-    spring.set(value);
-  }, [value, spring]);
-
-  return (
-    <motion.span>{displayValue}</motion.span>
-  );
-};
 
 const Hero = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -81,14 +71,23 @@ const Hero = () => {
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.4 + index * 0.1, duration: 0.4 }}
-                className="bg-card rounded-xl p-4 text-center shadow-sm border border-border/50 card-hover"
+                className="bg-card rounded-xl p-4 text-center shadow-sm border border-border/50 card-hover flex flex-col items-center justify-center min-h-[140px]"
               >
-                <item.icon className="w-6 h-6 text-primary mx-auto mb-2" />
-                <div className="font-display text-2xl md:text-3xl font-bold text-gradient">
-                  {typeof item.value === 'number' ? <Counter value={item.value} /> : item.value}
-                  {item.suffix}
+                <item.icon className="w-6 h-6 text-primary mb-2" />
+                <div className="font-display text-2xl md:text-3xl font-bold text-gradient mb-1">
+                  <Counter value={item.value} suffix={item.suffix} />
                 </div>
-                <div className="text-xs text-muted-foreground">{item.label}</div>
+                <div className="text-xs text-muted-foreground font-medium mb-1">{item.label}</div>
+                {item.context && (
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 1.2 }}
+                    className="text-[9px] text-muted-foreground/60 leading-tight"
+                  >
+                    {item.context}
+                  </motion.div>
+                )}
               </motion.div>
             ))}
           </motion.div>

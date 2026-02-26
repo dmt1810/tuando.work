@@ -72,14 +72,14 @@ const GrowthPillars = () => {
                   relative overflow-hidden rounded-3xl p-8 transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)]
                   border border-border/50 shadow-sm
                   flex flex-col group cursor-pointer
-                  ${activeLayer === pillar.id ? "flex-[2.5] bg-white shadow-2xl border-primary/20" : "md:flex-1 bg-slate-50/50 hover:bg-white hover:shadow-md"}
+                  ${activeLayer === pillar.id ? "flex-[3.5] bg-white shadow-2xl border-primary/20" : "md:flex-1 bg-slate-50/40 hover:bg-white/80 backdrop-blur-[2px] opacity-80 hover:opacity-100 shadow-sm"}
                 `}
               >
                 {/* Rainbow Accent (Visible only when active) */}
                 <div className={`
-                  absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#FF3D57] via-[#FFCB00] to-[#00D2D2] 
-                  transition-opacity duration-500 z-10
-                  ${activeLayer === pillar.id ? "opacity-100" : "opacity-0"}
+                  absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#FF3D57] via-[#FFCB00] to-[#00D2D2] 
+                  transition-all duration-500 z-10
+                  ${activeLayer === pillar.id ? "opacity-100 scale-x-100" : "opacity-0 scale-x-0"}
                 `} />
 
                 {/* Content Header */}
@@ -90,7 +90,7 @@ const GrowthPillars = () => {
                   `}>
                     <pillar.icon className="w-6 h-6" />
                   </div>
-                  <h3 className={`font-display text-2xl font-bold transition-all duration-500 ${activeLayer === pillar.id ? "text-foreground" : "text-muted-foreground"}`}>
+                  <h3 className={`font-display text-2xl font-bold transition-all duration-500 ${activeLayer === pillar.id ? "text-foreground" : "text-muted-foreground/60"}`}>
                     {pillar.title}
                   </h3>
                 </div>
@@ -98,7 +98,7 @@ const GrowthPillars = () => {
                 {/* Expanded Details Content */}
                 <div className={`
                   transition-all duration-700 flex-grow
-                  ${activeLayer === pillar.id ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4 pointer-events-none"}
+                  ${activeLayer === pillar.id ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8 pointer-events-none"}
                 `}>
                   <ul className="space-y-4">
                     {pillar.items.map((item) => (
@@ -118,8 +118,8 @@ const GrowthPillars = () => {
 
                 {/* Collapsed state vertical label */}
                 <div className={`
-                  absolute bottom-8 left-8 transition-opacity duration-300
-                  ${activeLayer === pillar.id ? "opacity-0" : "opacity-40"}
+                  absolute bottom-8 left-8 transition-all duration-500
+                  ${activeLayer === pillar.id ? "opacity-0 translate-x-4" : "opacity-40 translate-x-0"}
                 `}>
                   <span className="text-[9px] uppercase tracking-[0.4em] font-bold text-muted-foreground [writing-mode:vertical-lr] rotate-180">
                     {pillar.title.split(' ')[0]}

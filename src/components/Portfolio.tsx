@@ -16,7 +16,7 @@ const projects = [
     description: "Vietnamese technology platform optimizing vehicle usage and reducing empty seats with a sustainability-driven mission.",
     role: "Performance Marketing Consultant",
     scope: ["Paid acquisition campaigns", "Funnel efficiency optimization", "Data-backed scaling recommendations"],
-    impact: ["Improved lead quality", "Reduced acquisition cost"],
+    impact: ["Reduced CPA by ~18%", "Improved lead quality"],
   },
   {
     logo: catsaLogo,
@@ -31,10 +31,10 @@ const projects = [
   },
   {
     logo: cenhomeLogo,
-    title: "Cenhome",
+    title: "Cenhomes.vn",
     subtitle: "Real Estate Marketplace",
     industry: "Real Estate / PropTech",
-    url: "https://cenhome.vn",
+    url: "https://cenhomes.vn/",
     description: "Part of the CEN Group ecosystem, providing digital real estate listing and brokerage solutions in Vietnam.",
     role: "Performance Marketing Consultant",
     scope: ["Lead generation funnels", "Analytics tracking", "Campaign targeting"],
@@ -126,7 +126,7 @@ const Portfolio = () => {
               initial={{ opacity: 0, scale: 0.95, y: 20 }}
               animate={isInView ? { opacity: 1, scale: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: index * 0.1, ease: [0.25, 0.1, 0.25, 1.0] }}
-              className="group min-w-[300px] md:min-w-[480px] snap-center bg-card rounded-3xl p-8 md:p-10 shadow-sm border border-border/50 transition-all duration-500 hover:shadow-2xl hover:-translate-y-2"
+              className="group min-w-[300px] md:min-w-[480px] snap-center bg-card rounded-3xl p-8 md:p-10 shadow-sm border border-border/50 transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 flex flex-col"
             >
               <div className="flex items-start justify-between mb-8">
                 <div className="w-20 h-20 rounded-2xl bg-muted flex items-center justify-center overflow-hidden p-3 transition-transform duration-500 group-hover:scale-110">
@@ -151,7 +151,7 @@ const Portfolio = () => {
                 </div>
               </div>
 
-              <div className="mb-6">
+              <div className="mb-6 flex-grow">
                 <h3 className="font-display text-2xl md:text-3xl font-bold mb-2 group-hover:text-primary transition-colors duration-300">
                   {project.title}
                 </h3>
@@ -189,6 +189,16 @@ const Portfolio = () => {
               </div>
             </motion.div>
           ))}
+
+          {/* Simplified "And More" Card */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95, y: 20 }}
+            animate={isInView ? { opacity: 1, scale: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: projects.length * 0.1 }}
+            className="min-w-[200px] md:min-w-[250px] snap-center rounded-3xl p-10 border-2 border-dashed border-border/50 flex flex-col items-center justify-center text-center group"
+          >
+            <h3 className="font-display text-xl font-bold text-muted-foreground italic">And mores...</h3>
+          </motion.div>
         </div>
       </div>
     </section>
