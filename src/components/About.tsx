@@ -40,7 +40,8 @@ const About = () => {
                   <img
                     src="/tuan-profile.jpg"
                     alt="Tuan Do"
-                    className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
+                    loading="lazy"
+                    className="w-full h-full object-cover transition-all duration-700"
                   />
                 </div>
                 {/* monday.com style colorful accent indicator */}

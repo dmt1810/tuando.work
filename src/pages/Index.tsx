@@ -1,12 +1,14 @@
+import { lazy, Suspense } from "react";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
-import About from "@/components/About";
-import GrowthPillars from "@/components/GrowthPillars";
-import Experience from "@/components/Experience";
-import Portfolio from "@/components/Portfolio";
-import Tools from "@/components/Tools";
-import Contact from "@/components/Contact";
-import Footer from "@/components/Footer";
+
+const About = lazy(() => import("@/components/About"));
+const GrowthPillars = lazy(() => import("@/components/GrowthPillars"));
+const Experience = lazy(() => import("@/components/Experience"));
+const Portfolio = lazy(() => import("@/components/Portfolio"));
+const Tools = lazy(() => import("@/components/Tools"));
+const Contact = lazy(() => import("@/components/Contact"));
+const Footer = lazy(() => import("@/components/Footer"));
 
 const Index = () => {
   return (
@@ -14,14 +16,18 @@ const Index = () => {
       <Header />
       <main>
         <Hero />
-        <About />
-        <GrowthPillars />
-        <Experience />
-        <Portfolio />
-        <Tools />
-        <Contact />
+        <Suspense fallback={<div />}>
+          <About />
+          <GrowthPillars />
+          <Experience />
+          <Portfolio />
+          <Tools />
+          <Contact />
+        </Suspense>
       </main>
-      <Footer />
+      <Suspense fallback={<div />}>
+        <Footer />
+      </Suspense>
     </div>
   );
 };

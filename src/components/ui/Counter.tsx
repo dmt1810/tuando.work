@@ -1,5 +1,5 @@
-import { motion, useSpring, useTransform } from "framer-motion";
-import { useState, useEffect } from "react";
+import { motion, useMotionValue, useTransform, animate } from "framer-motion";
+import { useEffect } from "react";
 
 interface CounterProps {
     value: number | string;
@@ -14,20 +14,22 @@ const Counter = ({ value, suffix: propSuffix, className }: CounterProps) => {
     const prefix = stringValue.split(numberMatch ? numberMatch[0] : '')[0] || "";
     const suffix = propSuffix || (stringValue.split(numberMatch ? numberMatch[0] : '')[1] || "");
 
-    const spring = useSpring(0, {
-        mass: 1,
-        stiffness: 45,
-        damping: 15,
-    });
+    const motionValue = useMotionValue(0);
 
-    const displayValue = useTransform(spring, (latest) =>
+    const displayValue = useTransform(motionValue, (latest) =>
         `${prefix}${Math.floor(latest).toLocaleString()}${suffix}`
     );
 
     useEffect(() => {
-        const timer = setTimeout(() => spring.set(targetNumber), 500);
+        const timer = setTimeout(() => {
+            const controls = animate(motionValue, targetNumber, {
+                duration: 2,
+                ease: "easeOut",
+            });
+            return () => controls.stop();
+        }, 500);
         return () => clearTimeout(timer);
-    }, [targetNumber, spring]);
+    }, [targetNumber, motionValue]);
 
     if (isNaN(targetNumber) || (!numberMatch && typeof value === 'string')) {
         return <span className={className}>{value} {propSuffix}</span>;
