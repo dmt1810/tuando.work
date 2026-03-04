@@ -1,22 +1,26 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { Award, CheckCircle } from "lucide-react";
+import { Award, CheckCircle, Megaphone, Settings, BarChart3, Globe } from "lucide-react";
 
 const toolCategories = [
   {
     category: "Advertising Platforms",
+    icon: Megaphone,
     tools: ["Google Ads", "Facebook Ads", "Trivago", "Criteo", "TikTok Ads"],
   },
   {
     category: "CRM & Automation",
+    icon: Settings,
     tools: ["HubSpot", "Insider", "Salesforce", "Mailchimp", "Braze"],
   },
   {
     category: "Analytics & Data",
+    icon: BarChart3,
     tools: ["Google Analytics", "BigQuery", "Data Studio", "Mixpanel", "Amplitude"],
   },
   {
     category: "Marketing Channels",
+    icon: Globe,
     tools: ["SEM/PPC", "Email Marketing", "Content Marketing", "Social Media", "Affiliate"],
   },
 ];
@@ -95,7 +99,8 @@ const Tools = () => {
                 transition={{ duration: 0.5, delay: catIndex * 0.1 }}
                 className="bg-card rounded-xl p-6 shadow-sm border border-border/50"
               >
-                <h4 className="font-display font-semibold text-lg mb-4 text-primary">
+                <h4 className="font-display font-semibold text-lg mb-4 text-primary flex items-center gap-2">
+                  <category.icon className="w-5 h-5 flex-shrink-0" />
                   {category.category}
                 </h4>
                 <div className="flex flex-wrap gap-2">
@@ -124,23 +129,27 @@ const Tools = () => {
             <Award className="w-5 h-5 text-primary" />
             Professional Certifications
           </motion.h3>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="flex overflow-x-auto snap-x snap-mandatory gap-4 pb-8 no-scrollbar -mx-6 px-6 md:mx-0 md:px-0 md:grid md:grid-cols-2 lg:grid-cols-3 md:overflow-visible md:pb-0">
             {certifications.map((cert, index) => (
               <motion.div
                 key={cert.name}
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={isInView ? { opacity: 1, scale: 1 } : {}}
                 transition={{ duration: 0.4, delay: 0.4 + index * 0.05 }}
-                className="bg-card rounded-lg p-4 border border-border/50 shadow-sm card-hover group"
+                className="bg-card rounded-lg p-5 border border-border/50 shadow-sm card-hover group min-w-[280px] md:min-w-0 snap-center"
               >
-                <div className="flex items-start gap-3">
-                  <CheckCircle className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+                <div className="flex items-start gap-4">
+                  <div className="p-2 rounded-full bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white transition-colors duration-300 flex-shrink-0">
+                    <CheckCircle className="w-5 h-5" />
+                  </div>
                   <div>
-                    <h4 className="font-medium text-sm text-foreground group-hover:text-primary transition-colors">
+                    <h4 className="font-semibold text-sm text-foreground group-hover:text-primary transition-colors leading-tight">
                       {cert.name}
                     </h4>
-                    <p className="text-xs text-muted-foreground mt-1">
-                      {cert.issuer}
+                    <p className="text-xs text-muted-foreground mt-1.5 flex items-center gap-2">
+                      <span className="font-medium text-primary/80">{cert.issuer}</span>
+                      <span className="w-1 h-1 rounded-full bg-border" />
+                      <span>{cert.year}</span>
                     </p>
                   </div>
                 </div>
