@@ -78,7 +78,12 @@ const GrowthPillars = () => {
                   opacity: { duration: 0.6, delay: 0.2 + index * 0.1 },
                   y: { duration: 0.6, delay: 0.2 + index * 0.1 }
                 }}
-                onMouseEnter={() => setActiveLayer(pillar.id)}
+                onMouseEnter={() => {
+                  // Only trigger hover on devices that support hover (non-touch)
+                  if (window.matchMedia("(hover: hover)").matches) {
+                    setActiveLayer(pillar.id);
+                  }
+                }}
                 onClick={() => handleToggle(pillar.id)}
                 className={`
                   relative overflow-hidden rounded-3xl border border-border/50 shadow-sm
@@ -101,11 +106,10 @@ const GrowthPillars = () => {
                 />
 
                 {/* Content Header — with chevron indicator */}
-                <motion.div layout="position" className={`${activeLayer === pillar.id ? "mb-6" : "mb-0"}`}>
+                <div className={`${activeLayer === pillar.id ? "mb-6" : "mb-0"}`}>
                   <div className="flex items-center md:items-start justify-between">
                     <div className="flex items-center gap-4 md:block">
-                      <motion.div
-                        layout="position"
+                      <div
                         className={`
                           rounded-xl flex items-center justify-center transition-colors duration-500
                           ${activeLayer === pillar.id
@@ -114,33 +118,32 @@ const GrowthPillars = () => {
                         `}
                       >
                         <pillar.icon className={`${activeLayer === pillar.id ? "w-6 h-6" : "w-5 h-5 md:w-6 md:h-6"}`} />
-                      </motion.div>
-                      <motion.h3
-                        layout="position"
+                      </div>
+                      <h3
                         className={`font-display font-bold transition-colors duration-500 
                           ${activeLayer === pillar.id ? "text-2xl text-foreground" : "text-lg text-muted-foreground/60 md:text-2xl"}`}
                       >
                         {pillar.title}
-                      </motion.h3>
+                      </h3>
                     </div>
                     {/* Chevron expand indicator */}
-                    <motion.div layout="position">
+                    <div>
                       <ChevronDown className={`
                         w-5 h-5 transition-transform duration-500 flex-shrink-0 md:hidden
                         ${activeLayer === pillar.id ? "rotate-180 text-primary" : "text-muted-foreground/40"}
                       `} />
-                    </motion.div>
+                    </div>
                   </div>
-                </motion.div>
+                </div>
 
                 {/* Expanded Details Content */}
                 <AnimatePresence initial={false}>
                   {activeLayer === pillar.id && (
                     <motion.div
                       key="content"
-                      initial={{ opacity: 0, height: 0, filter: "blur(10px)", y: 10 }}
-                      animate={{ opacity: 1, height: "auto", filter: "blur(0px)", y: 0 }}
-                      exit={{ opacity: 0, height: 0, filter: "blur(10px)", y: 10 }}
+                      initial={{ opacity: 0, height: 0, y: 10 }}
+                      animate={{ opacity: 1, height: "auto", y: 0 }}
+                      exit={{ opacity: 0, height: 0, y: 10 }}
                       transition={{ duration: 0.5, ease: [0.25, 1, 0.5, 1] }}
                       className="flex-grow overflow-hidden"
                     >
