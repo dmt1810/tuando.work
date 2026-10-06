@@ -1,6 +1,7 @@
 ---
 import './scene.css';
 import { sprite } from './sprites';
+import { workstation } from './workstation';
 import { profile } from '../../data/profile';
 import { strings, url, type Lang } from '../../i18n';
 interface Props {
@@ -28,6 +29,7 @@ const { lang } = Astro.props,
     <span class="office-status mono">THE AGENT OFFICE</span>
   </header>
   <div class="office-scene">
+    <div class="office-room" aria-hidden="true"></div>
     <span data-office-config={JSON.stringify(agents)} hidden></span>
     {agents.map((agent) =>
       agent.external ? (
@@ -39,6 +41,7 @@ const { lang } = Astro.props,
           rel="noopener noreferrer"
           aria-label={`${agent.title}: ${agent.big}`}
         >
+          <span class="station-art" set:html={workstation(true)} />
           <span class="sprite" set:html={sprite(agent.id)} />
           <span class="agent-name">{agent.label}</span>
         </a>
@@ -52,6 +55,7 @@ const { lang } = Astro.props,
           aria-expanded="false"
           aria-controls="office-bubble"
         >
+          <span class="station-art" set:html={workstation()} />
           <span class="sprite" set:html={sprite(agent.id)} />
           <span class="agent-name">{agent.label}</span>
         </button>

@@ -78,7 +78,10 @@ export function startOffice(root: HTMLElement) {
       half,
       Math.min(rect.width - half, (rect.width * x) / 100),
     );
-    const py = Math.max(bubble.offsetHeight + 12, (rect.height * y) / 100 - 48);
+    const py = Math.max(
+      bubble.offsetHeight + 12,
+      (rect.height * y) / 100 - (mobile.matches ? 54 : 68),
+    );
     bubble.style.left = `${px}px`;
     bubble.style.top = `${py}px`;
   }
@@ -107,12 +110,14 @@ export function startOffice(root: HTMLElement) {
     bubble.hidden = false;
     bubble.classList.toggle('expanded', expanded);
     positionBubble();
+    const rect = scene.getBoundingClientRect(),
+      [x, y] = point(index);
     if (previous >= 0) {
-      const rect = scene.getBoundingClientRect(),
-        [x, y] = point(index);
       brief.hidden = false;
-      brief.style.transform = `translate(${(rect.width * x) / 100 - 15}px,${(rect.height * y) / 100 + 15}px)`;
+      // Establish the prior position before animating the first visible handoff.
+      brief.getBoundingClientRect();
     }
+    brief.style.transform = `translate(${(rect.width * x) / 100 - 15}px,${(rect.height * y) / 100 + 22}px)`;
     root.dataset.officeActive = agent.id;
   }
   function schedule(delay = 3500) {

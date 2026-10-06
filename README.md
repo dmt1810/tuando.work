@@ -31,6 +31,8 @@ Collections: `src/content/{services,work,lab}/{en,vi}/`. Add matching slugs in b
 
 Only `hello@tuando.work` may appear as a public email. Do not add phone numbers or secrets. Review `docs/OWNER_BACKLOG.md` before launch.
 
+Office artwork and its Pixel Agents visual reference are documented in [docs/OFFICE_REFERENCE.md](docs/OFFICE_REFERENCE.md). Regenerate the original room SVGs with `node scripts/build-office-art.mjs` after editing their generator.
+
 ## Deployment
 
 The image contains nginx and prebuilt `dist/`. The TV box only pulls the arm64 image. Memory is limited to 64 MB. See `docs/CUTOVER.md` for verification, tunnel networking and rollback.

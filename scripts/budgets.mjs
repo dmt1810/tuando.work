@@ -13,10 +13,10 @@ total += gzipSync(await readFile('dist/theme-init.js')).length;
 const html = await readFile('dist/index.html', 'utf8');
 const sprites =
   (await stat('dist/office-floor.svg')).size +
-  [...html.matchAll(/<span class="sprite">(.*?)<\/span>/g)].reduce(
-    (sum, match) => sum + Buffer.byteLength(match[1]),
-    0,
-  );
+  (await stat('dist/office-floor-mobile.svg')).size +
+  [
+    ...html.matchAll(/<span class="(?:sprite|station-art)">(.*?)<\/span>/g),
+  ].reduce((sum, match) => sum + Buffer.byteLength(match[1]), 0);
 const result = {
   allClientJsGzip: total,
   officeJsGzip: office,

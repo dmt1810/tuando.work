@@ -6,6 +6,8 @@ try {
   for (const [name, width, height, lang, dark] of [
     ['desktop', 1440, 1100, 'en', false],
     ['mobile', 390, 844, 'en', false],
+    ['narrow', 320, 844, 'en', false],
+    ['tablet', 768, 1024, 'en', false],
     ['vietnamese', 1440, 1100, 'vi', false],
     ['dark', 1440, 1100, 'en', true],
   ]) {
@@ -31,7 +33,7 @@ try {
       ),
     );
     await page.screenshot({ path: `artifacts/${name}.png`, fullPage: true });
-    if (name === 'desktop' || name === 'mobile') {
+    if (name !== 'vietnamese') {
       await page.locator('.office-scene').scrollIntoViewIfNeeded();
       await page.waitForTimeout(2000);
       await page

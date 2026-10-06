@@ -245,3 +245,26 @@ test('active mobile office stays accessible and expanded bubbles fit the scene',
     ).violations,
   ).toEqual([]);
 });
+
+test('office characters and labels fit narrow phones and tablets', async ({
+  page,
+  request,
+}) => {
+  for (const artwork of ['/office-floor.svg', '/office-floor-mobile.svg']) {
+    expect((await request.get(artwork)).status()).toBe(200);
+  }
+  for (const width of [320, 640, 768]) {
+    await page.setViewportSize({ width, height: 900 });
+    await page.goto('/');
+    const scene = await page.locator('.office-scene').boundingBox();
+    for (const item of await page.locator('.agent-name, .sprite').all()) {
+      const box = await item.boundingBox();
+      expect(box!.x).toBeGreaterThanOrEqual(scene!.x);
+      expect(box!.x + box!.width).toBeLessThanOrEqual(scene!.x + scene!.width);
+      expect(box!.y).toBeGreaterThanOrEqual(scene!.y);
+      expect(box!.y + box!.height).toBeLessThanOrEqual(
+        scene!.y + scene!.height,
+      );
+    }
+  }
+});
