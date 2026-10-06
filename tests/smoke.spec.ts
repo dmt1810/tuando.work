@@ -65,6 +65,23 @@ test('equivalent language page and persisted theme', async ({ page }) => {
   await page.reload();
   await expect(page.locator('html')).toHaveAttribute('data-theme', theme!);
 });
+
+test('responsive navigation can be opened with the keyboard', async ({
+  page,
+}) => {
+  await page.goto('/');
+  if (page.viewportSize()!.width <= 600) {
+    const menu = page.locator('[data-menu]');
+    await expect(menu).toBeVisible();
+    await expect(page.locator('.nav')).toBeHidden();
+    await menu.focus();
+    await page.keyboard.press('Enter');
+    await expect(menu).toHaveAttribute('aria-expanded', 'true');
+    await expect(page.locator('.nav')).toBeVisible();
+  }
+  await page.locator('.nav a[href="/work/"]').click();
+  await expect(page).toHaveURL(/\/work\/$/);
+});
 test('office cycle, click hold, keyboard link and offscreen pause', async ({
   page,
 }) => {

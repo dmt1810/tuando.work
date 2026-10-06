@@ -686,7 +686,7 @@ svg {
   .brand {
     margin-right: auto;
   }
-  .menu {
+  .header-tools > .menu {
     display: block;
   }
   .nav {

@@ -6,7 +6,7 @@ test('rejects private contact details, duplicate identities and impossible perio
   Object.assign(privateContact.person, { phone: 'PRIVATE_PLACEHOLDER' });
   expect(profileSchema.safeParse(privateContact).success).toBe(false);
   const email = structuredClone(seed);
-  email.person.email = 'private@example.invalid';
+  email.person.email = seed.person.email.replace('hello', 'private');
   expect(profileSchema.safeParse(email).success).toBe(false);
   const dates = structuredClone(seed);
   dates.experience[0].end = '2020-01';

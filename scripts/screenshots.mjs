@@ -22,6 +22,14 @@ try {
         ?.getAttribute('data-office-active'),
     );
     await page.evaluate(() => window.scrollTo(0, 0));
+    await page.locator('img').evaluateAll((images) =>
+      Promise.all(
+        images.map((image) => {
+          image.loading = 'eager';
+          return image.decode().catch(() => {});
+        }),
+      ),
+    );
     await page.screenshot({ path: `artifacts/${name}.png`, fullPage: true });
     if (name === 'desktop' || name === 'mobile') {
       await page.locator('.office-scene').scrollIntoViewIfNeeded();

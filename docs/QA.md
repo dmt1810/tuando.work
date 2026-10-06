@@ -1,9 +1,11 @@
 # Local verification
 
-Verified on 2026-10-06 using Node 22.22.1 and Playwright Chromium on Windows.
+Verified on 2026-10-06 using the bundled Node 24.19.0 runtime and Playwright Chromium on Windows. The project requires Node 22.12 or newer and CI is configured for Node 22.
+
+The complete build, type check and PDF generation also pass on Node 22.22.1.
 
 - `npm run build`: passed. Strict type check reports no errors, warnings or hints. Astro generated 30 HTML pages, social preview images, sitemap, RSS, crawler files and the CV PDF.
-- `npm test`: 30 checks passed across desktop and mobile. Includes every built page's H1, JSON-LD, OG image and internal resources, light/dark accessibility, the active office, reduced motion, Save-Data, JavaScript-disabled content and private-profile validation.
+- `npm test`: 32 checks passed across desktop and mobile. Includes every built page's H1, JSON-LD, OG image and internal resources, light/dark accessibility, mobile menu navigation, the active office, reduced motion, Save-Data, JavaScript-disabled content and private-profile validation.
 - Mobile Lighthouse: Performance 99, Accessibility 100, Best Practices 100, SEO 100. Simulated LCP 1.81 seconds and CLS 0. These are local lab measurements, not production field data. The preview uses gzip, cache headers and CSP matching nginx's configuration.
 - All client JavaScript: 3,117 bytes gzip, including theme initialization. Office plus lazy loader: 2,541 bytes gzip. Inline sprite artwork and floor asset: 11,798 bytes before compression.
 - CV PDF: two A4 pages. Extracted text contains the approved public email, website and LinkedIn, no phone number and no excluded employer.
