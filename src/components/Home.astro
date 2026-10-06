@@ -105,19 +105,17 @@ const [services, work, lab] = await Promise.all([
         src={photo}
         alt={profile.person.name}
         width={220}
-        height={220}
+        height={266}
         format="webp"
         loading="lazy"
         class="about-photo"
       />
       <div class="about-text">
-        <p class="eyebrow">{lang === 'vi' ? 'Về mình' : 'A little about me'}</p>
+        <p class="eyebrow">{lang === 'vi' ? 'Về Tuấn' : 'Meet Tuan'}</p>
         <h2>{t.about}</h2>
         <p>{t.aboutText}</p>
         <a href={url(lang, 'cv')} class="text-link">
-          {lang === 'vi'
-            ? 'Xem hồ sơ nghề nghiệp'
-            : 'The longer story, on my CV'}
+          {lang === 'vi' ? 'Xem hồ sơ nghề nghiệp' : 'Explore my experience'}
           <span class="arrow" aria-hidden="true">
             ↗
           </span>

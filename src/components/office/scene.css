@@ -456,3 +456,209 @@ html[data-theme='dark'] .office-room {
     display: none !important;
   }
 }
+/* The workstations stay put while the characters carry the handoff. */
+.office-controls {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+}
+.office-toggle {
+  border: 1px solid var(--border);
+  background: var(--surface);
+  border-radius: 6px;
+  padding: 8px 12px;
+  min-height: 44px;
+  font-size: 12px;
+}
+.office-toggle[hidden] {
+  display: none;
+}
+.office-agent.walking {
+  z-index: 3;
+  opacity: 1;
+}
+.office-agent.walking .sprite {
+  overflow: visible;
+  animation: none;
+}
+.office-agent.walking .sprite svg {
+  animation: walking-frame 0.45s steps(1) infinite;
+}
+.office-agent.walking .sprite {
+  overflow: hidden;
+}
+.office-agent.meeting .sprite {
+  animation: agent-type 0.65s steps(2) infinite;
+}
+.office-agent.meeting .agent-name,
+.office-agent.supporting .agent-name {
+  border-color: var(--accent);
+}
+.office-agent.meeting .screen-glass,
+.office-agent.supporting .screen-glass {
+  fill: #1e5346;
+}
+.office-agent.meeting,
+.office-agent.supporting {
+  opacity: 1 !important;
+}
+.brief {
+  transition: none;
+  color: var(--text);
+  box-shadow: 0 3px 0 #00000012;
+}
+@keyframes walking-frame {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  33% {
+    transform: translateX(calc(-1 * var(--sprite-frame)));
+  }
+  66% {
+    transform: translateX(calc(-2 * var(--sprite-frame)));
+  }
+}
+.workflow {
+  padding: 28px;
+  border-top: 1px solid var(--border);
+}
+.workflow-heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 24px;
+}
+.workflow-heading .eyebrow {
+  font-size: 10px;
+  margin: 0;
+  white-space: nowrap;
+}
+.workflow-heading > p:last-child {
+  color: var(--muted);
+  font-size: 12px;
+  max-width: 440px;
+}
+.workflow-steps {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  margin: 24px 0;
+  padding: 0;
+  border-block: 1px solid var(--border);
+}
+.workflow-steps button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  text-align: left;
+  min-height: 60px;
+  padding: 12px;
+  background: transparent;
+  border: 0;
+  font-size: 13px;
+}
+.workflow-steps button[aria-pressed='true'] {
+  background: var(--accent);
+  color: var(--on-accent);
+}
+.workflow-steps button > span:last-child {
+  margin-left: auto;
+}
+.workflow-steps .mono {
+  font-size: 10px;
+}
+.workflow-detail {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  min-height: 190px;
+}
+.workflow-handoff {
+  font-size: 10px;
+  color: var(--accent);
+  margin-bottom: 12px;
+}
+.workflow-story h3 {
+  font-size: 28px;
+  max-width: 400px;
+}
+.workflow-story > p:last-child {
+  margin-top: 14px;
+  font-size: 14px;
+  color: var(--muted);
+}
+.workflow-artifact {
+  margin: 0;
+  padding-left: 24px;
+  border-left: 1px solid var(--border);
+}
+.workflow-artifact > div + div {
+  margin-top: 18px;
+}
+.workflow-artifact dt {
+  font:
+    10px ui-monospace,
+    monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  margin-bottom: 6px;
+}
+.workflow-artifact dd {
+  font-size: 14px;
+  margin: 0;
+}
+.workflow-static li {
+  margin-top: 24px;
+}
+@media (max-width: 639px) {
+  .office-controls {
+    align-items: flex-start;
+  }
+  .office-heading {
+    flex-direction: column;
+    gap: 12px;
+  }
+  .workflow {
+    padding: 20px 16px;
+  }
+  .workflow-heading {
+    display: block;
+  }
+  .workflow-heading > p:last-child {
+    margin-top: 10px;
+  }
+  .workflow-steps {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 0;
+    margin-block: 18px;
+  }
+  .workflow-steps button {
+    flex-direction: column;
+    justify-content: center;
+    gap: 4px;
+    font-size: 10px;
+    padding: 8px 2px;
+    min-height: 70px;
+    text-align: center;
+  }
+  .workflow-steps button > span:last-child {
+    display: none;
+  }
+  .workflow-detail {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    min-height: 370px;
+  }
+  .workflow-story h3 {
+    font-size: 26px;
+  }
+  .workflow-artifact {
+    border-left: 0;
+    border-top: 1px solid var(--border);
+    padding: 18px 0 0;
+  }
+}

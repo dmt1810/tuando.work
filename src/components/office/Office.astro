@@ -2,6 +2,7 @@
 import './scene.css';
 import { sprite } from './sprites';
 import { workstation } from './workstation';
+import { workflow } from './workflow';
 import { profile } from '../../data/profile';
 import { strings, url, type Lang } from '../../i18n';
 interface Props {
@@ -9,6 +10,7 @@ interface Props {
 }
 const { lang } = Astro.props,
   t = strings(lang),
+  steps = workflow(lang),
   agents = profile.officeAgents.map((a) => ({
     ...a,
     link: a.external ? a.link : url(lang, a.link),
@@ -20,17 +22,32 @@ const { lang } = Astro.props,
   aria-labelledby="office-title"
   data-office
   data-office-playing="false"
+  data-lang={lang}
 >
   <header class="office-heading">
     <div>
       <h2 id="office-title">{t.office}</h2>
       <p>{t.officeIntro}</p>
     </div>
-    <span class="office-status mono">THE AGENT OFFICE</span>
+    <div class="office-controls">
+      <span class="office-status mono">
+        {lang === 'vi' ? 'WORKFLOW MINH HỌA' : 'ILLUSTRATIVE WORKFLOW'}
+      </span>
+      <button
+        class="office-toggle"
+        data-office-toggle
+        type="button"
+        aria-pressed="false"
+        hidden
+      >
+        {lang === 'vi' ? 'Tạm dừng' : 'Pause motion'}
+      </button>
+    </div>
   </header>
   <div class="office-scene">
     <div class="office-room" aria-hidden="true"></div>
     <span data-office-config={JSON.stringify(agents)} hidden></span>
+    <span data-workflow-config={JSON.stringify(steps)} hidden></span>
     {agents.map((agent) =>
       agent.external ? (
         <a
@@ -78,7 +95,79 @@ const { lang } = Astro.props,
   </div>
   <div class="office-hint mono">
     <span>{t.officeHint}</span>
-    <span>STRATEGY → EXECUTION → FEEDBACK</span>
+    <span>
+      {lang === 'vi'
+        ? 'BRIEF → LEAD → PHẢN HỒI ↺'
+        : 'BRIEF → LEAD → FEEDBACK ↺'}
+    </span>
+  </div>
+  <div
+    class="workflow"
+    aria-label={
+      lang === 'vi'
+        ? 'Từ chiến dịch tới quyết định'
+        : 'From campaign to decision'
+    }
+  >
+    <div class="workflow-heading">
+      <p class="eyebrow">
+        {lang === 'vi' ? 'Hệ thống hoạt động thế nào' : 'The system, in motion'}
+      </p>
+      <p>
+        {lang === 'vi'
+          ? 'Ví dụ: từ nhu cầu tư vấn đến lead phù hợp, rồi đến quyết định tiếp theo.'
+          : 'Example: a service enquiry becomes a qualified lead, then a better decision.'}
+      </p>
+    </div>
+    <ol class="workflow-steps">
+      {steps.map((step, index) => (
+        <li>
+          <button
+            type="button"
+            data-workflow-step={index}
+            aria-pressed={index === 0 ? 'true' : 'false'}
+            disabled
+          >
+            <span class="mono">0{index + 1}</span>
+            {step.label}
+            <span aria-hidden="true">
+              {index === steps.length - 1 ? '↺' : '→'}
+            </span>
+          </button>
+        </li>
+      ))}
+    </ol>
+    <div class="workflow-detail" data-workflow-detail>
+      <div class="workflow-story">
+        <p class="workflow-handoff mono" data-workflow-handoff>
+          Manager → Creative + Performance
+        </p>
+        <h3 data-workflow-title>{steps[0].title}</h3>
+        <p data-workflow-next>{steps[0].next}</p>
+      </div>
+      <dl class="workflow-artifact">
+        <div>
+          <dt>{lang === 'vi' ? 'Đầu vào' : 'Input'}</dt>
+          <dd data-workflow-input>{steps[0].input}</dd>
+        </div>
+        <div>
+          <dt>{lang === 'vi' ? 'Đầu ra' : 'Output'}</dt>
+          <dd data-workflow-output>{steps[0].output}</dd>
+        </div>
+      </dl>
+    </div>
+    <noscript>
+      <ol class="workflow-static">
+        {steps.slice(1).map((step) => (
+          <li>
+            <h3>{step.title}</h3>
+            <p>{step.input}</p>
+            <p>{step.output}</p>
+            <p>{step.next}</p>
+          </li>
+        ))}
+      </ol>
+    </noscript>
   </div>
   <ul class="office-fallback">
     {agents.map((agent) => (
@@ -108,11 +197,7 @@ const { lang } = Astro.props,
         const connection = (
           navigator as Navigator & { connection?: { saveData?: boolean } }
         ).connection;
-        if (
-          matchMedia('(prefers-reduced-motion:reduce)').matches ||
-          connection?.saveData
-        )
-          return;
+        if (connection?.saveData) return;
         observer.disconnect();
         const ready = () => {
           const load = () =>
