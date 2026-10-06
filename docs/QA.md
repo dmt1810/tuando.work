@@ -18,4 +18,4 @@ The installed Astro 7/MDX build emits a bundler warning about `use astro:head-in
 
 Docker and GHCR publishing were not executed locally. The workflow builds and tests before publishing an arm64 image when main is updated. Confirm the actual cloudflared network and route, review the owner backlog and perform the staging checks in `CUTOVER.md` before release.
 
-Original plan and seed are stored in `docs/`. Local implementation was delivered as coherent milestones. Nothing has been pushed or deployed.
+Original plan and seed are stored in `docs/`. Implementation was delivered as coherent milestones. GitHub Actions publishes the arm64 image from `main`; updating the existing Armbian container is a manual step documented in `DEPLOY_ARMBIAN_VI.md`.

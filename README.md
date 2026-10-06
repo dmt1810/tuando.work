@@ -36,3 +36,5 @@ Office artwork and its Pixel Agents visual reference are documented in [docs/OFF
 ## Deployment
 
 The image contains nginx and prebuilt `dist/`. The TV box only pulls the arm64 image. Memory is limited to 64 MB. See `docs/CUTOVER.md` for verification, tunnel networking and rollback.
+
+For the existing Armbian website container, follow [docs/DEPLOY_ARMBIAN_VI.md](docs/DEPLOY_ARMBIAN_VI.md). Updates use `main` and pull the GitHub Docker image into the existing stack.
