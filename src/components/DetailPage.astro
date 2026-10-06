@@ -1,0 +1,184 @@
+---
+import { render, type CollectionEntry } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import Contact from './Contact.astro';
+import Breadcrumbs from './Breadcrumbs.astro';
+import { strings, url, type Lang } from '../i18n';
+import { profile, site, period } from '../data/profile';
+import { workRecord } from '../data/content';
+interface Props {
+  lang: Lang;
+  entry:
+    | CollectionEntry<'services'>
+    | CollectionEntry<'work'>
+    | CollectionEntry<'lab'>;
+}
+const { lang, entry } = Astro.props,
+  t = strings(lang),
+  { Content } = await render(entry),
+  d = entry.data;
+const collection = entry.collection,
+  canonical = new URL(url(lang, `${collection}/${d.slug}`), site).href;
+const record =
+  collection === 'work'
+    ? workRecord((entry as CollectionEntry<'work'>).data)
+    : null;
+const extra: Record<string, unknown>[] = [
+  {
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: t.home,
+        item: new URL(url(lang), site).href,
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: t.nav[collection],
+        item: new URL(url(lang, collection), site).href,
+      },
+      { '@type': 'ListItem', position: 3, name: d.title, item: canonical },
+    ],
+  },
+];
+if (collection === 'services')
+  extra.push({
+    '@type': 'Service',
+    name: d.title,
+    description: d.description,
+    url: canonical,
+    provider: { '@id': `${site}/#person` },
+    areaServed: 'Southeast Asia',
+  });
+if (collection === 'work')
+  extra.push({
+    '@type': 'Article',
+    headline: d.title,
+    description: d.description,
+    dateModified: d.updated,
+    author: { '@id': `${site}/#person` },
+    mainEntityOfPage: canonical,
+    image: new URL(
+      `/og/${url(lang, `work/${d.slug}`).replace(/^\/|\/$/g, '')}.png`,
+      site,
+    ).href,
+  });
+if (collection === 'lab' && 'status' in d && d.status === 'live')
+  extra.push({
+    '@type': 'SoftwareApplication',
+    name: d.title,
+    description: d.description,
+    url: canonical,
+    applicationCategory: 'BusinessApplication',
+    operatingSystem: 'Web',
+    author: { '@id': `${site}/#person` },
+  });
+const achievements =
+  record && 'achievements' in record ? record.achievements : null;
+const scope = record && 'scope' in record ? record.scope : null;
+const actions = achievements?.filter((item) => !/\d/.test(item));
+const measured = achievements?.filter((item) => /\d/.test(item));
+const results =
+  record && 'impact' in record
+    ? record.impact.filter((item) => !record.todo || !/%/.test(item))
+    : null;
+---
+
+<Base lang={lang} title={d.title} description={d.description} extra={extra}>
+  <div class="wrap">
+    <Breadcrumbs
+      lang={lang}
+      items={[
+        { label: t.nav[collection], path: collection },
+        { label: d.title },
+      ]}
+    />
+    <header class="page-intro">
+      <p class="eyebrow">{t.nav[collection]}</p>
+      <h1>{d.title}</h1>
+      <p>{d.description}</p>
+      <div class="author">
+        <span>{profile.person.displayName}</span>
+        <span>
+          {t.updated} <time datetime={d.updated}>{d.updated}</time>
+        </span>
+        {record && 'start' in record && (
+          <span>
+            {record.company} · {period(record, lang)}
+          </span>
+        )}
+      </div>
+    </header>
+    <article class="prose">
+      <Content />
+      {record && (
+        <>
+          {d.slug !== 'igloo' && <h2>{t.did}</h2>}
+          {scope ? (
+            <ul>
+              {scope.map((item) => (
+                <li>{item}</li>
+              ))}
+            </ul>
+          ) : actions?.length ? (
+            <ul>
+              {actions.map((item) => (
+                <li>{item}</li>
+              ))}
+            </ul>
+          ) : (
+            <>{d.slug !== 'igloo' && <p>{record.role}</p>}</>
+          )}
+          <h2>{t.result}</h2>
+          {achievements ? (
+            <ul class="result-list">
+              {measured?.map((item) => (
+                <li>{item}</li>
+              ))}
+            </ul>
+          ) : results?.length ? (
+            <ul class="result-list">
+              {results.map((item) => (
+                <li>{item}</li>
+              ))}
+            </ul>
+          ) : (
+            <p>{t.scopeOnly}</p>
+          )}
+          <p class="mono muted">
+            {t.source}
+            {'start' in record
+              ? ` · ${record.company} · ${period(record, lang)}`
+              : ` · ${record.client}`}
+          </p>
+          {'tools' in d && (
+            <>
+              <h2>{t.tools}</h2>
+              <div class="skill-tags">
+                {d.tools.map((tool) => (
+                  <span>{tool}</span>
+                ))}
+              </div>
+            </>
+          )}
+        </>
+      )}
+      {collection === 'services' && 'deliverables' in d && (
+        <>
+          <h2>
+            {lang === 'vi' ? 'Bạn nhận được những gì?' : 'What do you receive?'}
+          </h2>
+          <ul>
+            {d.deliverables.map((item) => (
+              <li>{item}</li>
+            ))}
+          </ul>
+        </>
+      )}
+      {d.needsReview && <p class="review-note">{t.review}</p>}
+    </article>
+    <Contact lang={lang} />
+  </div>
+</Base>

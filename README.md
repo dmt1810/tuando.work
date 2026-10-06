@@ -1,62 +1,64 @@
 # Tuan Do — Growth Marketing Portfolio
 
-> A results-led portfolio covering performance marketing, CRM, analytics, experimentation, and market expansion across Southeast Asia.
+Growth marketing across Southeast Asia: paid acquisition, CRM, analytics and the workflows that connect them.
 
-[![Live portfolio](https://img.shields.io/badge/Live_Portfolio-tuando.work-0A66C2?style=for-the-badge)](https://tuando.work)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-dmt1810-0A66C2?style=for-the-badge&logo=linkedin)](https://linkedin.com/in/dmt1810)
+[Live portfolio](https://tuando.work) · [LinkedIn](https://linkedin.com/in/dmt1810) · [Email](mailto:hello@tuando.work)
 
-## About the portfolio
-
-This site presents more than ten years of growth-marketing experience across travel tech, insurtech, fintech, marketplaces, and agency environments. It explains how I combine performance marketing, customer lifecycle management, analytics, and product thinking to build scalable growth systems.
+Static bilingual personal brand hub: consulting, proof, Lab and printable CV. Astro, strict TypeScript, MDX, Tailwind's official Vite plugin and self-hosted Newsreader/Inter. No React or runtime third-party requests.
 
 ## Selected outcomes
 
+These outcomes come from `src/data/profile.json` and refer to distinct roles and projects.
+
 | Result | Scope |
-|---|---|
-| **150% YoY growth** | Multi-market insurtech growth and brand programs |
-| **10,000+ agents acquired** | B2B partner and agent ecosystem |
-| **$50K+ monthly media budgets** | Cross-channel performance campaigns |
-| **30% average ROAS improvement** | Paid acquisition across 15+ client accounts |
-| **20% higher email open rates** | Segmented CRM and lifecycle programs |
+| --- | --- |
+| **150% YoY growth** | Igloo Insurtech, 2021–2024 |
+| **10,000+ agent signups** | Launch across four Southeast Asian markets in the first year, Igloo |
+| **$50K+ monthly Google Ads budgets** | Metrixa |
+| **22% lower CPA** | Automated bidding and A/B testing, Metrixa |
+| **20% higher email open rates and 15% higher conversions** | Segmentation and A/B testing, OneMount |
 
 ## Growth capabilities
 
-- Acquisition strategy and paid-media optimization
-- CRM, segmentation, retention, and lifecycle automation
-- Funnel measurement, experimentation, and growth analytics
-- B2B partner acquisition and ecosystem development
-- Go-to-market strategy and Southeast Asia market expansion
+- Paid acquisition, campaign optimization and experimentation
+- CRM segmentation, onboarding, retention and lifecycle marketing
+- Tracking, reporting and funnel measurement
+- B2B partnerships and Southeast Asia market expansion
+- Martech integrations, automation and lead routing
 
-## Technology
+## Local development
 
-The portfolio is built with:
+Use Node 22.12 or newer:
 
-- React and TypeScript
-- Vite
-- Tailwind CSS and shadcn/ui
-- Framer Motion
-- Vitest
-- Docker and Nginx
-
-## Run locally
-
-```bash
-npm install
+```sh
+npm ci
+npx playwright install chromium
 npm run dev
 ```
 
-Quality checks:
+Open `http://localhost:4321`. English at `/`, Vietnamese at `/vi/`.
 
-```bash
-npm run lint
-npm test
+```sh
 npm run build
+npm test
+npm run audit
+npm run preview
 ```
 
-## Contact
+Build validates types and profile data, generates pages and social images, prints `dist/Tuan_Do_CV.pdf`, then verifies bundle budgets. Install Playwright Chromium before building.
 
-For growth leadership, consulting, or collaboration opportunities:
+## Editing content
 
-- Portfolio: [tuando.work](https://tuando.work)
-- LinkedIn: [linkedin.com/in/dmt1810](https://linkedin.com/in/dmt1810)
-- Email: [hello@tuando.work](mailto:hello@tuando.work)
+`src/data/profile.json` is the fact source, seeded from `docs/profile.seed.json`. Experience visibility uses `show.site` and `show.cv`. Office reads the same file. Keep metrics in the data file and reference them from components or MDX.
+
+Collections: `src/content/{services,work,lab}/{en,vi}/`. Add matching slugs in both languages. Vietnamese drafts use `needsReview: true`. Lab items with `draft: true` have no public route. Templates share language-aware components.
+
+Only `hello@tuando.work` may appear as a public email. Do not add phone numbers or secrets. Review `docs/OWNER_BACKLOG.md` before launch.
+
+Office artwork and its Pixel Agents visual reference are documented in [docs/OFFICE_REFERENCE.md](docs/OFFICE_REFERENCE.md). Regenerate the original room SVGs with `node scripts/build-office-art.mjs` after editing their generator.
+
+## Deployment
+
+The image contains nginx and prebuilt `dist/`. The TV box only pulls the arm64 image. Memory is limited to 64 MB. See `docs/CUTOVER.md` for verification, tunnel networking and rollback.
+
+For the existing Armbian website container, follow [docs/DEPLOY_ARMBIAN_VI.md](docs/DEPLOY_ARMBIAN_VI.md). Updates use `main` and pull the GitHub Docker image into the existing stack.

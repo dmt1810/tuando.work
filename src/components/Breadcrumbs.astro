@@ -1,0 +1,23 @@
+---
+import { strings, url, type Lang } from '../i18n';
+interface Props {
+  lang: Lang;
+  items: { label: string; path?: string }[];
+}
+const { lang, items } = Astro.props,
+  t = strings(lang);
+---
+
+<nav class="breadcrumbs" aria-label="Breadcrumb">
+  <a href={url(lang)}>{t.home}</a>
+  {items.map((item) => (
+    <>
+      <span aria-hidden="true">/</span>
+      {item.path ? (
+        <a href={url(lang, item.path)}>{item.label}</a>
+      ) : (
+        <span aria-current="page">{item.label}</span>
+      )}
+    </>
+  ))}
+</nav>

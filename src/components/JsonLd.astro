@@ -1,0 +1,47 @@
+---
+import { profile, site } from '../data/profile';
+interface Props {
+  extra?: Record<string, unknown>[];
+}
+const p = profile.person;
+const data = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Person',
+      '@id': `${site}/#person`,
+      name: p.name,
+      alternateName: [p.displayName, p.alternateName],
+      jobTitle: 'Growth marketer and martech consultant',
+      image: `${site}/${p.photo}`,
+      url: site,
+      sameAs: [p.linkedin, p.github],
+      knowsAbout: Object.values(profile.skills).flat(),
+    },
+    {
+      '@type': 'WebSite',
+      '@id': `${site}/#website`,
+      url: site,
+      name: 'Tuan Do',
+      inLanguage: ['en', 'vi'],
+      publisher: { '@id': `${site}/#person` },
+    },
+    {
+      '@type': 'ProfessionalService',
+      '@id': `${site}/#consulting`,
+      name: 'Tuan Do · Growth & martech consulting',
+      url: site,
+      email: p.email,
+      description: p.subline.en,
+      founder: { '@id': `${site}/#person` },
+      areaServed: 'Southeast Asia',
+    },
+    ...(Astro.props.extra ?? []),
+  ],
+};
+---
+
+<script
+  type="application/ld+json"
+  set:html={JSON.stringify(data).replace(/</g, '\\u003c')}
+/>

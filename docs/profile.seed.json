@@ -1,0 +1,177 @@
+{
+  "person": {
+    "name": "Do Manh Tuan",
+    "displayName": "Tuan Do",
+    "alternateName": "Đỗ Mạnh Tuấn",
+    "headline": { "en": "Growth marketer who builds the systems", "vi": "Growth marketer tự xây hệ thống" },
+    "subline": {
+      "en": "Performance marketing, CRM and martech automation for B2B and B2C platforms across Southeast Asia. 10+ years, from paid media to the workflows behind it.",
+      "vi": "Performance marketing, CRM và martech automation cho nền tảng B2B và B2C tại Đông Nam Á. Hơn 10 năm kinh nghiệm, từ paid media tới các workflow đứng sau."
+    },
+    "email": "hello@tuando.work",
+    "linkedin": "https://linkedin.com/in/dmt1810",
+    "github": "https://github.com/dmt1810",
+    "location": "Vietnam",
+    "photo": "tuan-profile.jpg"
+  },
+  "summary": {
+    "en": "Marketing professional with 10+ years in performance marketing, growth, CRM and data analytics across Southeast Asia. Delivered 150% YoY growth at Igloo Insurtech while onboarding 10,000+ agents across markets. Managed $50K+/month paid budgets and cut CPA by 22% at Metrixa. Combines paid media, CRM automation and analytics to build compounding growth systems."
+  },
+  "stats": [
+    { "value": "150%", "label": "YoY growth delivered", "context": "Igloo Insurtech, 2021 to 2024" },
+    { "value": "10,000+", "label": "agents onboarded", "context": "4 SEA markets, first year" },
+    { "value": "$50K+", "label": "monthly paid budgets managed", "context": "Metrixa" },
+    { "value": "10+", "label": "years in growth marketing", "context": "Southeast Asia" }
+  ],
+  "experience": [
+    {
+      "id": "tastech",
+      "company": "Tastech PTE. Ltd (FindTourGo)",
+      "role": "Marketing Manager",
+      "start": "2025-02",
+      "end": null,
+      "show": { "site": true, "cv": true },
+      "summary": "Leading marketing strategy for customized travel technology products including the FindTourGo platform, driving B2B and B2C growth across global markets with a focus on Southeast Asia.",
+      "achievements": [
+        "Secured 500+ travel agents globally with a focus on Southeast Asian markets",
+        "Grew the platform to 5,000+ monthly visitors from a pre-launch baseline through targeted digital campaigns",
+        "Expanded tour operator partnerships through B2B relationship development"
+      ],
+      "todo": "TODO(human): confirm whether this role is still current. If it ended, set end to the real month."
+    },
+    {
+      "id": "igloo",
+      "company": "Igloo Insurtech",
+      "role": "Growth and Brand Marketing Manager",
+      "start": "2021-09",
+      "end": "2024-12",
+      "show": { "site": true, "cv": true },
+      "summary": "Led marketing for a leading Southeast Asian full-stack insurtech operating across multiple markets.",
+      "achievements": [
+        "Delivered 150% YoY growth",
+        "Launched the insurance agent platform in 4 SEA markets and reached 10,000+ agent signups in the first year, with 2x industry-standard retention",
+        "Secured 5+ strategic partnerships with e-commerce and fintech platforms, expanding reach to 500,000+ users",
+        "Increased B2C brand awareness in Indonesia by 40% through integrated online and offline campaigns"
+      ]
+    },
+    {
+      "id": "onemount",
+      "company": "OneMount (VinID Ltd)",
+      "role": "CRM Specialist",
+      "start": "2019-09",
+      "end": "2021-08",
+      "show": { "site": true, "cv": true },
+      "summary": "OneMount Group is Vietnam's largest technology ecosystem across financial services, distribution, real estate and retail.",
+      "achievements": [
+        "Raised email open rates by 20% and conversions by 15% through A/B testing and segmentation",
+        "Implemented an integrated CRM solution with personalized communication workflows",
+        "Built marketing dashboards to monitor and optimize campaign performance"
+      ]
+    },
+    {
+      "id": "metrixa",
+      "company": "Metrixa Pty Ltd",
+      "role": "Senior Performance Marketing Specialist",
+      "start": "2018-07",
+      "end": "2019-08",
+      "show": { "site": true, "cv": true },
+      "summary": "Australian marketing agency focused on performance-driven strategies for various industries.",
+      "achievements": [
+        "Grew ROI by 30% quarterly while managing $50,000+ monthly Google Ads budgets",
+        "Reduced CPA by 22% through automated bidding strategies and systematic A/B testing"
+      ]
+    },
+    {
+      "id": "mytour",
+      "company": "Mytour Vietnam",
+      "role": "Digital Marketing Executive",
+      "start": "2015-05",
+      "end": "2018-07",
+      "show": { "site": true, "cv": true },
+      "summary": "Online travel agency.",
+      "achievements": [
+        "Reduced CPA by 18% through SEM optimization across Google Ads and Trivago",
+        "Designed lifecycle campaigns (onboarding, retention, win-back) in Insider with CRM-driven triggers",
+        "Improved acquisition through Trivago and Criteo retargeting"
+      ],
+      "todo": "TODO(human): confirm if you were the first digital marketing hire here. If yes, add it to the summary."
+    }
+  ],
+  "experienceNote": "Lifesup AI is intentionally NOT in this seed. TODO(human): decide if it appears on the site. The owner does not want it on the CV, so if added, set show.cv to false.",
+  "consulting": [
+    {
+      "id": "dichung",
+      "client": "Dichung.vn",
+      "industry": "Logistics and tech",
+      "url": "https://dichung.vn",
+      "role": "Performance Marketing Consultant",
+      "scope": ["Paid acquisition campaigns", "Funnel efficiency optimization", "Data-backed scaling recommendations"],
+      "impact": ["Reduced CPA by about 18%", "Improved lead quality"],
+      "todo": "TODO(human): verify the 18% figure and add a time range."
+    },
+    {
+      "id": "catsa",
+      "client": "CATSA",
+      "industry": "Retail and fashion",
+      "url": "https://catsa.vn",
+      "role": "Digital Marketing Consultant",
+      "scope": ["Paid media campaigns", "ROAS optimization", "Customer acquisition tracking"],
+      "impact": [],
+      "todo": "TODO(human): add real numbers or leave without metrics."
+    },
+    {
+      "id": "cenhomes",
+      "client": "Cenhomes.vn",
+      "industry": "Real estate and proptech",
+      "url": "https://cenhomes.vn",
+      "role": "Performance Marketing Consultant",
+      "scope": ["Lead generation funnels", "Analytics tracking", "Campaign targeting"],
+      "impact": [],
+      "todo": "TODO(human): add real numbers or leave without metrics."
+    },
+    {
+      "id": "hncc",
+      "client": "Hanoi Community College",
+      "industry": "Education",
+      "url": "https://hncc.edu.vn",
+      "role": "Digital Marketing Consultant",
+      "scope": ["Enrollment campaigns", "CRM workflows", "Paid search optimization"],
+      "impact": [],
+      "todo": "TODO(human): add real numbers or leave without metrics."
+    }
+  ],
+  "skills": {
+    "Advertising": ["Google Ads", "Facebook Ads", "TikTok Ads", "Trivago", "Criteo"],
+    "CRM and automation": ["HubSpot", "Insider", "Salesforce", "Braze", "Mailchimp"],
+    "Analytics and data": ["Google Analytics", "BigQuery", "Mixpanel", "Looker Studio"],
+    "Channels": ["SEM/PPC", "Email", "Content", "Social", "Affiliate"],
+    "Automation": ["n8n"]
+  },
+  "skillsNote": "TODO(human): confirm n8n and add other automation tools you actually use.",
+  "education": [
+    {
+      "degree": "Bachelor of Arts",
+      "field": "English and Business Administration",
+      "school": "University of Languages and International Studies, VNU"
+    }
+  ],
+  "certifications": [
+    { "name": "Google Analytics Certification", "issuer": "Google" },
+    { "name": "Google Ads Search Certification", "issuer": "Google" },
+    { "name": "AI-Powered Performance Ads Certification", "issuer": "Google" },
+    { "name": "Insights from Data with BigQuery", "issuer": "Google" },
+    { "name": "Exploring and Preparing your Data with BigQuery", "issuer": "Coursera" }
+  ],
+  "certificationsNote": "TODO(human): add the year for each certification.",
+  "officeAgents": [
+    { "id": "mgr", "label": "Manager", "title": "Marketing Manager", "role": "Strategy, growth, KPIs, partnerships", "big": "150% YoY", "caption": "growth delivered at Igloo Insurtech", "link": "services/marketing-consulting" },
+    { "id": "cre", "label": "Creative", "title": "Content and Creative", "role": "Content, landing pages, brand", "big": "+40% awareness", "caption": "Indonesia brand campaign, Igloo", "link": "services/marketing-consulting" },
+    { "id": "per", "label": "Performance", "title": "Performance Marketer", "role": "Google, Meta, TikTok Ads, budget allocation", "big": "-22% CPA", "caption": "on $50K+/month Google Ads, Metrixa", "link": "services/marketing-consulting" },
+    { "id": "crm", "label": "CRM", "title": "CRM and Lifecycle", "role": "Segmentation, email, onboarding, retention, win-back", "big": "+20% open rate", "caption": "and +15% conversion, OneMount", "link": "services/marketing-consulting" },
+    { "id": "dat", "label": "Data", "title": "Data and Reporting", "role": "Tracking, GA, BigQuery, Looker Studio dashboards", "big": "One dashboard", "caption": "for every channel", "link": "services/martech-automation" },
+    { "id": "aut", "label": "Automation", "title": "Martech and Automation", "role": "n8n flows, CRM integrations, lead routing, automated reports", "big": "n8n flows", "caption": "case study coming soon", "link": "services/martech-automation", "todo": "TODO(human): replace with a real metric after the first automation case study." },
+    { "id": "seo", "label": "SEO/GEO", "title": "SEO and GEO", "role": "Organic search and AI search visibility", "big": "Live case", "caption": "this website, tracked in Search Console", "link": "services/marketing-consulting", "todo": "TODO(human): replace with a real metric once Search Console has data." },
+    { "id": "ops", "label": "Ops", "title": "Agency Ops", "role": "Process, cadence, agency management, cross-team coordination", "big": "5+ partnerships", "caption": "reaching 500,000+ users, Igloo", "link": "services/marketing-consulting" },
+    { "id": "fd", "label": "Front desk", "title": "Front desk", "role": "", "big": "Let's talk", "caption": "Connect on LinkedIn", "link": "https://linkedin.com/in/dmt1810", "external": true }
+  ]
+}

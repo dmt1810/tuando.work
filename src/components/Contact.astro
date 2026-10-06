@@ -1,0 +1,31 @@
+---
+import { strings, type Lang } from '../i18n';
+import { profile } from '../data/profile';
+interface Props {
+  lang: Lang;
+}
+const t = strings(Astro.props.lang);
+---
+
+<aside class="contact-band">
+  <div>
+    <h2>{t.contactTitle}</h2>
+    <p>{t.contactText}</p>
+  </div>
+  <div>
+    <a
+      class="button"
+      href={profile.person.linkedin}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      {t.talk}
+      <span class="arrow" aria-hidden="true">
+        ↗
+      </span>
+    </a>
+    <a class="email" href={`mailto:${profile.person.email}`}>
+      {profile.person.email}
+    </a>
+  </div>
+</aside>

@@ -1,0 +1,19 @@
+---
+import Base from '../../layouts/Base.astro';
+import { strings, url } from '../../i18n';
+const t = strings('vi');
+---
+
+<Base lang="vi" title="404" description={t.notFound} noindex>
+  <div class="wrap">
+    <section class="page-intro">
+      <p class="eyebrow">404</p>
+      <h1>{t.notFound}</h1>
+      <div class="actions">
+        <a class="button primary" href={url('vi')}>
+          {t.backHome}
+        </a>
+      </div>
+    </section>
+  </div>
+</Base>

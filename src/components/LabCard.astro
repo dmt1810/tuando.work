@@ -1,0 +1,21 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { url, type Lang } from '../i18n';
+interface Props {
+  entry: CollectionEntry<'lab'>;
+  lang: Lang;
+}
+const { entry, lang } = Astro.props;
+---
+
+<a class="card" href={url(lang, `lab/${entry.data.slug}`)}>
+  <span class="status">{entry.data.status}</span>
+  <h3>{entry.data.title}</h3>
+  <p>{entry.data.description}</p>
+  <span class="card-end">
+    {lang === 'vi' ? 'Khám phá' : 'Explore'}
+    <span class="arrow" aria-hidden="true">
+      ↗
+    </span>
+  </span>
+</a>

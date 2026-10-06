@@ -1,0 +1,9 @@
+# TODO(human): set CLOUDFLARED_NETWORK to the existing network before cutover.
+# The source repo did not declare any external Docker network.
+services:
+  tuando-website:
+    networks: [cloudflared]
+networks:
+  cloudflared:
+    external: true
+    name: ${CLOUDFLARED_NETWORK:?Set the existing cloudflared network name}

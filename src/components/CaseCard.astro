@@ -1,0 +1,60 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { strings, url, type Lang } from '../i18n';
+import { workRecord } from '../data/content';
+import { profile } from '../data/profile';
+interface Props {
+  entry: CollectionEntry<'work'>;
+  lang: Lang;
+}
+const { entry, lang } = Astro.props,
+  t = strings(lang),
+  record = workRecord(entry.data);
+const company = 'company' in record ? record.company : record.client;
+const stat = entry.data.profileId === 'igloo' ? profile.stats[0] : null;
+const metric =
+  entry.data.profileId === 'onemount'
+    ? profile.officeAgents.find((a) => a.id === 'crm')?.big
+    : stat?.value;
+const logos: Record<string, string> = {
+  dichung: 'dichung.svg',
+  catsa: 'catsa.png',
+  cenhomes: 'cenhome.png',
+  hncc: 'hncc.png',
+};
+---
+
+<a class="card" href={url(lang, `work/${entry.data.slug}`)}>
+  <div class="case-visual">
+    {logos[entry.data.profileId] ? (
+      <img
+        src={`/logos/${logos[entry.data.profileId]}`}
+        alt={company}
+        width="104"
+        height="44"
+        loading="lazy"
+      />
+    ) : (
+      <span class="company">{company.split(' (')[0]}</span>
+    )}
+    <span class="case-type">
+      {entry.data.kind === 'consulting'
+        ? 'Consulting'
+        : entry.data.profileId === 'igloo'
+          ? 'Growth'
+          : 'Lifecycle'}
+    </span>
+  </div>
+  <h3>{entry.data.title}</h3>
+  <p>{entry.data.description}</p>
+  <span class="card-end">
+    {metric ? (
+      <span class="card-metric">{metric}</span>
+    ) : (
+      <span>{t.learn}</span>
+    )}
+    <span class="arrow" aria-hidden="true">
+      ↗
+    </span>
+  </span>
+</a>

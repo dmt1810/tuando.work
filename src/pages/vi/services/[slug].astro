@@ -1,0 +1,15 @@
+---
+import { getCollection } from 'astro:content';
+import DetailPage from '../../../components/DetailPage.astro';
+export async function getStaticPaths() {
+  return (
+    await getCollection(
+      'services',
+      ({ data }) => data.lang === 'vi' && !data.draft,
+    )
+  ).map((entry) => ({ params: { slug: entry.data.slug }, props: { entry } }));
+}
+const { entry } = Astro.props;
+---
+
+<DetailPage lang="vi" entry={entry} />
