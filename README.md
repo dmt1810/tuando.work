@@ -1,6 +1,30 @@
-# tuando.work
+# Tuan Do — Growth Marketing Portfolio
+
+Growth marketing across Southeast Asia: paid acquisition, CRM, analytics and the workflows that connect them.
+
+[Live portfolio](https://tuando.work) · [LinkedIn](https://linkedin.com/in/dmt1810) · [Email](mailto:hello@tuando.work)
 
 Static bilingual personal brand hub: consulting, proof, Lab and printable CV. Astro, strict TypeScript, MDX, Tailwind's official Vite plugin and self-hosted Newsreader/Inter. No React or runtime third-party requests.
+
+## Selected outcomes
+
+These outcomes come from `src/data/profile.json` and refer to distinct roles and projects.
+
+| Result | Scope |
+| --- | --- |
+| **150% YoY growth** | Igloo Insurtech, 2021–2024 |
+| **10,000+ agent signups** | Launch across four Southeast Asian markets in the first year, Igloo |
+| **$50K+ monthly Google Ads budgets** | Metrixa |
+| **22% lower CPA** | Automated bidding and A/B testing, Metrixa |
+| **20% higher email open rates and 15% higher conversions** | Segmentation and A/B testing, OneMount |
+
+## Growth capabilities
+
+- Paid acquisition, campaign optimization and experimentation
+- CRM segmentation, onboarding, retention and lifecycle marketing
+- Tracking, reporting and funnel measurement
+- B2B partnerships and Southeast Asia market expansion
+- Martech integrations, automation and lead routing
 
 ## Local development
 
