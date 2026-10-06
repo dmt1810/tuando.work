@@ -1,7 +1,14 @@
 services:
-  website:
-    build: .
-    image: tuandowork-website:latest
+  tuando-website:
+    image: ghcr.io/dmt1810/tuando-site:latest
     ports:
-      - "80:80"
+      - '127.0.0.1:${SITE_PORT:-8080}:80'
+    mem_limit: 64m
+    cpus: 0.25
     restart: unless-stopped
+    healthcheck:
+      test: ['CMD', 'wget', '--spider', '-q', 'http://127.0.0.1/']
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 5s

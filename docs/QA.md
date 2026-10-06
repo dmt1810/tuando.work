@@ -1,0 +1,19 @@
+# Local verification
+
+Verified on 2026-10-06 using Node 22.22.1 and Playwright Chromium on Windows.
+
+- `npm run build`: passed. Strict type check reports no errors, warnings or hints. Astro generated 30 HTML pages, social preview images, sitemap, RSS, crawler files and the CV PDF.
+- `npm test`: 30 checks passed across desktop and mobile. Includes every built page's H1, JSON-LD, OG image and internal resources, light/dark accessibility, the active office, reduced motion, Save-Data, JavaScript-disabled content and private-profile validation.
+- Mobile Lighthouse: Performance 99, Accessibility 100, Best Practices 100, SEO 100. Simulated LCP 1.81 seconds and CLS 0. These are local lab measurements, not production field data. The preview uses gzip, cache headers and CSP matching nginx's configuration.
+- All client JavaScript: 3,117 bytes gzip, including theme initialization. Office plus lazy loader: 2,541 bytes gzip. Inline sprite artwork and floor asset: 11,798 bytes before compression.
+- CV PDF: two A4 pages. Extracted text contains the approved public email, website and LinkedIn, no phone number and no excluded employer.
+- `npm run dev`: starts and serves the local Astro project.
+- Visual review: desktop, mobile, Vietnamese and dark theme screenshots. Mobile expanded office bubbles remain inside the scene.
+
+The installed Astro 7/MDX build emits a bundler warning about `use astro:head-inject` in generated MDX modules. Content renders and all resource checks pass. No custom script depends on that directive.
+
+## Remaining release checks
+
+Docker and GHCR publishing were not executed locally. The workflow builds and tests before publishing an arm64 image when main is updated. Confirm the actual cloudflared network and route, review the owner backlog and perform the staging checks in `CUTOVER.md` before release.
+
+Original plan and seed are stored in `docs/`. Local implementation was delivered as coherent milestones. Nothing has been pushed or deployed.
