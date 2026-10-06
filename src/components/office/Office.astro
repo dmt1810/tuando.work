@@ -1,0 +1,127 @@
+---
+import './scene.css';
+import { sprite } from './sprites';
+import { profile } from '../../data/profile';
+import { strings, url, type Lang } from '../../i18n';
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props,
+  t = strings(lang),
+  agents = profile.officeAgents.map((a) => ({
+    ...a,
+    link: a.external ? a.link : url(lang, a.link),
+  }));
+---
+
+<section
+  class="office"
+  aria-labelledby="office-title"
+  data-office
+  data-office-playing="false"
+>
+  <header class="office-heading">
+    <div>
+      <h2 id="office-title">{t.office}</h2>
+      <p>{t.officeIntro}</p>
+    </div>
+    <span class="office-status mono">THE AGENT OFFICE</span>
+  </header>
+  <div class="office-scene">
+    <span data-office-config={JSON.stringify(agents)} hidden></span>
+    {agents.map((agent) =>
+      agent.external ? (
+        <a
+          class={`office-agent ${agent.id}`}
+          data-agent={agent.id}
+          href={agent.link}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={`${agent.title}: ${agent.big}`}
+        >
+          <span class="sprite" set:html={sprite(agent.id)} />
+          <span class="agent-name">{agent.label}</span>
+        </a>
+      ) : (
+        <button
+          class={`office-agent ${agent.id}`}
+          data-agent={agent.id}
+          type="button"
+          disabled
+          aria-label={`${agent.title}: ${agent.big}. ${agent.caption}`}
+          aria-expanded="false"
+          aria-controls="office-bubble"
+        >
+          <span class="sprite" set:html={sprite(agent.id)} />
+          <span class="agent-name">{agent.label}</span>
+        </button>
+      ),
+    )}
+    <div class="office-bubble" id="office-bubble" aria-live="off" hidden>
+      <p class="bubble-big"></p>
+      <p class="bubble-caption"></p>
+      <div class="bubble-detail" hidden>
+        <p data-role></p>
+        <a href={url(lang, 'services')}>
+          {t.learn}
+          <span aria-hidden="true">↗</span>
+        </a>
+      </div>
+    </div>
+    <span class="brief" aria-hidden="true" hidden>
+      brief
+    </span>
+  </div>
+  <div class="office-hint mono">
+    <span>{t.officeHint}</span>
+    <span>STRATEGY → EXECUTION → FEEDBACK</span>
+  </div>
+  <ul class="office-fallback">
+    {agents.map((agent) => (
+      <li>
+        <strong>{agent.title}</strong>
+        <p>{agent.role}</p>
+        <p>
+          {agent.big} · {agent.caption}
+        </p>
+        <a
+          href={agent.link}
+          target={agent.external ? '_blank' : undefined}
+          rel={agent.external ? 'noopener noreferrer' : undefined}
+        >
+          {t.learn} ↗
+        </a>
+      </li>
+    ))}
+  </ul>
+</section>
+<script>
+  const office = document.querySelector<HTMLElement>('[data-office]');
+  if (office) {
+    const observer = new IntersectionObserver(
+      (items) => {
+        if (!items[0].isIntersecting) return;
+        const connection = (
+          navigator as Navigator & { connection?: { saveData?: boolean } }
+        ).connection;
+        if (
+          matchMedia('(prefers-reduced-motion:reduce)').matches ||
+          connection?.saveData
+        )
+          return;
+        observer.disconnect();
+        const ready = () => {
+          const load = () =>
+            import('./office').then((module) => module.startOffice(office));
+          if ('requestIdleCallback' in window)
+            window.requestIdleCallback(load, { timeout: 1500 });
+          else setTimeout(load, 0);
+        };
+        if (document.readyState === 'complete') ready();
+        else window.addEventListener('load', ready, { once: true });
+      },
+      { rootMargin: '100px' },
+    );
+    observer.observe(office);
+  }
+</script>

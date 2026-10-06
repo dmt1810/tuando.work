@@ -1,0 +1,55 @@
+---
+import { profile } from '../data/profile';
+import { strings, url, type Lang } from '../i18n';
+import StatStrip from './StatStrip.astro';
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props,
+  t = strings(lang),
+  headline = profile.person.headline[lang];
+const phrase = lang === 'en' ? 'the systems' : 'hệ thống';
+---
+
+<section class="hero">
+  <div class="hero-top">
+    <div>
+      <p class="eyebrow">{t.intro}</p>
+      <h1>
+        {headline.slice(0, headline.lastIndexOf(phrase))}
+        <em>{phrase}</em>
+        <span aria-hidden="true">.</span>
+      </h1>
+      <p class="subline">{profile.person.subline[lang]}</p>
+      <div class="actions">
+        <a
+          class="button primary"
+          href={profile.person.linkedin}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {t.talk}
+          <span class="arrow" aria-hidden="true">
+            ↗
+          </span>
+        </a>
+        <a class="button" href={url(lang, 'work')}>
+          {t.viewWork}
+          <span class="arrow" aria-hidden="true">
+            ↓
+          </span>
+        </a>
+      </div>
+    </div>
+    <aside class="hero-note">
+      <span class="mono muted">BASED IN VIETNAM</span>
+      <p>
+        {lang === 'en' ? 'Strategy in mind.' : 'Tư duy chiến lược.'}
+        <br />
+        {lang === 'en' ? 'Hands on the tools.' : 'Trực tiếp thực thi.'}
+      </p>
+      <span class="mono muted">WORKING ACROSS SEA</span>
+    </aside>
+  </div>
+  <StatStrip lang={lang} />
+</section>

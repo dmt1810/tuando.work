@@ -1,0 +1,104 @@
+---
+import { strings, url, equivalent, type Lang } from '../i18n';
+import { profile } from '../data/profile';
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props,
+  t = strings(lang),
+  path = Astro.url.pathname;
+---
+
+<header class="wrap">
+  <div class="site-header">
+    <a class="brand" href={url(lang)} aria-label="Tuan Do home">
+      <span class="brand-mark" aria-hidden="true">
+        t.
+      </span>
+      <span>
+        tuan<span>do.</span>
+      </span>
+    </a>
+    <nav
+      class="nav"
+      id="main-nav"
+      aria-label={lang === 'vi' ? 'Điều hướng chính' : 'Main navigation'}
+    >
+      {Object.entries(t.nav).map(([key, label]) => (
+        <a
+          href={url(lang, key)}
+          aria-current={path.includes(`/${key}`) ? 'page' : undefined}
+        >
+          {label}
+        </a>
+      ))}
+    </nav>
+    <div class="header-tools">
+      <a
+        class="language"
+        href={equivalent(path, lang === 'en' ? 'vi' : 'en')}
+        lang={lang === 'en' ? 'vi' : 'en'}
+        aria-label={lang === 'en' ? 'Đổi sang tiếng Việt' : 'Switch to English'}
+      >
+        {lang === 'en' ? 'VI' : 'EN'}
+      </a>
+      <button class="theme" data-theme-toggle aria-label={t.theme} hidden>
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.5"
+          aria-hidden="true"
+        >
+          <path d="M20.4 14.6A9 9 0 019.4 3.6a9 9 0 1011 11z" />
+        </svg>
+      </button>
+      <button
+        class="button menu"
+        aria-controls="main-nav"
+        aria-expanded="false"
+        data-menu
+        hidden
+      >
+        {t.menu}
+      </button>
+      <a
+        class="button primary"
+        href={profile.person.linkedin}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        {t.talk}
+        <span class="arrow" aria-hidden="true">
+          ↗
+        </span>
+      </a>
+    </div>
+  </div>
+</header>
+<script>
+  const toggle = document.querySelector<HTMLButtonElement>(
+    '[data-theme-toggle]',
+  );
+  if (toggle) {
+    toggle.hidden = false;
+    toggle.addEventListener('click', () => {
+      const root = document.documentElement;
+      const dark = root.dataset.theme
+        ? root.dataset.theme === 'dark'
+        : matchMedia('(prefers-color-scheme:dark)').matches;
+      root.dataset.theme = dark ? 'light' : 'dark';
+      try {
+        localStorage.setItem('theme', root.dataset.theme);
+      } catch {}
+    });
+  }
+  const menu = document.querySelector<HTMLButtonElement>('[data-menu]');
+  if (menu) menu.hidden = false;
+  menu?.addEventListener('click', () => {
+    const nav = document.getElementById('main-nav');
+    const open = menu.getAttribute('aria-expanded') !== 'true';
+    menu.setAttribute('aria-expanded', String(open));
+    nav?.toggleAttribute('data-open', open);
+  });
+</script>

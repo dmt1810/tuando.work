@@ -1,0 +1,113 @@
+---
+import Base from '../layouts/Base.astro';
+import { profile, period } from '../data/profile';
+import { strings, type Lang } from '../i18n';
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props,
+  t = strings(lang),
+  p = profile.person;
+---
+
+<Base
+  lang={lang}
+  title={`${p.displayName} · CV`}
+  description={profile.summary.en}
+>
+  <div class="wrap">
+    <div class="cv">
+      <header class="cv-head">
+        <p class="eyebrow">Curriculum vitae</p>
+        <h1>{p.name}</h1>
+        <p class="cv-subtitle">{t.cvTitle}</p>
+        <div class="cv-contacts">
+          <span>{p.location}</span>
+          <a href={`mailto:${p.email}`}>{p.email}</a>
+          <a href="https://tuando.work">tuando.work</a>
+          <a href={p.linkedin}>linkedin.com/in/dmt1810</a>
+        </div>
+      </header>
+      <div class="actions">
+        <a href="/Tuan_Do_CV.pdf" class="button primary" download>
+          {t.download}
+          <span aria-hidden="true">↓</span>
+        </a>
+        <button class="button" data-print>
+          {t.print}
+        </button>
+      </div>
+      <p>{profile.summary.en}</p>
+      <h2>{t.experience}</h2>
+      {profile.experience
+        .filter((e) => e.show.cv)
+        .map((item) => (
+          <article>
+            <h3>{item.company}</h3>
+            <div class="role-line">
+              <span>{item.role}</span>
+              <span>{period(item, lang)}</span>
+            </div>
+            <p>{item.summary}</p>
+            <ul>
+              {item.achievements.map((text) => (
+                <li>{text}</li>
+              ))}
+            </ul>
+          </article>
+        ))}
+      <h2>{t.consulting}</h2>
+      {profile.consulting.map((item) => (
+        <article>
+          <h3>{item.client}</h3>
+          <div class="role-line">
+            <span>{item.role}</span>
+            <span>{item.industry}</span>
+          </div>
+          <ul>
+            {item.scope.map((text) => (
+              <li>{text}</li>
+            ))}
+          </ul>
+        </article>
+      ))}
+      <h2>{t.skills}</h2>
+      {Object.entries(profile.skills).map(([key, values]) => (
+        <p>
+          <strong>{key}:</strong> {values.join(' · ')}
+        </p>
+      ))}
+      <h2>{t.education}</h2>
+      {profile.education.map((item) => (
+        <div class="cv-education">
+          <strong>
+            {item.degree} · {item.field}
+          </strong>
+          <br />
+          {item.school}
+        </div>
+      ))}
+      <h2>{t.certifications}</h2>
+      <ul>
+        {profile.certifications.map((item) => (
+          <li>
+            {item.name} · {item.issuer}
+          </li>
+        ))}
+      </ul>
+      {lang === 'vi' && (
+        <p class="review-note">
+          {t.review}.{' '}
+          {lang === 'vi'
+            ? 'Các mô tả công việc được giữ nguyên bằng tiếng Anh từ hồ sơ gốc.'
+            : ''}
+        </p>
+      )}
+    </div>
+  </div>
+</Base>
+<script>
+  document
+    .querySelector('[data-print]')
+    ?.addEventListener('click', () => window.print());
+</script>

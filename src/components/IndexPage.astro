@@ -1,0 +1,66 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import Contact from './Contact.astro';
+import Breadcrumbs from './Breadcrumbs.astro';
+import ServiceCard from './ServiceCard.astro';
+import CaseCard from './CaseCard.astro';
+import LabCard from './LabCard.astro';
+import { entries } from '../data/content';
+import { strings, type Lang } from '../i18n';
+interface Props {
+  lang: Lang;
+  collection: 'services' | 'work' | 'lab';
+}
+const { lang, collection } = Astro.props,
+  t = strings(lang),
+  list = await entries(collection, lang);
+const titles = {
+    services: t.servicesTitle,
+    work: t.workTitle,
+    lab: t.labTitle,
+  },
+  descriptions = {
+    services: t.servicesIntro,
+    work: t.workIntro,
+    lab: t.labIntro,
+  };
+---
+
+<Base
+  lang={lang}
+  title={t.nav[collection]}
+  description={descriptions[collection]}
+>
+  <div class="wrap">
+    <Breadcrumbs lang={lang} items={[{ label: t.nav[collection] }]} />
+    <section class="page-intro">
+      <p class="eyebrow">{t.nav[collection]}</p>
+      <h1>{titles[collection]}</h1>
+      <p>{descriptions[collection]}</p>
+    </section>
+    <div class="card-grid">
+      {list.map((entry) =>
+        collection === 'services' ? (
+          <ServiceCard
+            entry={entry as CollectionEntry<'services'>}
+            lang={lang}
+          />
+        ) : collection === 'work' ? (
+          <CaseCard entry={entry as CollectionEntry<'work'>} lang={lang} />
+        ) : (
+          <LabCard entry={entry as CollectionEntry<'lab'>} lang={lang} />
+        ),
+      )}
+    </div>
+    {collection === 'lab' && !list.length && (
+      <div class="lab-empty">
+        <span class="mono">[ {t.labEmpty} ]</span>
+        <p>{t.labEmptyText}</p>
+      </div>
+    )}
+    <div class="section">
+      <Contact lang={lang} />
+    </div>
+  </div>
+</Base>

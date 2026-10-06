@@ -1,0 +1,18 @@
+---
+import { profile } from '../data/profile';
+import { strings, type Lang } from '../i18n';
+interface Props {
+  lang: Lang;
+}
+const t = strings(Astro.props.lang);
+---
+
+<dl class="stat-strip">
+  {profile.stats.map((stat, i) => (
+    <div>
+      <dt class="stat-label">{t.statLabels[i]}</dt>
+      <dd class="stat-value">{stat.value}</dd>
+      <dd class="stat-context mono">{stat.context}</dd>
+    </div>
+  ))}
+</dl>

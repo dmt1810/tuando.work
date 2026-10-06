@@ -1,0 +1,46 @@
+---
+import { strings, url, equivalent, type Lang } from '../i18n';
+import { profile, updated } from '../data/profile';
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props,
+  t = strings(lang);
+---
+
+<footer class="site-footer wrap">
+  <div class="footer-top">
+    <a class="brand" href={url(lang)}>
+      tuan<span>do.</span>
+    </a>
+    <nav aria-label="Footer">
+      {Object.entries(t.nav).map(([key, label]) => (
+        <a href={url(lang, key)}>{label}</a>
+      ))}
+    </nav>
+    <nav aria-label="Social">
+      <a
+        href={profile.person.linkedin}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        LinkedIn ↗
+      </a>
+      <a href={profile.person.github} target="_blank" rel="noopener noreferrer">
+        GitHub ↗
+      </a>
+      <a href={equivalent(Astro.url.pathname, lang === 'en' ? 'vi' : 'en')}>
+        {lang === 'en' ? 'Tiếng Việt' : 'English'}
+      </a>
+    </nav>
+  </div>
+  <div class="footer-bottom mono">
+    <span>
+      © {updated.slice(0, 4)} {profile.person.displayName} ·{' '}
+      {profile.person.location}
+    </span>
+    <span>
+      {t.updated} <time datetime={updated}>{updated}</time>
+    </span>
+  </div>
+</footer>

@@ -1,0 +1,24 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { strings, url, type Lang } from '../i18n';
+interface Props {
+  entry: CollectionEntry<'services'>;
+  lang: Lang;
+}
+const { entry, lang } = Astro.props,
+  t = strings(lang);
+---
+
+<a class="card" href={url(lang, `services/${entry.data.slug}`)}>
+  <span class="mono">
+    {entry.data.number} / {t.services}
+  </span>
+  <h3>{entry.data.title}</h3>
+  <p>{entry.data.description}</p>
+  <span class="card-end">
+    {t.learn}
+    <span class="arrow" aria-hidden="true">
+      ↗
+    </span>
+  </span>
+</a>
