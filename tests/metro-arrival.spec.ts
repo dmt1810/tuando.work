@@ -1,4 +1,43 @@
 import { test, expect } from '@playwright/test';
+import { createHash } from 'node:crypto';
+
+test('new pages request matching versioned metro assets instead of cached release code', async ({
+  page,
+  request,
+}) => {
+  await page.route(/\/assets\/metro-motion\.js$/, (route) =>
+    route.fulfill({
+      contentType: 'application/javascript',
+      body: '// stale cached release',
+    }),
+  );
+  const response = await page.goto('/');
+  expect(response!.headers()['cache-control']).toBe('no-cache');
+  const assets = await page
+    .locator('script[src*="metro-motion"],link[href*="metro-"]')
+    .evaluateAll((elements) =>
+      elements.map((el) => el.getAttribute('src') || el.getAttribute('href')!),
+    );
+  expect(assets).toHaveLength(3);
+  for (const path of assets) {
+    const response = await request.get(path);
+    expect(response.ok()).toBe(true);
+    const hash = createHash('sha256')
+      .update(await response.body())
+      .digest('hex')
+      .slice(0, 16);
+    expect(new URL(path, 'https://tuando.work').searchParams.get('v')).toBe(
+      hash,
+    );
+  }
+  await page.locator('.metro').scrollIntoViewIfNeeded();
+  await expect(page.locator('.metro')).toHaveAttribute(
+    'data-motion-state',
+    'arrived',
+  );
+  if (page.viewportSize()!.width >= 900)
+    await expect(page.locator('.station-tooltip')).toBeVisible();
+});
 
 test('intro reveals skill lines with the train and docks at the latest station', async ({
   page,

@@ -46,7 +46,9 @@ export function serve(root = 'dist', port = 0) {
         'Cache-Control',
         path.includes(`${sep}_astro${sep}`)
           ? 'public, max-age=31536000, immutable'
-          : 'public, max-age=300',
+          : extension === '.html'
+            ? 'no-cache'
+            : 'public, max-age=300',
       );
       res.setHeader('X-Content-Type-Options', 'nosniff');
       res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');

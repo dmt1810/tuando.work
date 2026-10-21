@@ -92,6 +92,28 @@ await writeFile(
 for (const name of ['metro-v2.css', 'metro-motion.js']) {
   await copyFile(join(output, 'assets', name), join('public/assets', name));
 }
+// Stable asset URLs can combine new HTML with cached code from an older release.
+const assetVersions = new Map();
+for (const name of ['metro-v2.css', 'metro-layout.css', 'metro-motion.js']) {
+  const hash = createHash('sha256')
+    .update(await readFile(join('public/assets', name)))
+    .digest('hex')
+    .slice(0, 16);
+  assetVersions.set(`/assets/${name}`, hash);
+}
+async function versionAssets(directory) {
+  for (const entry of await readdir(directory, { withFileTypes: true })) {
+    const file = join(directory, entry.name);
+    if (entry.isDirectory()) await versionAssets(file);
+    else if (entry.name.endsWith('.html')) {
+      let document = await readFile(file, 'utf8');
+      for (const [path, hash] of assetVersions)
+        document = document.replaceAll(`"${path}"`, `"${path}?v=${hash}"`);
+      await writeFile(file, document);
+    }
+  }
+}
+await versionAssets(output);
 for (const name of await readdir(output)) {
   if (name.endsWith('.dc.html'))
     await copyFile(join(output, name), join('public', name));
