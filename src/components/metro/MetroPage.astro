@@ -1,0 +1,12 @@
+---
+import { metroDocument, type MetroKind } from '../../lib/metro-pages';
+interface Props {
+  lang: 'en' | 'vi';
+  kind?: MetroKind;
+  slug?: string;
+}
+const { lang, kind = 'home', slug } = Astro.props;
+const document = metroDocument(lang, kind, slug);
+---
+
+<Fragment set:html={document} />

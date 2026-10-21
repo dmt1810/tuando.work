@@ -1,0 +1,731 @@
+/* Desktop dimensions and rhythm follow the supplied clickable HTML. */
+.mobile-intro {
+  display: none;
+}
+.header-actions {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.header-actions .lang {
+  position: absolute;
+  right: -38px;
+  font-size: 12px;
+}
+.mobile-list-title {
+  display: none;
+}
+.current-tag,
+.expand-mark {
+  display: none;
+}
+@media (min-width: 900px) {
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 26px 0;
+    border: 0;
+    gap: 0;
+  }
+  .brand {
+    font-size: 24px;
+    line-height: 1.5;
+  }
+  .header nav {
+    gap: 32px;
+    flex-wrap: nowrap;
+  }
+  .header nav a {
+    font-size: 15px;
+    font-weight: 500;
+    min-height: 0;
+    line-height: 1.5;
+  }
+  .header-actions .btn {
+    border: 0;
+    padding: 12px 20px;
+    font-size: 15px;
+    line-height: 1.5;
+    min-height: 44px;
+  }
+  .hero {
+    display: block;
+    padding: 20px 0;
+  }
+  .hero h1 {
+    font-size: 60px;
+    line-height: 1;
+    margin: 0 0 14px;
+  }
+  .hero p {
+    font-size: 19px;
+    line-height: 1.5;
+    max-width: 640px;
+    margin: 0;
+  }
+  .about {
+    grid-template-columns: 100px minmax(0, 1fr) 330px;
+    gap: 32px;
+    align-items: start;
+    padding: 20px 0 24px;
+  }
+  .about h2 {
+    font-size: 24px;
+    line-height: 1.5;
+    margin: 0 0 6px;
+  }
+  .about p {
+    font-size: 17px;
+    line-height: 1.5;
+    max-width: 600px;
+  }
+  .portrait {
+    width: 100px;
+    height: 125px;
+  }
+  .stats {
+    gap: 0 24px;
+  }
+  .stat {
+    padding: 6px 0;
+    border-top: 1px solid #17140f;
+  }
+  .stat .g {
+    font-size: 26px;
+    line-height: 1.1;
+  }
+  .stat p {
+    font-size: 13px;
+    line-height: 1.5;
+    margin: 0;
+  }
+  .metro {
+    border: 0;
+    padding: 0;
+    overflow-anchor: none;
+  }
+  .bar {
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .chip {
+    font-size: 15px;
+    line-height: 1.5;
+    padding: 10px 16px;
+    min-height: 44px;
+  }
+  .legend {
+    font-size: 13px;
+    line-height: 1.5;
+    margin: 12px 0 0;
+    max-width: 760px;
+  }
+  .sk {
+    margin-top: 20px;
+    padding: 16px 0;
+    min-height: 76px;
+    flex-wrap: wrap;
+    gap: 32px;
+  }
+  .sk > p {
+    font-size: 17px;
+    max-width: 460px;
+  }
+  .sk.s0 > p {
+    font-size: 15px;
+    color: #5b554a;
+    max-width: none;
+  }
+  .tool {
+    font-size: 14px;
+    border-width: 1.5px;
+    padding: 4px 10px;
+    margin: 3px 6px 3px 0;
+  }
+  .tool-list {
+    max-width: none;
+  }
+  .map {
+    margin: 28px auto 0;
+  }
+  .cv {
+    height: 450px;
+  }
+  .nm {
+    padding: 3px 10px;
+  }
+  .nm small {
+    font:
+      400 12px/1.15 'IBM Plex Mono',
+      monospace;
+  }
+  .sw {
+    width: 14px;
+    height: 14px;
+  }
+  .train span {
+    flex: 0 1 11px;
+  }
+  .panels {
+    padding: 32px 0 72px;
+    min-height: 0;
+  }
+  .pn {
+    padding-top: 32px;
+    gap: 56px;
+  }
+  .big-stat {
+    line-height: 0.95;
+  }
+  .stat-caption {
+    font-size: 18px;
+    max-width: 400px;
+    margin: 10px 0 0;
+  }
+  .pn h2 {
+    font-size: 46px;
+    line-height: 1.5;
+    margin: 2px 0 6px;
+  }
+  .role {
+    font-size: 18px;
+    margin: 0 0 12px;
+  }
+  .tag {
+    font-size: 13px;
+    padding: 3px 10px;
+    margin: 0 8px 6px 0;
+  }
+  .pn .summary {
+    font-size: 19px;
+    line-height: 1.5;
+    max-width: 580px;
+    margin: 10px 0 14px;
+  }
+  .pn .how {
+    font-size: 16px;
+    max-width: 580px;
+  }
+  .panel-actions {
+    margin-top: 22px;
+    gap: 10px;
+  }
+  .panel-steps {
+    display: contents;
+  }
+  .panel-actions .btn {
+    font-size: 15px;
+    line-height: 1.5;
+    padding: 10px 16px;
+  }
+  .contact {
+    padding: 64px 0;
+  }
+  .contact-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px;
+  }
+  .contact h2 {
+    font-size: 52px;
+    line-height: 1.05;
+    margin: 0;
+    max-width: 620px;
+  }
+  .contact-links {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    font-size: 18px;
+  }
+  .contact-links a {
+    min-height: 0;
+    display: inline;
+    line-height: 1.5;
+  }
+  .contact-date {
+    font-size: 12px !important;
+    margin: 18px 0 0 !important;
+    max-width: none !important;
+    color: #d9d2c0;
+  }
+  .breadcrumb {
+    min-height: 0;
+    padding: 0;
+  }
+  .breadcrumb .btn {
+    font-size: 15px;
+    line-height: 1.5;
+    padding: 10px 16px;
+  }
+  .detail {
+    padding: 0 0 72px;
+  }
+  .detail-intro {
+    padding: 28px 0 32px;
+    max-width: 980px;
+  }
+  .detail-tags {
+    margin-bottom: 12px;
+  }
+  .detail h1 {
+    font-size: 72px;
+    line-height: 1;
+    margin: 0 0 8px;
+  }
+  .detail .context {
+    font-size: 20px;
+    max-width: 700px;
+    margin: 16px 0 0;
+  }
+  .detail h2 {
+    font-size: 38px;
+    line-height: 1.5;
+    margin: 0 0 12px;
+  }
+  .detail h2:first-of-type {
+    margin: 24px 0 18px;
+    border-top: 2px solid #17140f;
+    padding-top: 24px;
+  }
+  .detail .achievements {
+    border: 0;
+    padding: 0;
+    margin-bottom: 48px;
+  }
+  .detail .achievement {
+    padding: 0 24px;
+  }
+  .detail .achievement:first-child {
+    padding-left: 24px;
+  }
+  .detail .achievement p {
+    margin: 10px 0 0;
+  }
+  .detail .owned {
+    padding: 18px 0;
+    font-size: 19px;
+  }
+  .detail .owned:last-of-type {
+    border-bottom: 1px solid #17140f;
+  }
+  .page-steps {
+    margin-top: 48px;
+    padding-top: 20px;
+  }
+  .page-steps .btn {
+    font-size: 15px;
+    line-height: 1.5;
+    padding: 10px 16px;
+  }
+}
+/* Mobile: compact introduction, a visible filter grid and a connected timeline. */
+@media (max-width: 899px) {
+  .w {
+    width: calc(100% - 40px);
+  }
+  .header {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 12px 20px;
+    padding: 18px 0 0;
+    border: 0;
+    align-items: center;
+  }
+  .brand {
+    font-size: 25px;
+    line-height: 1;
+    margin: 0;
+  }
+  .header-actions {
+    grid-column: 2;
+    grid-row: 1;
+    gap: 16px;
+  }
+  .header-actions .btn {
+    font-size: 13px;
+    padding: 10px 12px;
+  }
+  .header-actions .lang {
+    position: static;
+    min-width: 26px;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    margin: 0;
+  }
+  .header nav {
+    grid-column: 1/-1;
+    grid-row: 2;
+    display: flex;
+    justify-content: flex-start;
+    gap: 28px;
+    border-bottom: 1px solid #17140f;
+    padding: 0 0 6px;
+  }
+  .header nav a {
+    font-size: 14px;
+    min-height: 44px;
+  }
+  .hero {
+    padding: 26px 0 24px;
+  }
+  .hero h1 {
+    font-size: 44px;
+    line-height: 1.03;
+    max-width: 620px;
+    margin: 0 0 14px;
+  }
+  .hero p {
+    font-size: 16px;
+    line-height: 1.5;
+    max-width: 560px;
+  }
+  .about {
+    grid-template-columns: 64px minmax(0, 1fr);
+    gap: 16px;
+    padding: 20px 0;
+    border-top: 2px solid #17140f;
+  }
+  .portrait {
+    width: 64px;
+    height: 80px;
+  }
+  .desktop-intro {
+    display: none;
+  }
+  .mobile-intro {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+  }
+  .intro-name {
+    font-size: 20px;
+    line-height: 1.1;
+  }
+  .intro-line {
+    font-size: 12px;
+    color: #5b554a;
+    line-height: 1.5;
+  }
+  .mobile-intro details {
+    font-size: 13px;
+    max-width: 100%;
+  }
+  .mobile-intro summary {
+    min-height: 44px;
+    padding: 11px 0;
+    cursor: pointer;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+  .mobile-intro details p {
+    font-size: 15px;
+    margin: 10px 0 2px;
+    line-height: 1.6;
+  }
+  .stats {
+    grid-column: 1/-1;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px 20px;
+    margin-top: 2px;
+  }
+  .stat {
+    padding: 9px 0 0;
+  }
+  .stat .g {
+    font-size: 30px;
+    line-height: 1;
+  }
+  .stat p {
+    font-size: 12px;
+    line-height: 1.4;
+    margin-top: 6px;
+    max-width: 145px;
+  }
+  .metro {
+    border-top: 2px solid #17140f;
+    padding: 20px 0 32px;
+  }
+  .bar {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    overflow: visible;
+    padding: 0;
+  }
+  .chip {
+    font-size: 12px;
+    line-height: 1.3;
+    white-space: normal;
+    min-height: 48px;
+    padding: 9px 10px;
+    align-items: center;
+    gap: 7px;
+  }
+  .bar [for='k0'] {
+    grid-column: 1/-1;
+    min-height: 44px;
+    justify-content: center;
+  }
+  .chip .sw {
+    width: 10px;
+    height: 10px;
+  }
+  .legend {
+    font-size: 12px;
+    line-height: 1.5;
+    margin: 14px 0 0;
+  }
+  .sk {
+    margin-top: 16px;
+    min-height: 0;
+    padding: 14px 0;
+    gap: 10px;
+  }
+  .sk > p {
+    font-size: 13px;
+    line-height: 1.5;
+  }
+  .tool {
+    font-size: 12px;
+    line-height: 1.5;
+    padding: 3px 7px;
+  }
+  .tool-list {
+    text-align: left;
+  }
+  .map,
+  .panels {
+    display: none !important;
+  }
+  .mobile-list {
+    margin-top: 26px;
+  }
+  .mobile-list-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    padding-bottom: 14px;
+  }
+  .mobile-list-title h2 {
+    font-size: 25px;
+    margin: 0;
+  }
+  .mobile-list-title > span {
+    font-size: 12px;
+  }
+  .mobile-item {
+    position: relative;
+    border-top: 1px solid #17140f;
+  }
+  .mobile-station {
+    grid-template-columns: 34px minmax(0, 1fr) auto;
+    gap: 12px;
+    padding: 18px 10px 18px 0;
+    min-height: 116px;
+  }
+  .stubs {
+    height: 80px;
+    width: 34px;
+  }
+  .stub {
+    height: 80px;
+    width: 4px;
+  }
+  .stub.used::after {
+    top: 34px;
+  }
+  .mobile-name {
+    min-width: 0;
+  }
+  .mobile-name > .g {
+    font-size: 24px;
+    line-height: 1.1;
+    display: block;
+  }
+  .mobile-station small {
+    font-size: 12px;
+    margin-top: 6px;
+  }
+  .current-tag {
+    display: inline-block;
+    font-size: 12px;
+    margin-top: 7px;
+    border-bottom: 1px solid #17140f;
+    line-height: 1.5;
+  }
+  .mobile-number {
+    font-size: 29px !important;
+    line-height: 1;
+    position: relative;
+    white-space: nowrap;
+    padding-right: 0;
+    align-self: start;
+    margin-top: 20px;
+  }
+  .mobile-number svg {
+    width: 16px;
+    height: 22px;
+  }
+  .expand-mark {
+    display: block;
+    position: absolute;
+    right: 1px;
+    bottom: -29px;
+    font: 400 19px/1 sans-serif;
+    color: #17140f;
+  }
+  .mobile-panel {
+    margin-left: 0;
+    padding: 0 16px 24px 46px;
+    border-bottom: 2px solid #17140f;
+  }
+  .mobile-panel > .m {
+    font-size: 12px;
+  }
+  .mobile-panel .stat-caption {
+    font-size: 15px;
+    margin: 0 0 18px;
+    padding-top: 8px;
+    line-height: 1.6;
+  }
+  .mobile-panel h2 {
+    font-size: 25px;
+    line-height: 1.15;
+    margin: 8px 0 10px;
+  }
+  .mobile-panel .role {
+    font-size: 15px;
+    margin: 0 0 14px;
+  }
+  .mobile-panel .tag {
+    font-size: 12px;
+    line-height: 1.4;
+    margin-right: 5px;
+    padding: 3px 6px;
+  }
+  .mobile-panel .summary {
+    font-size: 16px;
+    line-height: 1.65;
+    margin: 14px 0;
+  }
+  .mobile-panel .how {
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  .mobile-panel .panel-actions {
+    display: flex;
+    align-items: stretch;
+    gap: 10px;
+    margin-top: 20px;
+  }
+  .mobile-panel .panel-actions > .pri {
+    width: 100%;
+  }
+  .mobile-panel .panel-steps {
+    display: flex;
+    gap: 8px;
+    margin: 0;
+    width: 100%;
+    flex-wrap: wrap;
+  }
+  .mobile-panel .panel-steps .btn {
+    font-size: 12px;
+    padding: 10px 12px;
+  }
+  .mobile-panel .btn {
+    min-height: 46px;
+  }
+  .contact {
+    padding: 36px 0;
+  }
+  .contact-inner {
+    display: block;
+  }
+  .contact h2 {
+    font-size: 36px;
+    line-height: 1.1;
+    max-width: 590px;
+    margin: 0 0 24px;
+  }
+  .contact-links {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+  .contact-links a {
+    font-size: 16px;
+    min-height: 44px;
+  }
+  .contact-date {
+    font-size: 12px !important;
+    color: #d9d2c0;
+    margin: 22px 0 0 !important;
+  }
+  .detail {
+    padding-top: 12px;
+  }
+  .detail h1 {
+    font-size: 44px;
+  }
+  .breadcrumb {
+    font-size: 12px;
+    padding: 12px 0;
+  }
+  .detail-intro {
+    padding: 12px 0 8px;
+  }
+  .detail-tags {
+    margin-bottom: 10px;
+  }
+  .detail .achievements {
+    margin-bottom: 28px;
+  }
+  .page-steps {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .page-steps a {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  #a:checked ~ .mobile-list .item-a .expand-mark,
+  #b:checked ~ .mobile-list .item-b .expand-mark,
+  #c:checked ~ .mobile-list .item-c .expand-mark,
+  #d:checked ~ .mobile-list .item-d .expand-mark,
+  #e:checked ~ .mobile-list .item-e .expand-mark {
+    display: none;
+  }
+}
+@media (max-width: 359px) {
+  .w {
+    width: calc(100% - 32px);
+  }
+  .hero h1 {
+    font-size: 39px;
+  }
+  .header-actions {
+    gap: 10px;
+  }
+  .chip {
+    font-size: 12px;
+  }
+  .mobile-name > .g {
+    font-size: 21px;
+  }
+  .mobile-number {
+    font-size: 25px !important;
+  }
+  .mobile-panel {
+    padding-left: 40px;
+  }
+}

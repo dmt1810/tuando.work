@@ -1,0 +1,9 @@
+---
+import MetroPage from '../../components/metro/MetroPage.astro';
+import { projectSlugs } from '../../lib/metro-pages';
+export function getStaticPaths() {
+  return projectSlugs.map((slug) => ({ params: { slug } }));
+}
+---
+
+<MetroPage lang="en" kind="project" slug={Astro.params.slug} />

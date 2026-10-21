@@ -14,18 +14,25 @@ async function pages(dir = 'dist'): Promise<string[]> {
 for (const path of [
   '/',
   '/vi/',
+  '/career/igloo/',
+  '/projects/',
+  '/projects/catsa/',
+  '/projects/cenhomes/',
+  '/projects/dichung/',
+  '/projects/hanoicc/',
+  '/vi/projects/hanoicc/',
   '/services/marketing-consulting/',
   '/work/igloo/',
   '/cv/',
 ]) {
   test(`HTML, metadata and accessibility: ${path}`, async ({ page }) => {
+    await page.emulateMedia({ reducedMotion: 'reduce' });
     const errors: string[] = [];
     page.on('pageerror', (e) => errors.push(e.message));
     page.on('console', (m) => {
       if (m.type() === 'error') errors.push(m.text());
     });
-    const response = await page.goto(path);
-    expect(response?.status()).toBe(200);
+    expect((await page.goto(path))?.status()).toBe(200);
     await expect(page.locator('h1')).toHaveCount(1);
     expect(await page.title()).toContain('Tuan Do');
     await expect(page.locator('link[rel=canonical]')).toHaveAttribute(
@@ -37,7 +44,7 @@ for (const path of [
       await page.locator('script[type="application/ld+json"]').innerText(),
     );
     expect(
-      ld['@graph'].some(
+      (ld['@graph'] || [ld]).some(
         (item: { '@type': string }) => item['@type'] === 'Person',
       ),
     ).toBe(true);
@@ -56,7 +63,7 @@ for (const path of [
     expect(errors).toEqual([]);
   });
 }
-test('equivalent language page and persisted theme', async ({ page }) => {
+test('legacy experience language and theme persist', async ({ page }) => {
   await page.goto('/work/igloo/');
   await page.locator('.language').click();
   await expect(page).toHaveURL(/\/vi\/work\/igloo\/$/);
@@ -65,97 +72,111 @@ test('equivalent language page and persisted theme', async ({ page }) => {
   await page.reload();
   await expect(page.locator('html')).toHaveAttribute('data-theme', theme!);
 });
-
-test('responsive navigation can be opened with the keyboard', async ({
+test('stations, branch, collapse and skill filters work', async ({ page }) => {
+  await page.goto('/');
+  const mobile = page.viewportSize()!.width <= 600;
+  const surface = page.locator(mobile ? '.mobile-panorama' : '.map');
+  await expect(page.locator('.metro')).toHaveAttribute(
+    'data-motion-ready',
+    'true',
+  );
+  await expect(page.locator('[name=station]')).toHaveCount(6);
+  await surface.locator('label[for=b]').click();
+  await expect(page.locator('#b')).toBeChecked();
+  await expect(page.locator('.pb')).toBeVisible();
+  await surface.locator('label[for=b]').click();
+  await expect(page.locator('.pb')).toBeHidden();
+  await surface.locator('label[for=f]').click();
+  await expect(page.locator('.pf')).toBeVisible();
+  await page.waitForTimeout(1200);
+  await expect(surface.locator('.metro-vehicle')).toBeVisible();
+  await page.locator('.chip[for=k4]').click();
+  await expect(page.locator('#k4')).toBeChecked();
+  await expect
+    .poll(async () =>
+      Number(
+        await surface
+          .locator('.l1')
+          .first()
+          .evaluate((e) => getComputedStyle(e).opacity),
+      ),
+    )
+    .toBeLessThan(0.3);
+  await page.locator('.chip[for=k0]').click();
+  await page.locator('.pf a[href="/projects/catsa/"]').click();
+  await expect(page).toHaveURL(/\/projects\/catsa\/$/);
+});
+test('mobile panorama fits narrow screens with projects branch', async ({
   page,
 }) => {
-  await page.goto('/');
-  if (page.viewportSize()!.width <= 600) {
-    const menu = page.locator('[data-menu]');
-    await expect(menu).toBeVisible();
-    await expect(page.locator('.nav')).toBeHidden();
-    await menu.focus();
-    await page.keyboard.press('Enter');
-    await expect(menu).toHaveAttribute('aria-expanded', 'true');
-    await expect(page.locator('.nav')).toBeVisible();
+  for (const width of [320, 390, 600]) {
+    await page.setViewportSize({ width, height: 900 });
+    await page.goto('/');
+    expect(
+      await page.evaluate(
+        () => document.documentElement.scrollWidth <= innerWidth,
+      ),
+    ).toBe(true);
+    await expect(page.locator('.mobile-panorama')).toBeVisible();
+    const map = await page.locator('.mobile-panorama').boundingBox();
+    for (const stop of await page.locator('.mobile-stop').all()) {
+      const box = await stop.boundingBox();
+      expect(box!.x).toBeGreaterThanOrEqual(map!.x - 1);
+      expect(box!.x + box!.width).toBeLessThanOrEqual(map!.x + map!.width + 1);
+    }
   }
-  await page.locator('.nav a[href="/work/"]').click();
-  await expect(page).toHaveURL(/\/work\/$/);
 });
-test('office cycle, click hold, keyboard link and offscreen pause', async ({
-  page,
+test('native station navigation works without JavaScript', async ({
+  browser,
+  baseURL,
 }) => {
-  await page.goto('/');
-  const office = page.locator('[data-office]');
-  await page.locator('.office-scene').scrollIntoViewIfNeeded();
-  expect(
-    JSON.parse(
-      (await page
-        .locator('[data-office-config]')
-        .getAttribute('data-office-config'))!,
-    ),
-  ).toHaveLength(9);
-  await expect(office).toHaveAttribute('data-office-active', 'mgr', {
-    timeout: 7000,
+  const context = await browser.newContext({
+    javaScriptEnabled: false,
+    baseURL,
+    viewport: { width: 390, height: 844 },
   });
-  await page.locator('[data-agent=crm]').click();
-  await expect(page.locator('.bubble-detail')).toBeVisible();
-  await expect(office).toHaveAttribute('data-office-active', 'crm');
-  await page.waitForTimeout(3700);
-  await expect(office).toHaveAttribute('data-office-active', 'crm');
-  const link = page.locator('.bubble-detail a');
-  await expect(link).toHaveAttribute('href', '/services/marketing-consulting/');
-  await link.focus();
-  await expect(link).toBeFocused();
-  await page.locator('.site-footer').scrollIntoViewIfNeeded();
-  await expect(office).toHaveAttribute('data-office-playing', 'false');
+  const page = await context.newPage();
+  await page.goto('/');
+  await page.locator('.mobile-stop[for=f]').click();
+  await expect(page.locator('.pf')).toBeVisible();
+  await page.locator('.pf a[href="/projects/hanoicc/"]').click();
+  await expect(page.locator('.metric-card')).toHaveCount(2);
+  await context.close();
 });
-test('reduced motion never starts and fallback stays readable', async ({
+test('reduced motion and dark preference remain accessible', async ({
   page,
 }) => {
-  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await page.emulateMedia({ reducedMotion: 'reduce', colorScheme: 'dark' });
   await page.goto('/');
-  await page.locator('[data-office]').scrollIntoViewIfNeeded();
-  await page.waitForTimeout(2000);
-  await expect(page.locator('[data-office]')).toHaveAttribute(
-    'data-office-playing',
-    'false',
-  );
-  await expect(page.locator('.office-fallback')).toBeVisible();
-  await expect(page.locator('.office-bubble')).toBeHidden();
-  expect(await page.locator('.office-fallback li').count()).toBe(9);
-  expect(
-    await page.locator('[data-office]').getAttribute('data-office-active'),
-  ).toBeNull();
-});
-test('Save-Data keeps the office static', async ({ page }) => {
-  await page.addInitScript(() =>
-    Object.defineProperty(navigator, 'connection', {
-      value: { saveData: true },
-    }),
-  );
-  await page.goto('/');
-  await page.locator('[data-office]').scrollIntoViewIfNeeded();
-  await page.waitForTimeout(1600);
-  await expect(page.locator('[data-office]')).toHaveAttribute(
-    'data-office-playing',
-    'false',
-  );
-  await expect(page.locator('.office-fallback')).toBeVisible();
-});
-test('content is usable without JavaScript', async ({ browser }) => {
-  const context = await browser.newContext({ javaScriptEnabled: false });
-  const page = await context.newPage();
-  await page.goto('http://127.0.0.1:4321/');
   await expect(page.locator('h1')).toBeVisible();
-  await expect(page.locator('.office-fallback')).toBeVisible();
-  expect(await page.locator('.office-fallback li').count()).toBe(9);
-  await expect(page.locator('.nav')).toBeVisible();
-  await context.close();
+  expect(
+    (
+      await new AxeBuilder({ page })
+        .withTags(['wcag2a', 'wcag2aa', 'wcag21aa'])
+        .analyze()
+    ).violations,
+  ).toEqual([]);
+});
+test('old project URLs show the updated case studies', async ({ page }) => {
+  for (const [old, canonical] of [
+    ['/work/hncc/', '/projects/hanoicc/'],
+    ['/Project-cenhomes.dc.html', '/projects/cenhomes/'],
+  ]) {
+    await page.goto(old);
+    await expect(page.locator('link[rel=canonical]')).toHaveAttribute(
+      'href',
+      `https://tuando.work${canonical}`,
+    );
+    await expect(page.locator('.metric-card')).toHaveCount(
+      old.includes('hncc') ? 2 : 4,
+    );
+  }
 });
 test('every built page and internal resource resolves, drafts stay private', async ({
   request,
 }) => {
+  test.setTimeout(120000);
+  const resolved = new Set<string>();
   for (const file of await pages()) {
     const path =
       '/' +
@@ -163,8 +184,7 @@ test('every built page and internal resource resolves, drafts stay private', asy
         .replace(/^dist[\\/]/, '')
         .replace(/\\/g, '/')
         .replace(/index\.html$/, '');
-    const response = await request.get(path);
-    expect(response.status(), path).toBe(200);
+    resolved.add(path);
     const html = await readFile(file, 'utf8');
     expect((html.match(/<h1(?:\s|>)/g) ?? []).length, path).toBe(1);
     const structured = html.match(
@@ -175,15 +195,19 @@ test('every built page and internal resource resolves, drafts stay private', asy
       /property="og:image" content="https:\/\/tuando.work([^\"]+)"/,
     )?.[1];
     expect(og, path).toBeTruthy();
-    expect((await request.get(og!)).status(), `${path} OG image`).toBe(200);
+    resolved.add(og!);
     const links = [...html.matchAll(/(?:href|src)="(\/[^"#]*)"/g)].map((m) =>
       m[1].replace(/&amp;/g, '&'),
     );
-    for (const link of new Set(links)) {
-      if (link.startsWith('//')) continue;
-      const resource = await request.get(link);
-      expect(resource.status(), `${path} → ${link}`).toBe(200);
-    }
+    for (const link of links) if (!link.startsWith('//')) resolved.add(link);
+  }
+  const resources = [...resolved];
+  for (let i = 0; i < resources.length; i += 8) {
+    await Promise.all(
+      resources.slice(i, i + 8).map(async (link) => {
+        expect((await request.get(link)).status(), link).toBe(200);
+      }),
+    );
   }
   expect((await request.get('/lab/lead-routing/')).status()).toBe(404);
   expect((await request.get('/not-a-page/')).status()).toBe(404);
@@ -191,80 +215,14 @@ test('every built page and internal resource resolves, drafts stay private', asy
     'application/pdf',
   );
 });
-test('first load makes no third-party requests', async ({ page }) => {
+test('first load makes no third-party requests', async ({ page, baseURL }) => {
   const external: string[] = [];
   page.on('request', (r) => {
-    if (
-      !r.url().startsWith('http://127.0.0.1:4321') &&
-      !r.url().startsWith('data:')
-    )
+    if (!r.url().startsWith(baseURL!) && !r.url().startsWith('data:'))
       external.push(r.url());
   });
   await page.goto('/');
-  await page.locator('[data-office]').scrollIntoViewIfNeeded();
-  await page.waitForTimeout(2200);
+  await page.locator('.metro').scrollIntoViewIfNeeded();
+  await page.waitForTimeout(1200);
   expect(external).toEqual([]);
-});
-test('dark theme remains accessible', async ({ page }) => {
-  await page.emulateMedia({ colorScheme: 'dark', reducedMotion: 'reduce' });
-  await page.goto('/');
-  expect(
-    (
-      await new AxeBuilder({ page })
-        .withTags(['wcag2a', 'wcag2aa', 'wcag21aa'])
-        .analyze()
-    ).violations,
-  ).toEqual([]);
-});
-
-test('active mobile office stays accessible and expanded bubbles fit the scene', async ({
-  page,
-}) => {
-  await page.goto('/');
-  await page.locator('.office-scene').scrollIntoViewIfNeeded();
-  await expect(page.locator('[data-office]')).toHaveAttribute(
-    'data-office-active',
-    'mgr',
-    { timeout: 7000 },
-  );
-  for (const id of ['mgr', 'per', 'seo', 'ops']) {
-    await page.locator(`[data-agent=${id}]`).click();
-    const bubble = await page.locator('.office-bubble').boundingBox();
-    const scene = await page.locator('.office-scene').boundingBox();
-    expect(bubble!.x).toBeGreaterThanOrEqual(scene!.x);
-    expect(bubble!.x + bubble!.width).toBeLessThanOrEqual(
-      scene!.x + scene!.width,
-    );
-    expect(bubble!.y).toBeGreaterThanOrEqual(scene!.y);
-  }
-  expect(
-    (
-      await new AxeBuilder({ page })
-        .withTags(['wcag2a', 'wcag2aa', 'wcag21aa'])
-        .analyze()
-    ).violations,
-  ).toEqual([]);
-});
-
-test('office characters and labels fit narrow phones and tablets', async ({
-  page,
-  request,
-}) => {
-  for (const artwork of ['/office-floor.svg', '/office-floor-mobile.svg']) {
-    expect((await request.get(artwork)).status()).toBe(200);
-  }
-  for (const width of [320, 640, 768]) {
-    await page.setViewportSize({ width, height: 900 });
-    await page.goto('/');
-    const scene = await page.locator('.office-scene').boundingBox();
-    for (const item of await page.locator('.agent-name, .sprite').all()) {
-      const box = await item.boundingBox();
-      expect(box!.x).toBeGreaterThanOrEqual(scene!.x);
-      expect(box!.x + box!.width).toBeLessThanOrEqual(scene!.x + scene!.width);
-      expect(box!.y).toBeGreaterThanOrEqual(scene!.y);
-      expect(box!.y + box!.height).toBeLessThanOrEqual(
-        scene!.y + scene!.height,
-      );
-    }
-  }
 });

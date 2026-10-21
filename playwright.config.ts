@@ -5,10 +5,14 @@ export default defineConfig({
   workers: 2,
   timeout: 30000,
   reporter: 'list',
-  use: { baseURL: 'http://127.0.0.1:4321', trace: 'retain-on-failure' },
+  use: {
+    baseURL: `http://127.0.0.1:${process.env.PORT || 4321}`,
+    trace: 'retain-on-failure',
+    channel: process.env.BROWSER_CHANNEL || undefined,
+  },
   webServer: {
     command: 'node scripts/serve.mjs',
-    url: 'http://127.0.0.1:4321',
+    url: `http://127.0.0.1:${process.env.PORT || 4321}`,
     reuseExistingServer: !process.env.CI,
   },
   projects: [

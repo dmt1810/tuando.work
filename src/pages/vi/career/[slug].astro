@@ -1,0 +1,9 @@
+---
+import MetroPage from '../../../components/metro/MetroPage.astro';
+import { careerSlugs } from '../../../lib/metro-pages';
+export function getStaticPaths() {
+  return careerSlugs.map((slug) => ({ params: { slug } }));
+}
+---
+
+<MetroPage lang="vi" kind="career" slug={Astro.params.slug} />

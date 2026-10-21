@@ -1,0 +1,301 @@
+{
+  "person": {
+    "name": "Do Manh Tuan",
+    "short": "tuan do",
+    "email": "hello@tuando.work",
+    "linkedin": "https://www.linkedin.com/in/dmt1810",
+    "site": "https://tuando.work"
+  },
+  "about": "Tôi là Tuấn, làm về growth marketing tại Việt Nam. Tôi có hơn 10 năm kinh nghiệm tại các thị trường Đông Nam Á. Công việc của tôi gồm quảng cáo thu hút khách hàng và marketing theo vòng đời, cùng các quy trình CRM và báo cáo phục vụ chiến dịch. Tôi từng làm trong lĩnh vực du lịch, bảo hiểm và công nghệ tiêu dùng.",
+  "stats": [
+    ["10+", "năm làm marketing"],
+    ["4", "thị trường Đông Nam Á đã ra mắt"],
+    ["10,000+", "đại lý đăng ký trong năm đầu"],
+    ["$50K+", "ngân sách quảng cáo mỗi tháng"]
+  ],
+  "skills": {
+    "perf": {
+      "label": "Performance và PPC",
+      "n": 1,
+      "desc": "Quảng cáo tìm kiếm, mạng xã hội và tiếp thị lại, từ quản lý agency SEM đến ngân sách hơn $50K mỗi tháng.",
+      "tools": ["Google Ads", "Meta Ads", "TikTok Ads", "Trivago", "Criteo"]
+    },
+    "crm": {
+      "label": "CRM và lifecycle",
+      "n": 2,
+      "desc": "Phân khúc khách hàng, hành trình lifecycle và thử nghiệm A/B cho email.",
+      "tools": ["HubSpot", "Insider", "Salesforce", "Braze", "Mailchimp"]
+    },
+    "data": {
+      "label": "Dữ liệu và thử nghiệm A/B",
+      "n": 3,
+      "desc": "Dashboard, phân tích dữ liệu và thử nghiệm có hệ thống.",
+      "tools": ["Google Analytics", "BigQuery", "Mixpanel", "Looker Studio"]
+    },
+    "b2b": {
+      "label": "Đối tác B2B",
+      "n": 4,
+      "desc": "Chương trình đối tác và đại lý giúp mở rộng độ phủ.",
+      "proof": [
+        "5+ đối tác, tiếp cận 500,000+ người dùng",
+        "Kết nối 500+ đại lý du lịch"
+      ]
+    }
+  },
+  "zones": [
+    {
+      "x0": 0,
+      "x1": 210,
+      "label": "Vùng 1, Du lịch"
+    },
+    {
+      "x0": 210,
+      "x1": 410,
+      "label": "Vùng 2, Agency"
+    },
+    {
+      "x0": 410,
+      "x1": 810,
+      "label": "Vùng 3, Fintech và insurtech"
+    },
+    {
+      "x0": 810,
+      "x1": 1152,
+      "label": "Vùng 4, Công nghệ du lịch"
+    }
+  ],
+  "stations": [
+    {
+      "id": "a",
+      "slug": "mytour",
+      "name": "Mytour Vietnam",
+      "short": "Mytour",
+      "years": "2015 đến 2018",
+      "period": "Tháng 5/2015 đến tháng 7/2018",
+      "role": "Chuyên viên Digital Marketing",
+      "skills": ["perf", "crm"],
+      "headline": {
+        "value": "18%",
+        "dir": "down",
+        "caption": "giảm CPA nhờ tối ưu SEM trên Google Ads và Trivago"
+      },
+      "summary": "Phụ trách quảng cáo tìm kiếm và các chiến dịch chăm sóc khách hàng của Mytour Vietnam, bao gồm quản lý agency SEM và triển khai chiến dịch theo vòng đời trên Insider.",
+      "how": "Tối ưu SEM và các trigger dựa trên dữ liệu CRM",
+      "context": "Quảng cáo tìm kiếm và marketing theo vòng đời khách hàng cho nền tảng du lịch trực tuyến Mytour Vietnam.",
+      "achievements": [
+        {
+          "value": "18%",
+          "dir": "down",
+          "text": "giảm CPA nhờ tối ưu SEM trên Google Ads và Trivago."
+        }
+      ],
+      "owned": [
+        [
+          "tìm kiếm",
+          "Quản lý hiệu suất agency SEM để đạt các chỉ số mục tiêu."
+        ],
+        [
+          "lifecycle",
+          "Thiết kế các chiến dịch onboarding, giữ chân và tái kích hoạt trên Insider, sử dụng dữ liệu CRM để cá nhân hóa trigger."
+        ],
+        [
+          "tiếp thị lại",
+          "Cải thiện thu hút khách hàng qua Trivago và các chiến dịch tiếp thị lại trên Criteo."
+        ]
+      ]
+    },
+    {
+      "id": "b",
+      "slug": "metrixa",
+      "name": "Metrixa Pty Ltd",
+      "short": "Metrixa",
+      "years": "2018 đến 2019",
+      "period": "Tháng 7/2018 đến tháng 8/2019",
+      "role": "Chuyên viên Performance Marketing cấp cao",
+      "skills": ["perf", "data"],
+      "headline": {
+        "value": "22%",
+        "dir": "down",
+        "caption": "giảm CPA, cùng mức tăng ROI 30% mỗi quý trên ngân sách Google Ads hơn $50K/tháng"
+      },
+      "summary": "Quản lý tài khoản Google Ads với ngân sách hơn 50.000 USD mỗi tháng. Áp dụng đấu thầu tự động và thử nghiệm A/B để giảm CPA 22%.",
+      "how": "Đặt giá thầu tự động và thử nghiệm A/B có hệ thống",
+      "context": "Phụ trách ngân sách Google Ads và tối ưu chiến dịch cho khách hàng của agency.",
+      "achievements": [
+        {
+          "value": "30%",
+          "dir": "up",
+          "text": "tăng ROI mỗi quý trong khi quản lý ngân sách Google Ads hơn $50,000 mỗi tháng."
+        },
+        {
+          "value": "22%",
+          "dir": "down",
+          "text": "giảm CPA nhờ đặt giá thầu tự động và thử nghiệm A/B có hệ thống."
+        }
+      ],
+      "owned": [
+        [
+          "chiến dịch",
+          "Triển khai và tối ưu các chiến dịch trên nền tảng quảng cáo."
+        ],
+        [
+          "tối ưu",
+          "Xây dựng giải pháp marketing tập trung vào tối ưu, bao gồm thử nghiệm phễu và tối ưu tỷ lệ chuyển đổi."
+        ]
+      ]
+    },
+    {
+      "id": "c",
+      "slug": "onemount",
+      "name": "OneMount (VinID Ltd)",
+      "short": "OneMount",
+      "years": "2019 đến 2021",
+      "period": "Tháng 9/2019 đến tháng 8/2021",
+      "role": "Chuyên viên CRM",
+      "skills": ["crm", "data"],
+      "headline": {
+        "value": "20%",
+        "dir": "up",
+        "caption": "tăng tỷ lệ mở email và tăng 15% tỷ lệ chuyển đổi"
+      },
+      "summary": "Xây dựng chiến dịch CRM theo phân khúc và các hành trình khách hàng tự động cho VinID. Thử nghiệm A/B để cải thiện tỷ lệ mở email và chuyển đổi.",
+      "how": "Thử nghiệm A/B và phân khúc khách hàng",
+      "context": "Triển khai CRM và marketing theo vòng đời khách hàng cho VinID thuộc OneMount.",
+      "achievements": [
+        {
+          "value": "20%",
+          "dir": "up",
+          "text": "tăng tỷ lệ mở email nhờ thử nghiệm A/B và phân khúc khách hàng."
+        },
+        {
+          "value": "15%",
+          "dir": "up",
+          "text": "tăng tỷ lệ chuyển đổi từ cùng hoạt động thử nghiệm và phân khúc."
+        }
+      ],
+      "owned": [
+        [
+          "CRM",
+          "Quản lý triển khai giải pháp CRM tích hợp cho các hoạt động giao tiếp cá nhân hóa."
+        ],
+        [
+          "chiến dịch",
+          "Phối hợp chiến dịch liên phòng ban để nâng cao tương tác và giữ chân khách hàng."
+        ],
+        [
+          "dashboard",
+          "Xây dựng dashboard marketing để theo dõi và tối ưu hiệu suất chiến dịch."
+        ]
+      ]
+    },
+    {
+      "id": "d",
+      "slug": "igloo",
+      "name": "Igloo Insurtech",
+      "short": "Igloo",
+      "years": "2021 đến 2024",
+      "period": "Tháng 9/2021 đến tháng 12/2024",
+      "role": "Quản lý Growth & Brand Marketing",
+      "skills": ["perf", "b2b"],
+      "headline": {
+        "value": "150%",
+        "dir": "up",
+        "caption": "tăng trưởng đại lý sử dụng Ignite so với cùng kỳ, với 10,000+ đại lý đăng ký trong năm đầu"
+      },
+      "summary": "Phụ trách growth và thương hiệu cho nền tảng đại lý, các đối tác bảo hiểm và sản phẩm bán trực tiếp của Igloo tại Đông Nam Á.",
+      "how": "Quảng cáo tìm kiếm, mạng xã hội, nội dung và hoạt động offline cùng đối tác khu vực",
+      "context": "Phụ trách growth và thương hiệu cho nền tảng đại lý, đối tác bảo hiểm nhúng và sản phẩm bảo hiểm tiêu dùng của Igloo.",
+      "achievements": [
+        {
+          "value": "2x",
+          "dir": null,
+          "text": "tỷ lệ giữ chân so với chuẩn ngành, với 10,000+ đại lý đăng ký trong năm đầu tại 4 thị trường Đông Nam Á."
+        },
+        {
+          "value": "500,000+",
+          "dir": null,
+          "text": "người dùng được tiếp cận qua 5+ đối tác chiến lược trong thương mại điện tử và fintech."
+        },
+        {
+          "value": "40%",
+          "dir": "up",
+          "text": "tăng nhận diện thương hiệu B2C tại Indonesia nhờ chiến dịch kết hợp online và offline."
+        }
+      ],
+      "owned": [
+        [
+          "phạm vi",
+          "Marketing toàn trình cho B2B2C và B2A2C, từ lập kế hoạch và triển khai chiến dịch đến phân tích."
+        ],
+        [
+          "kênh",
+          "Thu hút khách hàng đa kênh qua quảng cáo tìm kiếm, mạng xã hội, nội dung và offline."
+        ],
+        [
+          "đối tác",
+          "Co-marketing cùng các nhóm liên chức năng và đối tác khu vực."
+        ]
+      ]
+    },
+    {
+      "id": "e",
+      "slug": "tastech",
+      "name": "Tastech PTE. Ltd. (FindTourGo)",
+      "short": "Tastech",
+      "years": "2025 đến nay",
+      "period": "Tháng 2/2025 đến nay",
+      "role": "Quản lý Marketing",
+      "skills": ["perf", "data", "b2b"],
+      "headline": {
+        "value": "500+",
+        "dir": null,
+        "caption": "đại lý du lịch được kết nối trên toàn cầu, tập trung vào Đông Nam Á"
+      },
+      "summary": "Phụ trách marketing cho FindTourGo, nền tảng du lịch phục vụ đơn vị tổ chức tour và đại lý. Triển khai chiến dịch thu hút khách hàng và phối hợp với đội sản phẩm về yêu cầu nền tảng.",
+      "how": "SEM, mạng xã hội, email, nội dung và phát triển quan hệ B2B",
+      "context": "Phụ trách marketing cho FindTourGo, tập trung vào đơn vị tổ chức tour và đại lý du lịch tại Đông Nam Á.",
+      "achievements": [
+        {
+          "value": "500+",
+          "dir": null,
+          "text": "đại lý du lịch được kết nối trên toàn cầu, tập trung vào các thị trường Đông Nam Á."
+        },
+        {
+          "value": "5,000+",
+          "dir": null,
+          "text": "lượt truy cập mỗi tháng, phát triển từ giai đoạn trước ra mắt qua chiến dịch digital có mục tiêu."
+        },
+        {
+          "value": "",
+          "dir": null,
+          "text": "Mở rộng đối tác điều hành tour thông qua phát triển quan hệ B2B."
+        }
+      ],
+      "owned": [
+        [
+          "chiến lược",
+          "Xây dựng và triển khai chiến lược marketing cho nền tảng tùy chỉnh du lịch ở cả B2B và B2C."
+        ],
+        [
+          "sản phẩm",
+          "Phối hợp với nhóm phát triển và vận hành để ưu tiên, ra mắt tính năng theo nhu cầu thị trường."
+        ],
+        [
+          "kênh",
+          "Triển khai SEM, mạng xã hội, email và nội dung; phân tích hiệu suất và dữ liệu hành vi người dùng."
+        ]
+      ]
+    }
+  ],
+  "hero": {
+    "title": "Growth marketing, từ chiến lược đến triển khai.",
+    "eyebrow": "GROWTH · CRM · AUTOMATION",
+    "sub": "Performance marketing, CRM và tự động hóa marketing cho doanh nghiệp B2B và B2C tại Đông Nam Á."
+  },
+  "about_title": "Lên chiến lược và trực tiếp triển khai.",
+  "about_paragraphs": [
+    "Tôi là Tuấn, làm về growth marketing tại Việt Nam. Tôi có hơn 10 năm kinh nghiệm tại các thị trường Đông Nam Á.",
+    "Công việc của tôi gồm quảng cáo thu hút khách hàng và marketing theo vòng đời, cùng các quy trình CRM và báo cáo phục vụ chiến dịch. Tôi từng làm trong lĩnh vực du lịch, bảo hiểm và công nghệ tiêu dùng."
+  ],
+  "map_title": "Hành trình sự nghiệp."
+}

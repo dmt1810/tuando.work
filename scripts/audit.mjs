@@ -7,6 +7,7 @@ let browser;
 const port = 9223;
 try {
   browser = await chromium.launch({
+    channel: process.env.BROWSER_CHANNEL || undefined,
     headless: true,
     args: [`--remote-debugging-port=${port}`],
   });

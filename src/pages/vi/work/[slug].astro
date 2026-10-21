@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import DetailPage from '../../../components/DetailPage.astro';
+import MetroPage from '../../../components/metro/MetroPage.astro';
 export async function getStaticPaths() {
   return (
     await getCollection('work', ({ data }) => data.lang === 'vi' && !data.draft)
@@ -9,4 +10,12 @@ export async function getStaticPaths() {
 const { entry } = Astro.props;
 ---
 
-<DetailPage lang="vi" entry={entry} />
+{entry.data.kind === 'consulting' ? (
+  <MetroPage
+    lang="vi"
+    kind="project"
+    slug={entry.data.slug === 'hncc' ? 'hanoicc' : entry.data.slug}
+  />
+) : (
+  <DetailPage lang="vi" entry={entry} />
+)}

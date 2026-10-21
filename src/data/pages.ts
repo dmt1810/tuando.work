@@ -1,9 +1,30 @@
 import { getCollection } from 'astro:content';
 import { profile } from './profile';
 import { url, type Lang } from '../i18n';
+import en from '../../scripts/metro/content.en.json';
+import vi from '../../scripts/metro/content.vi.json';
+import projects from '../../scripts/metro/projects.json';
 export async function publicPages() {
   const pages: { path: string; title: string; description: string }[] = [];
   for (const lang of ['en', 'vi'] as Lang[]) {
+    const content = lang === 'en' ? en : vi;
+    pages.push({
+      path: url(lang, 'projects'),
+      title: lang === 'en' ? 'Projects' : 'Dự án',
+      description: content.hero.sub,
+    });
+    for (const station of content.stations)
+      pages.push({
+        path: url(lang, `career/${station.slug}`),
+        title: station.name,
+        description: station.context,
+      });
+    for (const project of projects)
+      pages.push({
+        path: url(lang, `projects/${project.slug}`),
+        title: project.title[lang],
+        description: project.summary[lang],
+      });
     pages.push({
       path: url(lang),
       title: profile.person.headline[lang],

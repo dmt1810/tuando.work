@@ -1,8 +1,17 @@
 node_modules
 dist
 .astro
+.metro-build
+scripts/metro/reference-map.svg
+scripts/metro/geometry.json
+scripts/metro/geometry.mjs
+public/assets/metro-*.css
+public/assets/metro-motion.js
+public/*.dc.html
 artifacts
 test-results
 package-lock.json
 docs/profile.seed.json
 src/data/profile.json
+
+scripts/metro/train.svg

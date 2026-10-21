@@ -1,0 +1,188 @@
+[
+  {
+    "slug": "catsa",
+    "name": "CATSA",
+    "logo": "/logos/catsa.png",
+    "industry": { "en": "Fashion retail", "vi": "Bán lẻ thời trang" },
+    "period": { "en": "March 2022", "vi": "Tháng 3/2022" },
+    "title": {
+      "en": "TikTok advertising for CATSA",
+      "vi": "Quảng cáo TikTok cho CATSA"
+    },
+    "summary": {
+      "en": "TikTok campaigns for CATSA’s menswear collections, covering video views, website traffic and conversions.",
+      "vi": "Triển khai quảng cáo TikTok cho các bộ sưu tập thời trang nam của CATSA, với các chiến dịch lượt xem video, truy cập website và chuyển đổi."
+    },
+    "channels": ["TikTok Ads"],
+    "skills": ["perf", "data"],
+    "results_scope": { "en": "7–31 March 2022", "vi": "7–31/3/2022" },
+    "metrics": [
+      {
+        "value": 26324010,
+        "format": "million",
+        "decimals": 1,
+        "label": { "en": "Ad spend", "vi": "Chi tiêu quảng cáo" },
+        "unit": { "en": "VND", "vi": "VND" }
+      },
+      {
+        "value": 3116698,
+        "format": "million",
+        "decimals": 2,
+        "label": { "en": "Impressions", "vi": "Lượt hiển thị" },
+        "unit": { "en": "TikTok Ads", "vi": "TikTok Ads" }
+      },
+      {
+        "value": 14828,
+        "format": "integer",
+        "label": { "en": "Clicks", "vi": "Lượt click" },
+        "unit": { "en": "TikTok Ads", "vi": "TikTok Ads" }
+      },
+      {
+        "value": 1775.2906663069869,
+        "format": "integer",
+        "label": { "en": "Average CPC", "vi": "CPC trung bình" },
+        "unit": { "en": "VND per click", "vi": "VND / lượt click" }
+      }
+    ]
+  },
+  {
+    "slug": "cenhomes",
+    "name": "Cenhomes.vn",
+    "logo": "/logos/cenhome.png",
+    "period": { "en": "2021", "vi": "2021" },
+    "industry": { "en": "Real estate", "vi": "Bất động sản" },
+    "title": {
+      "en": "Google Ads for Cenhomes.vn",
+      "vi": "Quảng cáo Google Ads cho Cenhomes.vn"
+    },
+    "summary": {
+      "en": "Display and remarketing campaigns for Cenhomes.vn, alongside search advertising for Iris Garden.",
+      "vi": "Triển khai quảng cáo hiển thị và tiếp thị lại cho Cenhomes.vn, cùng quảng cáo tìm kiếm cho dự án Iris Garden."
+    },
+    "channels": ["Google Ads"],
+    "skills": ["perf", "data"],
+    "results_scope": {
+      "en": "Google Ads campaign totals",
+      "vi": "Tổng kết các chiến dịch Google Ads"
+    },
+    "metrics": [
+      {
+        "value": 114675463,
+        "format": "million",
+        "decimals": 1,
+        "label": { "en": "Ad spend", "vi": "Chi tiêu quảng cáo" },
+        "unit": { "en": "VND", "vi": "VND" }
+      },
+      {
+        "value": 14719871,
+        "format": "million",
+        "decimals": 2,
+        "label": { "en": "Impressions", "vi": "Lượt hiển thị" },
+        "unit": { "en": "Google Ads", "vi": "Google Ads" }
+      },
+      {
+        "value": 91132,
+        "format": "integer",
+        "label": { "en": "Clicks", "vi": "Lượt click" },
+        "unit": { "en": "Google Ads", "vi": "Google Ads" }
+      },
+      {
+        "value": 0.0061910868648237475,
+        "format": "percent",
+        "decimals": 2,
+        "label": { "en": "CTR", "vi": "CTR" },
+        "unit": { "en": "Click-through rate", "vi": "Tỷ lệ nhấp" }
+      }
+    ]
+  },
+  {
+    "slug": "dichung",
+    "name": "Dichung.vn",
+    "logo": "/logos/dichung.svg",
+    "industry": { "en": "Transport and travel", "vi": "Vận tải và du lịch" },
+    "period": { "en": "2018", "vi": "2018" },
+    "title": {
+      "en": "Google Ads and email marketing for Dichung",
+      "vi": "Google Ads và email marketing cho Đi Chung"
+    },
+    "summary": {
+      "en": "Search advertising and email marketing for airport transfers and intercity transport services.",
+      "vi": "Triển khai quảng cáo tìm kiếm và email marketing cho dịch vụ đưa đón sân bay và di chuyển liên tỉnh."
+    },
+    "channels": ["Google Ads (AdWords)", "Email marketing"],
+    "skills": ["perf", "crm", "data"],
+    "results_scope": {
+      "en": "Google Ads Search · 14 July–12 October 2018",
+      "vi": "Google Ads Search · 14/7–12/10/2018"
+    },
+    "metrics": [
+      {
+        "value": 88598886,
+        "format": "million",
+        "decimals": 1,
+        "label": { "en": "Ad spend", "vi": "Chi tiêu quảng cáo" },
+        "unit": { "en": "VND", "vi": "VND" }
+      },
+      {
+        "value": 62726,
+        "format": "integer",
+        "label": { "en": "Clicks", "vi": "Lượt click" },
+        "unit": { "en": "Google Ads Search", "vi": "Google Ads Search" }
+      },
+      {
+        "value": 1412.4746676019513,
+        "format": "integer",
+        "label": { "en": "Average CPC", "vi": "CPC trung bình" },
+        "unit": { "en": "VND per click", "vi": "VND / lượt click" }
+      },
+      {
+        "value": 15786.18993911728,
+        "format": "integer",
+        "label": {
+          "en": "Cost per conversion",
+          "vi": "Chi phí mỗi chuyển đổi"
+        },
+        "unit": { "en": "VND · Google Ads", "vi": "VND · Google Ads" }
+      }
+    ]
+  },
+  {
+    "slug": "hanoicc",
+    "name": "Hanoi Community College",
+    "logo": "/logos/hncc.png",
+    "industry": { "en": "Education", "vi": "Giáo dục" },
+    "period": { "en": "2020 & 2021", "vi": "2020 và 2021" },
+    "title": {
+      "en": "Lead generation for HNCC enrollment",
+      "vi": "Thu hút đăng ký tư vấn tuyển sinh cho HNCC"
+    },
+    "summary": {
+      "en": "Google Ads and Meta Ads campaigns for Hanoi Community College’s seasonal enrollment in 2020 and 2021.",
+      "vi": "Triển khai Google Ads và Meta Ads để thu hút đăng ký tư vấn trong các đợt tuyển sinh năm 2020 và 2021 của Trường Cao đẳng Cộng đồng Hà Nội."
+    },
+    "channels": ["Google Ads", "Meta Ads"],
+    "skills": ["perf"],
+    "results_scope": {
+      "en": "Seasonal enrollment campaigns · 2020 & 2021",
+      "vi": "Các đợt tuyển sinh năm 2020 và 2021"
+    },
+    "metrics": [
+      {
+        "value": 250000000,
+        "format": "million",
+        "decimals": 0,
+        "label": {
+          "en": "Annual ad budget",
+          "vi": "Ngân sách quảng cáo mỗi năm"
+        },
+        "unit": { "en": "VND per year", "vi": "VND / năm" }
+      },
+      {
+        "value": [80000, 120000],
+        "format": "range-thousand",
+        "label": { "en": "CPA range", "vi": "Khoảng CPA" },
+        "unit": { "en": "VND per acquisition", "vi": "VND / chuyển đổi" }
+      }
+    ]
+  }
+]

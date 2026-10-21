@@ -1,0 +1,330 @@
+/* Approved October panorama direction; source artwork and desktop rails retained. */
+.short-skill,
+.mobile-panorama {
+  display: none;
+}
+.cv > .map-art {
+  z-index: 0;
+}
+.st {
+  z-index: 4;
+}
+.st.project-stop .nm {
+  bottom: auto;
+  top: calc(100% + 6px);
+}
+.train {
+  display: block;
+  width: 48px;
+  height: 19px;
+  border: 0;
+  padding: 0;
+  border-radius: 0;
+  background: none;
+  overflow: visible;
+  z-index: 3;
+  offset-anchor: 100% 50%;
+  transform-origin: 100% 50%;
+  transition: offset-distance 0.95s cubic-bezier(0.6, 0, 0.2, 1);
+}
+.train::after,
+.train::before {
+  display: none;
+}
+.motion-main,
+.motion-branch {
+  pointer-events: none;
+  stroke: none;
+}
+.city-building {
+  transform-box: view-box;
+  transform-origin: 0 450px;
+  transition: transform 1.05s cubic-bezier(0.22, 0.7, 0.2, 1);
+}
+.skip:not(:focus) {
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+}
+#collapse:focus-visible ~ .collapse-control {
+  outline: 3px solid #17140f;
+  outline-offset: 4px;
+}
+.collapse-control {
+  margin: 0 0 32px;
+}
+.expand-text {
+  display: none;
+}
+#collapse:checked ~ .panels {
+  display: none !important;
+}
+#collapse:checked ~ .collapse-control .collapse-text {
+  display: none;
+}
+#collapse:checked ~ .collapse-control .expand-text {
+  display: inline;
+}
+.metro[data-motion-ready] .metro-vehicle {
+  offset-path: none !important;
+  offset-distance: 0 !important;
+  transition: none !important;
+}
+.project-links {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 20px;
+}
+.project-link {
+  border-block: 1px solid #17140f;
+  padding: 14px 0;
+  min-height: 48px;
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  text-decoration: none;
+  font-size: 16px;
+}
+.project-link:hover {
+  color: #0e7c86;
+}
+@media (min-width: 900px) {
+  .pn.pf {
+    padding-bottom: 20px;
+  }
+  .header nav {
+    gap: 24px;
+  }
+}
+@media (max-width: 899px) {
+  .about {
+    grid-template-columns: 104px minmax(0, 1fr);
+    gap: 18px;
+  }
+  .portrait {
+    width: 104px;
+    height: 130px;
+  }
+  .intro-name {
+    font-size: 24px;
+  }
+  .intro-line {
+    font-size: 13px;
+  }
+  .header nav {
+    gap: 22px;
+  }
+  .header nav a {
+    font-size: 13px;
+  }
+  .bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .bar [for='k0'] {
+    min-height: 44px;
+  }
+  .chip {
+    min-height: 44px;
+    padding: 9px 8px;
+    border-width: 1px;
+    gap: 4px;
+    white-space: nowrap;
+    font-size: 12px;
+  }
+  .full-skill {
+    display: none;
+  }
+  .short-skill {
+    display: inline;
+  }
+  .sw {
+    width: 8px;
+    height: 8px;
+  }
+  .sk {
+    margin-top: 12px;
+  }
+  .legend {
+    font-size: 12px;
+  }
+  .metro {
+    padding-bottom: 0;
+  }
+  .mobile-panorama {
+    display: block;
+    max-width: 480px;
+    margin: 12px auto 0;
+  }
+  .mobile-map {
+    height: 290px;
+    width: 100%;
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+  }
+  .mobile-art {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 290px;
+    overflow: visible;
+  }
+  .mobile-art .l {
+    transition: opacity 0.3s;
+  }
+  .mobile-art .city-building {
+    transform-origin: 0 290px;
+  }
+  .mobile-art .metro-vehicle {
+    offset-position: 0 0;
+    offset-anchor: 0 0;
+    offset-rotate: auto;
+    transition: offset-distance 0.95s cubic-bezier(0.6, 0, 0.2, 1);
+  }
+  .mobile-stop {
+    width: 19px;
+    height: 36px;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+    z-index: 4;
+    display: block;
+  }
+  .mobile-stop::before {
+    content: '';
+    position: absolute;
+    inset: -4px -12px;
+  }
+  .mobile-stop > svg {
+    position: static;
+  }
+  .mobile-stop .nm {
+    font:
+      500 12px/1.3 'Be Vietnam Pro',
+      sans-serif;
+    bottom: calc(100% + 10px);
+    padding: 2px 3px;
+  }
+  .mobile-stop.project-stop .nm {
+    bottom: auto;
+    top: calc(100% + 7px);
+  }
+  .mobile-stop[for='e'] .nm {
+    margin-left: -8px;
+  }
+  .panels {
+    display: block !important;
+    min-height: 0;
+    padding: 20px 0 16px;
+  }
+  .pn {
+    display: none;
+    grid-template-columns: 1fr;
+    gap: 18px;
+    padding-top: 18px;
+    border-top: 2px solid #17140f;
+  }
+  .pn .big-stat {
+    font-size: 48px;
+    line-height: 1;
+  }
+  .pn .big-stat svg {
+    width: 24px;
+    height: 32px;
+  }
+  .pn .stat-caption {
+    font-size: 14px;
+    margin: 6px 0 0;
+  }
+  .pn h2 {
+    font-size: 30px;
+    line-height: 1.1;
+    margin: 8px 0 10px;
+  }
+  .pn .role {
+    font-size: 16px;
+  }
+  .pn .summary {
+    font-size: 16px;
+    line-height: 1.65;
+  }
+  .pn .how {
+    font-size: 14px;
+  }
+  .pn .tag {
+    font-size: 12px;
+    padding: 3px 6px;
+  }
+  .pn .panel-actions {
+    gap: 10px;
+  }
+  .pn .panel-steps {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 0;
+  }
+  .pn .panel-actions > .pri {
+    width: 100%;
+  }
+  .panel-steps .btn {
+    font-size: 12px;
+    padding: 10px;
+  }
+  .project-links {
+    grid-template-columns: 1fr;
+  }
+  .collapse-control {
+    font-size: 13px;
+    margin-bottom: 24px;
+  }
+  .collapse-control:hover {
+    background: #e9e1cf;
+  }
+}
+@media (max-width: 359px) {
+  .w {
+    width: calc(100% - 28px);
+  }
+  .header nav {
+    gap: 20px;
+  }
+  .header-actions {
+    gap: 8px;
+  }
+  .header-actions .btn {
+    font-size: 12px;
+    padding: 10px;
+  }
+  .hero h1 {
+    font-size: 38px;
+  }
+  .about {
+    grid-template-columns: 96px minmax(0, 1fr);
+    gap: 14px;
+  }
+  .portrait {
+    width: 96px;
+    height: 120px;
+  }
+  .intro-name {
+    font-size: 22px;
+  }
+  .chip {
+    padding: 9px 8px;
+  }
+  .mobile-stop .nm {
+    font-size: 12px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .metro *,
+  .metro *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}

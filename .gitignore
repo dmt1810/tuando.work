@@ -17,6 +17,14 @@ artifacts
 !.env.example
 dist
 dist-ssr
+.metro-build/
+scripts/metro/__pycache__/
+scripts/metro/geometry.json
+scripts/metro/geometry.mjs
+public/assets/metro-v2.css
+public/assets/metro-layout.css
+public/assets/metro-motion.js
+public/*.dc.html
 *.local
 
 # Editor directories and files

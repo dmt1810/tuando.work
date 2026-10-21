@@ -3,7 +3,10 @@ import { serve } from './serve.mjs';
 const { server, url } = await serve();
 let browser;
 try {
-  browser = await chromium.launch({ headless: true });
+  browser = await chromium.launch({
+    headless: true,
+    channel: process.env.BROWSER_CHANNEL || undefined,
+  });
   const page = await browser.newPage();
   await page.goto(`${url}/cv/`, { waitUntil: 'networkidle' });
   await page.evaluate(() => document.fonts.ready);

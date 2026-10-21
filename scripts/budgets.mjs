@@ -10,6 +10,8 @@ for (const name of assets.filter((n) => n.endsWith('.js'))) {
   if (name.toLowerCase().startsWith('office')) office += bytes;
 }
 total += gzipSync(await readFile('dist/theme-init.js')).length;
+const metroJs = gzipSync(await readFile('dist/assets/metro-motion.js')).length;
+total += metroJs;
 const html = await readFile('dist/index.html', 'utf8');
 const sprites =
   (await stat('dist/office-floor.svg')).size +
@@ -18,6 +20,7 @@ const sprites =
     ...html.matchAll(/<span class="(?:sprite|station-art)">(.*?)<\/span>/g),
   ].reduce((sum, match) => sum + Buffer.byteLength(match[1]), 0);
 const result = {
+  metroJsGzip: metroJs,
   allClientJsGzip: total,
   officeJsGzip: office,
   officeArtwork: sprites,

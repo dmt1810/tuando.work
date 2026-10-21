@@ -1,0 +1,301 @@
+{
+  "person": {
+    "name": "Do Manh Tuan",
+    "short": "tuan do",
+    "email": "hello@tuando.work",
+    "linkedin": "https://www.linkedin.com/in/dmt1810",
+    "site": "https://tuando.work"
+  },
+  "about": "I’m Tuan, a growth marketer based in Vietnam with 10+ years of experience across Southeast Asia. I work on paid acquisition and lifecycle marketing, including the CRM workflows and reporting behind campaigns. My experience spans travel, insurance and consumer technology.",
+  "stats": [
+    ["10+", "years in marketing"],
+    ["4", "SEA markets launched"],
+    ["10,000+", "agent signups, year one"],
+    ["$50K+", "monthly paid budgets"]
+  ],
+  "skills": {
+    "perf": {
+      "label": "Performance and PPC",
+      "n": 1,
+      "desc": "Search, social and retargeting, from SEM agency management to $50K+ monthly budgets.",
+      "tools": ["Google Ads", "Meta Ads", "TikTok Ads", "Trivago", "Criteo"]
+    },
+    "crm": {
+      "label": "CRM and lifecycle",
+      "n": 2,
+      "desc": "Segmentation, lifecycle journeys and A/B tested email.",
+      "tools": ["HubSpot", "Insider", "Salesforce", "Braze", "Mailchimp"]
+    },
+    "data": {
+      "label": "Data and A/B testing",
+      "n": 3,
+      "desc": "Dashboards, analysis and systematic testing.",
+      "tools": ["Google Analytics", "BigQuery", "Mixpanel", "Looker Studio"]
+    },
+    "b2b": {
+      "label": "B2B partnerships",
+      "n": 4,
+      "desc": "Partner and agent programs that extend reach.",
+      "proof": [
+        "5+ partnerships, 500,000+ users reached",
+        "500+ travel agents secured"
+      ]
+    }
+  },
+  "zones": [
+    {
+      "x0": 0,
+      "x1": 210,
+      "label": "Zone 1, Travel"
+    },
+    {
+      "x0": 210,
+      "x1": 410,
+      "label": "Zone 2, Agency"
+    },
+    {
+      "x0": 410,
+      "x1": 810,
+      "label": "Zone 3, Fintech and insurtech"
+    },
+    {
+      "x0": 810,
+      "x1": 1152,
+      "label": "Zone 4, Travel tech"
+    }
+  ],
+  "stations": [
+    {
+      "id": "a",
+      "slug": "mytour",
+      "name": "Mytour Vietnam",
+      "short": "Mytour",
+      "years": "2015 to 2018",
+      "period": "May 2015 to Jul 2018",
+      "role": "Digital Marketing Executive",
+      "skills": ["perf", "crm"],
+      "headline": {
+        "value": "18%",
+        "dir": "down",
+        "caption": "lower CPA through SEM optimization across Google Ads and Trivago"
+      },
+      "summary": "Managed search advertising and customer retention campaigns for Mytour Vietnam, including work with SEM agencies and lifecycle campaigns in Insider.",
+      "how": "SEM optimization and CRM-driven triggers",
+      "context": "Search advertising and lifecycle marketing for Mytour Vietnam’s online travel business.",
+      "achievements": [
+        {
+          "value": "18%",
+          "dir": "down",
+          "text": "lower CPA via SEM optimizations across Google Ads and Trivago."
+        }
+      ],
+      "owned": [
+        [
+          "search",
+          "Managed SEM agency performance to achieve key performance indicators."
+        ],
+        [
+          "lifecycle",
+          "Designed end-to-end lifecycle campaigns for onboarding, retention and win-back in Insider, with CRM data driving personalized triggers."
+        ],
+        [
+          "retargeting",
+          "Enhanced online acquisition through platforms like Trivago and retargeting with Criteo."
+        ]
+      ]
+    },
+    {
+      "id": "b",
+      "slug": "metrixa",
+      "name": "Metrixa Pty Ltd",
+      "short": "Metrixa",
+      "years": "2018 to 2019",
+      "period": "Jul 2018 to Aug 2019",
+      "role": "Senior Performance Marketing Specialist",
+      "skills": ["perf", "data"],
+      "headline": {
+        "value": "22%",
+        "dir": "down",
+        "caption": "lower CPA, with 30% quarterly ROI growth on $50K+ monthly Google Ads budgets"
+      },
+      "summary": "Managed Google Ads accounts with monthly budgets above $50,000. Used automated bidding and A/B testing to reduce CPA by 22%.",
+      "how": "Automated bidding and systematic A/B testing",
+      "context": "Performance marketing for agency clients, with responsibility for Google Ads budgets and campaign optimization.",
+      "achievements": [
+        {
+          "value": "30%",
+          "dir": "up",
+          "text": "quarterly ROI growth while managing $50,000+ monthly Google Ads budgets."
+        },
+        {
+          "value": "22%",
+          "dir": "down",
+          "text": "lower CPA through automated bidding strategies and systematic A/B testing."
+        }
+      ],
+      "owned": [
+        [
+          "campaigns",
+          "Executed and optimized paid marketing campaigns on ads platforms."
+        ],
+        [
+          "optimization",
+          "Built online marketing solutions around optimization, including funnel testing and conversion rate optimization."
+        ]
+      ]
+    },
+    {
+      "id": "c",
+      "slug": "onemount",
+      "name": "OneMount (VinID Ltd)",
+      "short": "OneMount",
+      "years": "2019 to 2021",
+      "period": "Sep 2019 to Aug 2021",
+      "role": "CRM Specialist",
+      "skills": ["crm", "data"],
+      "headline": {
+        "value": "20%",
+        "dir": "up",
+        "caption": "higher email open rate, and 15% higher conversions"
+      },
+      "summary": "Built segmented CRM campaigns and automated customer journeys for VinID. Used A/B testing to improve email open rates and conversions.",
+      "how": "A/B testing and segmentation",
+      "context": "CRM campaigns and customer lifecycle marketing for VinID, part of OneMount.",
+      "achievements": [
+        {
+          "value": "20%",
+          "dir": "up",
+          "text": "higher email open rates through A/B testing and segmentation."
+        },
+        {
+          "value": "15%",
+          "dir": "up",
+          "text": "higher conversions from the same testing and segmentation work."
+        }
+      ],
+      "owned": [
+        [
+          "crm",
+          "Managed the implementation of an integrated CRM solution for personalized communications."
+        ],
+        [
+          "campaigns",
+          "Coordinated cross-departmental campaigns to enhance customer engagement and retention."
+        ],
+        [
+          "dashboards",
+          "Developed marketing dashboards to monitor and optimize campaign performance."
+        ]
+      ]
+    },
+    {
+      "id": "d",
+      "slug": "igloo",
+      "name": "Igloo Insurtech",
+      "short": "Igloo",
+      "years": "2021 to 2024",
+      "period": "Sep 2021 to Dec 2024",
+      "role": "Growth & Brand Marketing Manager",
+      "skills": ["perf", "b2b"],
+      "headline": {
+        "value": "150%",
+        "dir": "up",
+        "caption": "YoY growth in agents using Ignite, with 10,000+ agent signups in year one"
+      },
+      "summary": "Led growth and brand marketing for Igloo’s agent platform, insurance partnerships and direct-to-consumer products across Southeast Asia.",
+      "how": "Paid search, social, content and offline, with regional partners",
+      "context": "Growth and brand marketing across Igloo’s insurance agent platform, embedded insurance partnerships and consumer products.",
+      "achievements": [
+        {
+          "value": "2x",
+          "dir": null,
+          "text": "industry-standard retention among 10,000+ agent signups in the first year across 4 SEA markets."
+        },
+        {
+          "value": "500,000+",
+          "dir": null,
+          "text": "users reached through 5+ strategic partnerships with e-commerce and fintech platforms."
+        },
+        {
+          "value": "40%",
+          "dir": "up",
+          "text": "higher B2C brand awareness in Indonesia through integrated online and offline campaigns."
+        }
+      ],
+      "owned": [
+        [
+          "scope",
+          "End-to-end marketing for B2B2C and B2A2C segments, from campaign planning and execution to analytics."
+        ],
+        [
+          "channels",
+          "Multi-channel acquisition across paid search, social media, content marketing and offline."
+        ],
+        [
+          "partners",
+          "Co-marketing with cross-functional teams and regional partners."
+        ]
+      ]
+    },
+    {
+      "id": "e",
+      "slug": "tastech",
+      "name": "Tastech PTE. Ltd. (FindTourGo)",
+      "short": "Tastech",
+      "years": "2025 to now",
+      "period": "Feb 2025 to present",
+      "role": "Marketing Manager",
+      "skills": ["perf", "data", "b2b"],
+      "headline": {
+        "value": "500+",
+        "dir": null,
+        "caption": "travel agents secured globally, with focus on Southeast Asia"
+      },
+      "summary": "Lead marketing for FindTourGo, a travel platform serving tour operators and agencies. Run acquisition campaigns and work with the product team on platform requirements.",
+      "how": "SEM, social, email and content, plus B2B relationship building",
+      "context": "Marketing for FindTourGo’s travel platform, with a focus on tour operators and travel agencies in Southeast Asia.",
+      "achievements": [
+        {
+          "value": "500+",
+          "dir": null,
+          "text": "travel agents secured globally, with focus on Southeast Asian markets."
+        },
+        {
+          "value": "5,000+",
+          "dir": null,
+          "text": "monthly visitors, grown from a pre-launch baseline through targeted digital campaigns."
+        },
+        {
+          "value": "",
+          "dir": null,
+          "text": "Tour operator partnerships expanded through B2B relationship development."
+        }
+      ],
+      "owned": [
+        [
+          "strategy",
+          "Develop and execute marketing strategies for the travel customization platform across B2B and B2C."
+        ],
+        [
+          "product",
+          "Work with development and operations teams to prioritize and launch features based on market demand."
+        ],
+        [
+          "channels",
+          "Run SEM, social, email and content campaigns, and analyze performance and user behavior data."
+        ]
+      ]
+    }
+  ],
+  "hero": {
+    "title": "Growth marketer who builds the systems.",
+    "eyebrow": "GROWTH · CRM · AUTOMATION",
+    "sub": "Performance marketing, CRM and marketing automation for B2B and B2C businesses across Southeast Asia."
+  },
+  "about_title": "Strategy is where I start. Building is how I work.",
+  "about_paragraphs": [
+    "I’m Tuan, a growth marketer based in Vietnam with 10+ years of experience across Southeast Asia.",
+    "I work on paid acquisition and lifecycle marketing, including the CRM workflows and reporting behind campaigns. My experience spans travel, insurance and consumer technology."
+  ],
+  "map_title": "A career, station by station."
+}

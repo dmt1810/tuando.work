@@ -1,0 +1,447 @@
+/* Public copy and project pages share the career site's navigation and tokens. */
+.hero {
+  padding: 46px 0 38px;
+}
+.hero h1 {
+  font-size: 72px;
+  line-height: 1.03;
+  max-width: 990px;
+  margin-bottom: 22px;
+}
+.hero p {
+  max-width: 790px;
+  font-size: 19px;
+  line-height: 1.6;
+}
+.hero .eyebrow {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  margin: 0 0 16px;
+  color: #096a73;
+}
+.about {
+  grid-template-columns: 220px minmax(0, 1fr);
+  gap: 32px 48px;
+  padding: 36px 0 40px;
+}
+.portrait {
+  width: 220px;
+  height: 275px;
+  object-position: center 35%;
+}
+.about-copy h2 {
+  font-size: 40px;
+  line-height: 1.12;
+  max-width: 750px;
+  margin: 0 0 18px;
+}
+.about-copy p {
+  font-size: 17px;
+  line-height: 1.7;
+  max-width: 760px;
+  margin: 0 0 12px;
+}
+.about .stats {
+  grid-column: 1/-1;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 24px;
+}
+.about .stat .g {
+  font-size: 34px;
+}
+.about .stat p {
+  font-size: 13px;
+  margin: 7px 0 0;
+  line-height: 1.5;
+}
+.metro-heading {
+  font-size: 38px;
+  margin: 18px 0 24px;
+}
+.metro .skills:has(.s0:only-child) {
+  display: none;
+}
+.metro > .skills > .s0 {
+  display: none !important;
+}
+.metro .skills {
+  margin-bottom: 0;
+}
+.metro .sk {
+  margin: 16px 0 0;
+}
+.metro .map {
+  margin-top: 20px;
+}
+.metro .pn .how {
+  display: none;
+}
+.contact h2 {
+  font-size: 46px;
+  line-height: 1.1;
+}
+.project-page {
+  padding-bottom: 72px;
+}
+.project-crumb {
+  padding: 12px 0 20px;
+  gap: 12px;
+  min-height: 60px;
+  font-size: 12px;
+}
+.project-crumb span:last-child {
+  overflow-wrap: anywhere;
+}
+.project-list-intro {
+  padding: 22px 0 36px;
+}
+.project-list-intro h1 {
+  font-size: 72px;
+  margin: 12px 0;
+}
+.project-list-intro > p:last-child {
+  font-size: 19px;
+  max-width: 700px;
+  margin: 16px 0 0;
+}
+.project-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-top: 2px solid #17140f;
+  gap: 0 40px;
+}
+.project-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  border-bottom: 1px solid #17140f;
+  padding: 32px 0;
+  min-width: 0;
+}
+.project-card h2 {
+  font-size: 32px;
+  line-height: 1.15;
+  margin: 10px 0 14px;
+}
+.project-card h2 a {
+  text-decoration: none;
+}
+.project-card > p {
+  font-size: 16px;
+  line-height: 1.65;
+  margin: 0 0 14px;
+}
+.project-card > p.m {
+  font-size: 12px;
+  margin-top: 20px;
+}
+.project-card .channels {
+  margin-top: auto;
+}
+.project-more {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 16px;
+  font-size: 15px;
+}
+.project-logo {
+  width: 180px;
+  height: 72px;
+  object-fit: contain;
+  object-position: left center;
+}
+.project-card .project-logo {
+  width: 160px;
+  height: 64px;
+}
+.project-intro {
+  padding: 24px 0 30px;
+  max-width: 1000px;
+}
+.project-intro > p.m {
+  margin: 22px 0 14px;
+  line-height: 1.7;
+}
+.project-intro h1 {
+  font-size: 64px;
+  line-height: 1.06;
+  margin: 0 0 22px;
+  max-width: 1000px;
+}
+.project-summary {
+  font-size: 20px;
+  line-height: 1.65;
+  max-width: 820px;
+  margin: 0;
+}
+.project-channels {
+  border-top: 1px solid #17140f;
+  padding: 24px 0 30px;
+}
+.project-channels h2,
+.project-results h2 {
+  font-size: 26px;
+  margin: 0 0 16px;
+}
+.channels {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.channel {
+  background: #17140f;
+  color: #f5f0e4;
+  display: inline-flex;
+  padding: 6px 11px;
+  font-size: 13px;
+  line-height: 1.5;
+}
+.project-results {
+  border-top: 2px solid #17140f;
+  padding-top: 28px;
+}
+.results-heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.results-heading p {
+  font-size: 12px;
+  margin: 0 0 16px;
+}
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(var(--metric-columns), minmax(0, 1fr));
+  gap: 16px;
+  margin: 6px 0 0;
+}
+.metric-card {
+  min-width: 0;
+  border: 1px solid #17140f;
+  padding: 22px 18px;
+  background: #eee7d4;
+}
+.metric-card dt {
+  font-size: 14px;
+  line-height: 1.5;
+  min-height: 42px;
+}
+.metric-card dd {
+  font-size: 46px;
+  line-height: 1.05;
+  margin: 16px 0 10px;
+  white-space: nowrap;
+}
+.metric-unit {
+  font-size: 12px;
+  line-height: 1.5;
+  color: #5b554a;
+}
+.project-detail .page-steps {
+  margin-top: 40px;
+}
+.metric-card dd {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  flex-wrap: wrap;
+  white-space: normal;
+}
+.metric-scale {
+  font-size: 20px;
+  line-height: 1.2;
+}
+@media (max-width: 1100px) {
+  .hero h1 {
+    font-size: 62px;
+  }
+  .about-copy h2 {
+    font-size: 35px;
+  }
+  .about {
+    column-gap: 32px;
+  }
+  .metric-card dd {
+    font-size: 38px;
+  }
+}
+@media (max-width: 899px) {
+  .hero {
+    padding: 32px 0;
+  }
+  .hero h1 {
+    font-size: 48px;
+    line-height: 1.06;
+    margin-bottom: 18px;
+  }
+  .hero p {
+    font-size: 17px;
+    line-height: 1.65;
+  }
+  .hero .eyebrow {
+    font-size: 11px;
+    margin-bottom: 14px;
+  }
+  .about {
+    grid-template-columns: 160px minmax(0, 1fr);
+    gap: 24px;
+    padding: 28px 0 32px;
+  }
+  .portrait {
+    width: 160px;
+    height: 200px;
+  }
+  .about-copy h2 {
+    font-size: 32px;
+  }
+  .about-copy p {
+    font-size: 16px;
+  }
+  .about .stats {
+    grid-template-columns: 1fr 1fr;
+    gap: 16px 24px;
+  }
+  .about .stat .g {
+    font-size: 30px;
+  }
+  .metro-heading {
+    font-size: 30px;
+    margin: 0 0 20px;
+  }
+  .contact h2 {
+    font-size: 36px;
+  }
+  .project-page {
+    padding-bottom: 40px;
+  }
+  .project-grid {
+    gap: 0 28px;
+  }
+  .project-list-intro h1 {
+    font-size: 56px;
+  }
+  .project-intro h1 {
+    font-size: 48px;
+  }
+  .project-summary {
+    font-size: 18px;
+  }
+  .metrics-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .metric-card dd {
+    font-size: 40px;
+  }
+  .project-detail .page-steps {
+    flex-direction: row;
+    align-items: center;
+  }
+  .project-intro > p.m {
+    font-size: 12px;
+  }
+}
+@media (max-width: 600px) {
+  .hero h1 {
+    font-size: 44px;
+  }
+  .about {
+    grid-template-columns: 1fr;
+  }
+  .portrait {
+    width: 180px;
+    height: 225px;
+  }
+  .about-copy h2 {
+    font-size: 32px;
+    max-width: 450px;
+  }
+  .project-grid {
+    grid-template-columns: 1fr;
+  }
+  .project-list-intro {
+    padding-top: 8px;
+  }
+  .project-list-intro h1 {
+    font-size: 48px;
+  }
+  .project-list-intro > p:last-child {
+    font-size: 17px;
+  }
+  .project-card {
+    padding: 28px 0;
+  }
+  .project-card h2 {
+    font-size: 30px;
+  }
+  .project-intro {
+    padding-top: 10px;
+  }
+  .project-intro h1 {
+    font-size: 40px;
+  }
+  .project-intro .project-logo {
+    width: 160px;
+    height: 64px;
+  }
+  .project-summary {
+    font-size: 17px;
+  }
+  .metric-card {
+    padding: 18px 12px;
+  }
+  .metric-card dt {
+    font-size: 13px;
+    min-height: 40px;
+  }
+  .metric-card dd {
+    font-size: 34px;
+    margin-top: 12px;
+  }
+  .metric-unit {
+    font-size: 11px;
+  }
+  .project-channels h2,
+  .project-results h2 {
+    font-size: 25px;
+  }
+  .results-heading {
+    display: block;
+  }
+}
+@media (max-width: 600px) {
+  .metric-scale {
+    font-size: 14px;
+  }
+}
+@media (max-width: 359px) {
+  .hero h1 {
+    font-size: 40px;
+  }
+  .metric-card dd {
+    font-size: 29px;
+  }
+  .metric-card {
+    padding: 16px 10px;
+  }
+  .project-intro h1 {
+    font-size: 36px;
+  }
+  .about .stat p {
+    font-size: 12px;
+  }
+}
+
+.metric-card dd.metric-unit {
+  display: block;
+  font-family: 'Be Vietnam Pro', sans-serif;
+  font-size: 12px;
+  line-height: 1.5;
+  font-weight: 400;
+  margin: 0;
+  color: #5b554a;
+}
