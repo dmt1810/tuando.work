@@ -35,7 +35,8 @@ test('intro reveals skill lines with the train and docks at the latest station',
         : parseFloat((vehicle as SVGElement).style.left);
     return Number(el.querySelector('clipPath rect')!.getAttribute('width')) - x;
   });
-  expect(front).toBeGreaterThanOrEqual(4);
+  // SVG attributes and CSS positions can round the same coordinate differently.
+  expect(front).toBeGreaterThanOrEqual(4 - 0.01);
   expect(front).toBeLessThan(8);
   await expect(metro).toHaveAttribute('data-motion-state', 'arrived');
   await expect(scene.locator('[for=e]')).toHaveClass(/at-station/);
