@@ -1,0 +1,330 @@
+/* Arrival and impact polish; approved map layout, zones and skyline remain intact. */
+.hero .eyebrow {
+  color: #096a73;
+}
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+.about .stats {
+  gap: 16px;
+  margin-top: 4px;
+}
+.about .impact-card {
+  border: 1px solid #17140f;
+  padding: 22px 18px 18px;
+  background: #eee7d4;
+  min-height: 210px;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.about .impact-card:first-child {
+  background: #17140f;
+  color: #f5f0e4;
+}
+.about .impact-card .impact-tag {
+  font-size: 10px;
+  letter-spacing: 0.035em;
+  line-height: 1.6;
+  margin: 0;
+  min-height: 18px;
+}
+.about .impact-card .g {
+  font-size: 48px;
+  line-height: 1.05;
+  letter-spacing: -0.035em;
+  margin: 20px 0 12px;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+.about .impact-card:first-child .g {
+  color: #ffd84a;
+}
+.about .impact-card .impact-label {
+  font-size: 14px;
+  line-height: 1.55;
+  margin: 0;
+  max-width: 230px;
+}
+.about .impact-card .impact-context {
+  font-size: 11px;
+  line-height: 1.6;
+  margin: auto 0 0;
+  padding-top: 12px;
+  min-height: 30px;
+}
+.impact-mark {
+  display: block;
+  width: 28px;
+  height: 3px;
+  background: #0e7c86;
+  margin-top: 14px;
+  transform-origin: left;
+}
+.impact-card:first-child .impact-mark {
+  background: #ffd84a;
+}
+.stats[data-counting] .impact-mark {
+  animation: impact-mark 0.9s ease-out both;
+}
+@keyframes impact-mark {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+.st {
+  height: 76px;
+  animation: none !important;
+}
+.st > svg {
+  width: 28px;
+  height: 76px;
+}
+.train {
+  width: 60px;
+  height: 20px;
+}
+/* A readable, reserved space above the final stations, clear of labels. */
+.station-tooltip {
+  position: absolute;
+  left: 832px;
+  top: 54px;
+  width: 300px;
+  background: #17140f;
+  color: #f5f0e4;
+  padding: 15px 18px;
+  z-index: 9;
+  box-shadow: 3px 3px 0 #d7cdb7;
+  pointer-events: none;
+}
+.station-tooltip[hidden] {
+  display: none;
+}
+.station-tooltip strong {
+  display: block;
+  font-size: 16px;
+  line-height: 1.4;
+  margin: 0 0 7px;
+  font-weight: 600;
+}
+.station-tooltip p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.6;
+}
+.station-heading {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+}
+.station-heading h2 {
+  flex: 1;
+  min-width: 0;
+}
+.company-info {
+  display: none;
+  flex: none;
+}
+.company-info summary {
+  list-style: none;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid #17140f;
+  font-size: 21px;
+  cursor: pointer;
+}
+.company-info summary::-webkit-details-marker {
+  display: none;
+}
+.company-info summary:focus-visible {
+  outline: 3px solid #17140f;
+  outline-offset: 3px;
+}
+.company-info p {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+  z-index: 9;
+  margin: 8px 0 0;
+  padding: 16px;
+  background: #17140f;
+  color: #f5f0e4;
+  font-size: 14px;
+  line-height: 1.65;
+  box-shadow: 3px 3px 0 #d7cdb7;
+}
+/* Native no-script controls stay usable. With JS, arrival owns the VFX. */
+.ln {
+  animation: none !important;
+  stroke-dasharray: none !important;
+  stroke-dashoffset: 0 !important;
+}
+.rail-ghost {
+  animation: none !important;
+  stroke-dasharray: none !important;
+  stroke-dashoffset: 0 !important;
+  opacity: 0.09;
+  pointer-events: none;
+}
+.metro[data-motion-ready] .st::after {
+  animation: none !important;
+  opacity: 0 !important;
+}
+.metro[data-motion-ready] .st.at-station::after {
+  content: '';
+  inset: -8px;
+  border: 2px solid #0e7c86;
+  border-radius: 30px;
+  opacity: 0.45 !important;
+  animation: station-breathe 2.8s ease-in-out infinite !important;
+}
+.metro[data-motion-ready] .st.arriving::after {
+  animation:
+    station-arrival 0.6s ease-out 2,
+    station-breathe 2.8s 1.2s ease-in-out infinite !important;
+}
+.metro[data-traveling] .st::after,
+.metro[data-traveling] .mobile-stop::after {
+  animation: none !important;
+  opacity: 0 !important;
+}
+.metro[data-traveling] .cr {
+  fill: rgba(255, 255, 255, 0.9) !important;
+  stroke-width: 3 !important;
+}
+.metro[data-traveling] .st .nm,
+.metro[data-traveling] .mobile-stop .nm {
+  background: transparent !important;
+  color: #17140f !important;
+}
+.metro[data-traveling] .st .nm small {
+  color: #5b554a !important;
+}
+.metro[data-intro] .branch-rail {
+  opacity: 0.12;
+}
+.branch-rail {
+  transition: opacity 0.25s ease-out;
+}
+@keyframes station-arrival {
+  from {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+  to {
+    transform: scale(1.35);
+    opacity: 0;
+  }
+}
+@keyframes station-breathe {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.2;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.55;
+  }
+}
+@media (max-width: 1100px) {
+  .about .impact-card .g {
+    font-size: 42px;
+  }
+  .about .impact-card {
+    padding: 20px 15px;
+  }
+}
+@media (max-width: 899px) {
+  .about .stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+  .about .impact-card {
+    min-height: 195px;
+    padding: 20px 16px;
+  }
+  .about .impact-card .g {
+    font-size: clamp(29px, 9vw, 43px);
+    margin: 16px 0 12px;
+  }
+  .about .impact-card .impact-label {
+    font-size: 13px;
+  }
+  .about .impact-card .impact-context {
+    font-size: 11px;
+  }
+  .mobile-stop {
+    height: 52px;
+  }
+  .mobile-stop > svg {
+    width: 19px;
+    height: 52px;
+  }
+  .mobile-stop.project-stop .nm {
+    top: calc(100% + 5px);
+  }
+  .company-info {
+    display: block;
+  }
+  .metro[data-motion-ready] .mobile-stop.at-station::after {
+    content: '';
+    position: absolute;
+    inset: -7px;
+    border: 1.5px solid #0e7c86;
+    border-radius: 24px;
+    pointer-events: none;
+    animation: station-breathe 2.8s ease-in-out infinite;
+  }
+  .metro[data-motion-ready] .mobile-stop.arriving::after {
+    animation:
+      station-arrival 0.6s ease-out 2,
+      station-breathe 2.8s 1.2s ease-in-out infinite;
+  }
+}
+@media (max-width: 359px) {
+  .about .impact-card {
+    padding: 17px 12px;
+  }
+  .about .impact-card .g {
+    font-size: 29px;
+  }
+  .about .impact-card .impact-tag {
+    font-size: 9px;
+  }
+  .about .impact-card .impact-label {
+    font-size: 12px;
+  }
+  .about .impact-card .impact-context {
+    font-size: 10px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .metro *,
+  .metro *::after,
+  .stats * {
+    animation: none !important;
+    transition: none !important;
+  }
+  .metro[data-motion-ready] .st.at-station::after,
+  .metro[data-motion-ready] .mobile-stop.at-station::after {
+    animation: none !important;
+    opacity: 0.4 !important;
+  }
+}

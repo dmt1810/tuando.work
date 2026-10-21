@@ -65,7 +65,7 @@ def panel(station,data,lang,mobile=False):
  t=UI[lang]; index=ord(station['id'])-ord('a');h=station['headline'];nav=''
  if index:nav+=f'<label class="btn" for="{data["stations"][index-1]["id"]}">{t["back"]}: {E(data["stations"][index-1]["short"])}</label>'
  if index<4:nav+=f'<label class="btn" for="{data["stations"][index+1]["id"]}">{t["next"]}: {E(data["stations"][index+1]["short"])}</label>'
- details=f'<div class="m muted">{E(station["period"])}</div><h2>{E(station["name"])}</h2><p class="role">{E(station["role"])}</p><div>{tags(station,data)}</div><p class="summary">{E(station["summary"])}</p><p class="how"><span class="m muted">{t["how"].lower()} </span>{E(station["how"])}</p><div class="panel-actions"><a class="btn pri" href="{route(lang,station["slug"])}">{t["details"]}</a><div class="panel-steps">{nav}</div></div>'
+ details=f'<div class="m muted">{E(station["period"])}</div><div class="station-heading"><h2>{E(station["name"])}</h2><details class="company-info"><summary aria-label="{'Giới thiệu công ty' if lang=='vi' else 'About this company'}">ⓘ</summary><p>{E(station["company_intro"])}</p></details></div><p class="role">{E(station["role"])}</p><div>{tags(station,data)}</div><p class="summary">{E(station["summary"])}</p><p class="how"><span class="m muted">{t["how"].lower()} </span>{E(station["how"])}</p><div class="panel-actions"><a class="btn pri" href="{route(lang,station["slug"])}">{t["details"]}</a><div class="panel-steps">{nav}</div></div>'
  if mobile:return f'<article class="mobile-panel"><p class="stat-caption">{E(h["caption"])}</p>{details}</article>'
  return f'<article class="pn p{station["id"]}" aria-label="{E(station["name"])}"><div><div class="g big-stat">{E(h["value"])}{arrow(h["dir"])}</div><p class="stat-caption">{E(h["caption"])}</p></div><div>{details}</div></article>'
 
@@ -74,7 +74,12 @@ def map_html(data,lang):
 
 def home(data,lang):
  t=UI[lang]
- stats=''.join(f'<div class="stat"><div class="g">{E(value)}</div><p>{E(label)}</p></div>' for value,label in data['stats'])
+ stats=''
+ for metric in data['impact_metrics']:
+  value=f'{metric["number"]:,}'
+  if lang=='vi':value=value.replace(',','.')
+  value=metric['prefix']+value+metric['suffix']
+  stats+=f'<div class="stat impact-card"><p class="impact-tag m">{E(metric["tag"])}</p><div class="g"><span class="sr-only">{E(value)}</span><span aria-hidden="true" data-count-to="{metric["number"]}" data-prefix="{E(metric["prefix"])}" data-suffix="{E(metric["suffix"])}">{E(value)}</span></div><p class="impact-label">{E(metric["label"])}</p><p class="impact-context">{E(metric["context"])}</p><span class="impact-mark" aria-hidden="true"></span></div>'
  about=''.join('<p>'+E(p)+'</p>' for p in data['about_paragraphs'])
  return f'<main id="main" class="w"><section class="hero"><p class="eyebrow">{E(data["hero"]["eyebrow"])}</p><h1>{E(data["hero"]["title"])}</h1><p>{E(data["hero"]["sub"])}</p></section><section id="about" class="about"><img class="portrait" src="/assets/portrait.webp" alt="Do Manh Tuan" width="440" height="531"><div class="about-copy"><h2>{E(data["about_title"])}</h2>{about}</div><div class="stats">{stats}</div></section>{map_html(data,lang)}</main>'
 
@@ -97,7 +102,7 @@ def generated_css(data):
   color=COLORS[n-1] if n else '#17140F';ink='#17140F' if n==4 else '#FFFFFF'
   css+=f'#k{n}:checked~.bar [for=k{n}]{{background:{color};border-color:{color};color:{ink}}}#k{n}:focus-visible~.bar [for=k{n}]{{outline:3px solid #17140F;outline-offset:3px}}#k{n}:checked~.skills .s{n}{{display:flex}}\n'
   if n:css+=f'#k{n}:checked~.bar [for=k{n}] .sw{{background:{ink}}}#k{n}:checked~.map .l:not(.l{n}),#k{n}:checked~.mobile-list .l:not(.l{n}){{opacity:.12}}#k{n}:checked~.map .st:not(.k{n}),#k{n}:checked~.mobile-list .mobile-item:not(.k{n}){{filter:opacity(.2)}}\n'
- return css+'\n'+(SRC/'panorama.css').read_text(encoding='utf-8')+'\n'+panorama.state_css(GEOM)+'\n'+(SRC/'editorial.css').read_text(encoding='utf-8')
+ return css+'\n'+(SRC/'panorama.css').read_text(encoding='utf-8')+'\n'+panorama.state_css(GEOM)+'\n'+(SRC/'editorial.css').read_text(encoding='utf-8')+'\n'+(SRC/'arrival.css').read_text(encoding='utf-8')
 
 def write(path,content):
  target=ROOT/path;target.parent.mkdir(parents=True,exist_ok=True);target.write_text(content,encoding='utf-8')

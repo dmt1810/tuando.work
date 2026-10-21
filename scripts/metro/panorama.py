@@ -1,6 +1,6 @@
 """Approved panorama: CSS controls and skyline; optional continuous branch motion."""
 from pathlib import Path
-import math, html, random, re, xml.etree.ElementTree as ET
+import math, html, random, re, json, xml.etree.ElementTree as ET
 SRC=Path(__file__).parent
 E=lambda x:html.escape(str(x),quote=True)
 KEYS=['perf','crm','data','b2b']
@@ -34,11 +34,15 @@ def train(mobile=False):
  svg=(SRC/'train.svg').read_text(encoding='utf-8')
  if mobile:
   shapes=svg[svg.index('>')+1:svg.rindex('</svg>')]
-  return '<g class="metro-vehicle" aria-hidden="true"><g transform="translate(-36 -7.125) scale(.75)">'+shapes+'</g></g>'
+  return '<g class="metro-vehicle" aria-hidden="true"><g transform="translate(-45 -7.5) scale(.75)">'+shapes+'</g></g>'
  return svg.replace('<svg ','<svg class="train metro-vehicle" ',1)
-def wrap_sky(svg):
+def wrap_sky(svg,geom):
  # Preserve all reference rails/zones; group each building with its own windows.
  ET.register_namespace('','http://www.w3.org/2000/svg');root=ET.fromstring(svg)
+
+ for line in geom['lines']:
+  for path in root.iter():
+   if path.tag.endswith('path') and 'l'+str(line['n']) in path.get('class','').split():path.set('d',line['d'])
  children=list(root);start=next(i for i,c in enumerate(children) if c.tag.endswith('rect') and c.get('fill') in ['#E4DAC2','#DCD1B6'])
  end=next(i for i in range(start,len(children)) if children[i].tag.endswith('line'))
  group=None;result=[]
@@ -53,12 +57,12 @@ def mobile_art(data):
  paths=[]
  # End each skill at its actual final station, retaining concentric bends.
  subsets=[MOBILE,MOBILE[:6],MOBILE[2:],MOBILE[6:]]
- for n,(off,points) in enumerate(zip([9,3,-3,-9],subsets)):
+ for n,(off,points) in enumerate(zip([16.5,5.5,-5.5,-16.5],subsets)):
   points=[p[:] for p in points]
   if n==1:points[-1]=[178,160]
   if n==2:points[0]=[92,118]
   if n==3:points[0]=[224,118]
-  paths.append(f'<path class="l l{n+1}" d="{rounded(parallel(points,off),14,off,points)}" fill="none" stroke="{COLORS[n]}" stroke-width="4" stroke-linecap="round"/>')
+  paths.append(f'<path class="l l{n+1}" d="{rounded(parallel(points,off),23,off,points)}" fill="none" stroke="{COLORS[n]}" stroke-width="4" stroke-linecap="round"/>')
  rng=random.Random(13);city='';x=-5;i=0
  while x<330:
   width=rng.randint(14,25);height=rng.randint(50,120);y=290-height
@@ -72,10 +76,10 @@ def mobile_art(data):
  return svg
 def capsule(s,pt,mobile=False):
  nums=[KEYS.index(k)+1 for k in s['skills']];classes=' '.join('k'+str(n) for n in nums)
- width,height=(19,36) if mobile else (28,52); x,y=pt
+ width,height=(19,52) if mobile else (28,76); x,y=pt
  style=f'left:{x/330*100:.3f}%;top:{y}px' if mobile else f'left:{x}px;top:{y}px'
- svg=f'<svg width="{width}" height="{height}" viewBox="0 0 28 52" aria-hidden="true"><rect class="cr" x="1.5" y="1.5" width="25" height="49" rx="12.5" fill="rgba(255,255,255,.9)" stroke="#17140F" stroke-width="3"/>'
- for n in nums:svg+=f'<circle class="l l{n}" cx="14" cy="{11+(n-1)*10}" r="5.5" fill="#F5F0E4" stroke="#17140F" stroke-width="2.5"/>'
+ svg=f'<svg width="{width}" height="{height}" viewBox="0 0 28 76" aria-hidden="true"><rect class="cr" x="1.5" y="1.5" width="25" height="73" rx="12.5" fill="rgba(255,255,255,.9)" stroke="#17140F" stroke-width="3"/>'
+ for n in nums:svg+=f'<circle class="l l{n}" cx="14" cy="{14+(n-1)*16}" r="5.5" fill="#F5F0E4" stroke="#17140F" stroke-width="2.5"/>'
  years='' if mobile else f'<small>{E(s["years"])}</small>'
  return f'<label class="{"mobile-stop" if mobile else "st"} {classes} {"project-stop" if s["id"]=="f" else ""}" for="{s["id"]}" style="{style}">{svg}</svg><span class="nm">{E(s["short"])}{years}</span></label>'
 def project(lang):
@@ -91,20 +95,28 @@ def generate(data,lang,geom,panel,ui):
  for i,key in enumerate(KEYS):
   skill=data['skills'][key];strips+=f'<div class="sk s{i+1}"><div class="tool-list">'+''.join(f'<span class="tool">{E(tool)}</span>' for tool in skill.get('tools',skill.get('proof',[])))+'</div></div>'
  strips+='</div>'
- svg=wrap_sky((SRC/'reference-map.svg').read_text(encoding='utf-8').replace('sc-camel-path-length','pathLength'))
+ svg=wrap_sky((SRC/'reference-map.svg').read_text(encoding='utf-8').replace('sc-camel-path-length','pathLength'),geom)
  if lang=='vi':
   for original,zone in zip(['Zone 1, Travel','Zone 2, Agency','Zone 3, Fintech and insurtech','Zone 4, Travel tech'],data['zones']):svg=svg.replace(original,E(zone['label']))
  branch='M805 230 Q825 250 825 278 V344 Q825 366 845 366 H865'
  svg=svg.replace('</svg>',f'<path class="branch-rail" d="{branch}" fill="none" stroke="#0E7C86" stroke-width="7"/><circle cx="805" cy="230" r="5" fill="#F5F0E4" stroke="#17140F" stroke-width="2"/><path class="motion-main" d="{geom["trunk"]}" fill="none"/><path class="motion-branch" d="{branch}" fill="none"/></svg>')
  labels=''.join(capsule(s,(pt['x'],pt['y'])) for s,pt in zip(stations,geom['stations']+[{'x':865,'y':366}]))
  future='<div class="future" style="left:1085px;top:190px" aria-hidden="true"><span class="nm">...</span><svg width="30" height="30"><circle cx="15" cy="15" r="12" fill="#F5F0E4" stroke="#17140F" stroke-width="3" stroke-dasharray="4 4"/></svg></div>'
- desktop=f'<div class="map" tabindex="0" role="region" aria-label="{t["map_label"]}"><div class="cv" data-panorama="desktop" data-positions="{E(str(percentages(geom['trunk'],[(p['x'],p['y']) for p in geom['stations']])+[100]))}" data-junction="{percentages(geom['trunk'],[(805,230)])[0]}" data-stops="{E(str([[p["x"],p["y"]] for p in geom["stations"]]+[[865,366]]))}">{svg}{labels}{train()}{future}</div></div>'
- mobile='<div class="mobile-panorama" role="group" aria-label="'+t['map_label']+'"><div class="mobile-map" data-panorama="mobile" data-positions="'+E(str(percentages(rounded(MOBILE),POINTS[:5])+[100]))+'" data-junction="'+str(percentages(rounded(MOBILE),[(265,136)])[0])+'" data-stops="'+E(str([list(p) for p in POINTS]))+'">'+mobile_art(data)+''.join(capsule(s,pt,True) for s,pt in zip(stations,POINTS))+'</div></div>'
+ desktop_positions=percentages(geom['trunk'],[(p['x'],p['y']) for p in geom['stations']])+[100]
+ desktop_junction=percentages(geom['trunk'],[(805,230)])[0]
+ desktop=f'<div class="map" tabindex="0" role="region" aria-label="{t["map_label"]}"><div class="cv" data-panorama="desktop" data-positions="{E(json.dumps(desktop_positions))}" data-junction="{desktop_junction}" data-stops="{E(str([[p["x"],p["y"]] for p in geom["stations"]]+[[865,366]]))}">{svg}{labels}{train()}{future}</div></div>'
+ mobile_positions=percentages(rounded(MOBILE),POINTS[:5])+[100]
+ mobile_junction=percentages(rounded(MOBILE),[(265,136)])[0]
+ mobile='<div class="mobile-panorama" role="group" aria-label="'+t['map_label']+'"><div class="mobile-map" data-panorama="mobile" data-positions="'+E(json.dumps(mobile_positions))+'" data-junction="'+str(mobile_junction)+'" data-stops="'+E(str([list(p) for p in POINTS]))+'">'+mobile_art(data)+''.join(capsule(s,pt,True) for s,pt in zip(stations,POINTS))+'</div></div>'
+ company_data=[{'name':s.get('tooltip_name',s['short']),'description':s.get('company_intro',s['summary'])} for s in stations]
+ companies='<script type="application/json" data-company-intros>'+json.dumps(company_data,ensure_ascii=False).replace('<','\\u003c')+'</script>'
+ tooltip='<div class="station-tooltip" role="tooltip" id="station-tooltip" hidden><strong></strong><p></p></div>'
+ desktop=desktop[:-12]+tooltip+desktop[-12:]
  panels=''.join(panel(s,data,lang) for s in data['stations'])
  projects_title='Xem các projects' if lang=='vi' else 'Explore projects'
  cards=''.join(f'<a class="project-link" href="{"/vi" if lang=="vi" else ""}/projects/{slug}/">{label}<span>↗</span></a>' for slug,label in [('catsa','CATSA'),('cenhomes','Cenhomes.vn'),('dichung','Dichung.vn'),('hanoicc','Hanoi Community College')])
  panels+=f'<article class="pn pf"><div><div class="g big-stat">4</div><p class="stat-caption">{E(stations[-1]["headline"]["caption"])}</p></div><div><div class="m muted">Freelance</div><h2>Projects.</h2><p class="summary">{E(stations[-1]["summary"])}</p><div class="project-links">{cards}</div></div></article>'
- return f'<section id="map" class="metro" aria-label="{t["map_label"]}">{radios}<h2 class="metro-heading">{E(data["map_title"])}</h2>{bar}{strips}{desktop}{mobile}<div class="panels">{panels}</div><label class="collapse-control btn" for="collapse"><span class="collapse-text">'+('Thu gọn' if lang=='vi' else 'Collapse details')+'</span><span class="expand-text">'+('Mở nội dung ga' if lang=='vi' else 'Show station details')+'</span></label></section>'
+ return f'<section id="map" class="metro" aria-label="{t["map_label"]}">{radios}<h2 class="metro-heading">{E(data["map_title"])}</h2>{companies}{bar}{strips}{desktop}{mobile}<div class="panels">{panels}</div><label class="collapse-control btn" for="collapse"><span class="collapse-text">'+('Thu gọn' if lang=='vi' else 'Collapse details')+'</span><span class="expand-text">'+('Mở nội dung ga' if lang=='vi' else 'Show station details')+'</span></label></section>'
 
 def percentages(path,points):
  tokens=re.findall(r'[MLQ]|-?\d+(?:\.\d+)?',path);i=0;cur=(0,0);samples=[];lengths=[];total=0

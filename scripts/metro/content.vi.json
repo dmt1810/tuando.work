@@ -6,7 +6,7 @@
     "linkedin": "https://www.linkedin.com/in/dmt1810",
     "site": "https://tuando.work"
   },
-  "about": "Tôi là Tuấn, làm về growth marketing tại Việt Nam. Tôi có hơn 10 năm kinh nghiệm tại các thị trường Đông Nam Á. Công việc của tôi gồm quảng cáo thu hút khách hàng và marketing theo vòng đời, cùng các quy trình CRM và báo cáo phục vụ chiến dịch. Tôi từng làm trong lĩnh vực du lịch, bảo hiểm và công nghệ tiêu dùng.",
+  "about": "Chuyên gia growth và digital marketing với hơn 10 năm kinh nghiệm trong lĩnh vực bảo hiểm, du lịch và công nghệ tiêu dùng, am hiểu các thị trường Đông Nam Á. Kết hợp kinh nghiệm trực tiếp triển khai paid acquisition, CRM automation và lifecycle marketing với năng lực dẫn dắt các nhóm liên chức năng để ra mắt và mở rộng nền tảng B2B, B2B2C và D2C.",
   "stats": [
     ["10+", "năm làm marketing"],
     ["4", "thị trường Đông Nam Á đã ra mắt"],
@@ -102,7 +102,10 @@
           "tiếp thị lại",
           "Cải thiện thu hút khách hàng qua Trivago và các chiến dịch tiếp thị lại trên Criteo."
         ]
-      ]
+      ],
+      "company_intro": "Nền tảng đặt phòng khách sạn và vé máy bay tại Việt Nam.",
+      "company_source": "https://mytour.vn/",
+      "tooltip_name": "Mytour Vietnam"
     },
     {
       "id": "b",
@@ -142,7 +145,10 @@
           "tối ưu",
           "Xây dựng giải pháp marketing tập trung vào tối ưu, bao gồm thử nghiệm phễu và tối ưu tỷ lệ chuyển đổi."
         ]
-      ]
+      ],
+      "company_intro": "Agency tại Australia chuyên về digital và performance marketing.",
+      "company_source": "https://www.metrixadigital.com.au/about-metrixa-digital/",
+      "tooltip_name": "Metrixa Digital"
     },
     {
       "id": "c",
@@ -186,7 +192,10 @@
           "dashboard",
           "Xây dựng dashboard marketing để theo dõi và tối ưu hiệu suất chiến dịch."
         ]
-      ]
+      ],
+      "company_intro": "Tập đoàn công nghệ và hệ sinh thái số tại Việt Nam.",
+      "company_source": "https://onemount.com/",
+      "tooltip_name": "One Mount Group"
     },
     {
       "id": "d",
@@ -235,7 +244,10 @@
           "đối tác",
           "Co-marketing cùng các nhóm liên chức năng và đối tác khu vực."
         ]
-      ]
+      ],
+      "company_intro": "Công ty insurtech cung cấp giải pháp bảo hiểm tại Đông Nam Á.",
+      "company_source": "https://iglooinsure.com/about-us/",
+      "tooltip_name": "Igloo Insurtech"
     },
     {
       "id": "e",
@@ -284,18 +296,55 @@
           "kênh",
           "Triển khai SEM, mạng xã hội, email và nội dung; phân tích hiệu suất và dữ liệu hành vi người dùng."
         ]
-      ]
+      ],
+      "company_intro": "Công ty công nghệ du lịch phát triển nền tảng FindTourGo.",
+      "company_source": "https://findtourgo.com/about",
+      "tooltip_name": "Tastech / FindTourGo"
     }
   ],
   "hero": {
-    "title": "Growth marketing, từ chiến lược đến triển khai.",
-    "eyebrow": "GROWTH · CRM · AUTOMATION",
-    "sub": "Performance marketing, CRM và tự động hóa marketing cho doanh nghiệp B2B và B2C tại Đông Nam Á."
+    "eyebrow": "DO MANH TUAN",
+    "title": "Growth & Digital Marketing.",
+    "sub": "Paid acquisition, CRM automation và lifecycle marketing tại Đông Nam Á."
   },
-  "about_title": "Lên chiến lược và trực tiếp triển khai.",
+  "about_title": "Tóm tắt chuyên môn",
   "about_paragraphs": [
-    "Tôi là Tuấn, làm về growth marketing tại Việt Nam. Tôi có hơn 10 năm kinh nghiệm tại các thị trường Đông Nam Á.",
-    "Công việc của tôi gồm quảng cáo thu hút khách hàng và marketing theo vòng đời, cùng các quy trình CRM và báo cáo phục vụ chiến dịch. Tôi từng làm trong lĩnh vực du lịch, bảo hiểm và công nghệ tiêu dùng."
+    "Chuyên gia growth và digital marketing với hơn 10 năm kinh nghiệm trong lĩnh vực bảo hiểm, du lịch và công nghệ tiêu dùng, am hiểu các thị trường Đông Nam Á.",
+    "Kết hợp kinh nghiệm trực tiếp triển khai paid acquisition, CRM automation và lifecycle marketing với năng lực dẫn dắt các nhóm liên chức năng để ra mắt và mở rộng nền tảng B2B, B2B2C và D2C."
   ],
-  "map_title": "Hành trình sự nghiệp."
+  "map_title": "Hành trình sự nghiệp.",
+  "impact_metrics": [
+    {
+      "number": 150,
+      "prefix": "",
+      "suffix": "%",
+      "tag": "IGLOO · GROWTH",
+      "label": "Tăng trưởng số agent sử dụng Ignite so với năm trước",
+      "context": ""
+    },
+    {
+      "number": 10,
+      "prefix": "",
+      "suffix": "+",
+      "tag": "KINH NGHIỆM",
+      "label": "năm trong growth & digital marketing",
+      "context": ""
+    },
+    {
+      "number": 10000,
+      "prefix": "",
+      "suffix": "+",
+      "tag": "IGLOO · LAUNCH",
+      "label": "agent đăng ký trong năm đầu",
+      "context": "Tại 4 thị trường Đông Nam Á"
+    },
+    {
+      "number": 50,
+      "prefix": "$",
+      "suffix": "K+",
+      "tag": "METRIXA · PAID MEDIA",
+      "label": "ngân sách quảng cáo quản lý mỗi tháng",
+      "context": "AU · NZ · CA · US"
+    }
+  ]
 }

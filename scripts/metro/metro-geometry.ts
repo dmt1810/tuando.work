@@ -27,9 +27,9 @@ export const R0 = 36; // corner radius of the trunk
 export const EXT = 32; // px a line extends beyond its first/last stop
 export const LINES = [
   // offset > 0 draws toward the top on horizontal runs
-  { n: 1, key: 'perf', color: '#C8361A', offset: 15, stops: [0, 1, 3, 4] },
+  { n: 1, key: 'perf', color: '#C8361A', offset: 24, stops: [0, 1, 3, 4] },
   { n: 2, key: 'crm', color: '#2347D6', offset: 5, stops: [0, 2] },
-  { n: 3, key: 'data', color: '#17794A', offset: -5, stops: [1, 2, 4] },
+  { n: 3, key: 'data', color: '#17794A', offset: -8, stops: [1, 2, 4] },
   { n: 4, key: 'b2b', color: '#E0A100', offset: -15, stops: [3, 4] },
 ];
 

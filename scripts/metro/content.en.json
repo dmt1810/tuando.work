@@ -6,7 +6,7 @@
     "linkedin": "https://www.linkedin.com/in/dmt1810",
     "site": "https://tuando.work"
   },
-  "about": "I’m Tuan, a growth marketer based in Vietnam with 10+ years of experience across Southeast Asia. I work on paid acquisition and lifecycle marketing, including the CRM workflows and reporting behind campaigns. My experience spans travel, insurance and consumer technology.",
+  "about": "Growth and digital marketing professional with 10+ years of experience across insurance, travel and consumer technology, with extensive experience in Southeast Asian markets. Combines hands-on paid acquisition, CRM automation and lifecycle marketing with cross-functional leadership to launch and scale B2B, B2B2C and D2C platforms.",
   "stats": [
     ["10+", "years in marketing"],
     ["4", "SEA markets launched"],
@@ -102,7 +102,10 @@
           "retargeting",
           "Enhanced online acquisition through platforms like Trivago and retargeting with Criteo."
         ]
-      ]
+      ],
+      "company_intro": "Hotel and flight booking platform in Vietnam.",
+      "company_source": "https://mytour.vn/",
+      "tooltip_name": "Mytour Vietnam"
     },
     {
       "id": "b",
@@ -142,7 +145,10 @@
           "optimization",
           "Built online marketing solutions around optimization, including funnel testing and conversion rate optimization."
         ]
-      ]
+      ],
+      "company_intro": "Australian digital and performance marketing agency.",
+      "company_source": "https://www.metrixadigital.com.au/about-metrixa-digital/",
+      "tooltip_name": "Metrixa Digital"
     },
     {
       "id": "c",
@@ -186,7 +192,10 @@
           "dashboards",
           "Developed marketing dashboards to monitor and optimize campaign performance."
         ]
-      ]
+      ],
+      "company_intro": "Vietnamese technology group and digital ecosystem.",
+      "company_source": "https://onemount.com/",
+      "tooltip_name": "One Mount Group"
     },
     {
       "id": "d",
@@ -235,7 +244,10 @@
           "partners",
           "Co-marketing with cross-functional teams and regional partners."
         ]
-      ]
+      ],
+      "company_intro": "Full-stack insurtech serving Southeast Asia.",
+      "company_source": "https://iglooinsure.com/about-us/",
+      "tooltip_name": "Igloo Insurtech"
     },
     {
       "id": "e",
@@ -284,18 +296,55 @@
           "channels",
           "Run SEM, social, email and content campaigns, and analyze performance and user behavior data."
         ]
-      ]
+      ],
+      "company_intro": "Travel technology company behind FindTourGo.",
+      "company_source": "https://findtourgo.com/about",
+      "tooltip_name": "Tastech / FindTourGo"
     }
   ],
   "hero": {
-    "title": "Growth marketer who builds the systems.",
-    "eyebrow": "GROWTH · CRM · AUTOMATION",
-    "sub": "Performance marketing, CRM and marketing automation for B2B and B2C businesses across Southeast Asia."
+    "eyebrow": "DO MANH TUAN",
+    "title": "Growth & Digital Marketing.",
+    "sub": "Paid acquisition, CRM automation and lifecycle marketing across Southeast Asia."
   },
-  "about_title": "Strategy is where I start. Building is how I work.",
+  "about_title": "Professional summary",
   "about_paragraphs": [
-    "I’m Tuan, a growth marketer based in Vietnam with 10+ years of experience across Southeast Asia.",
-    "I work on paid acquisition and lifecycle marketing, including the CRM workflows and reporting behind campaigns. My experience spans travel, insurance and consumer technology."
+    "Growth and digital marketing professional with 10+ years of experience across insurance, travel and consumer technology, with extensive experience in Southeast Asian markets.",
+    "Combines hands-on paid acquisition, CRM automation and lifecycle marketing with cross-functional leadership to launch and scale B2B, B2B2C and D2C platforms."
   ],
-  "map_title": "A career, station by station."
+  "map_title": "A career, station by station.",
+  "impact_metrics": [
+    {
+      "number": 150,
+      "prefix": "",
+      "suffix": "%",
+      "tag": "IGLOO · GROWTH",
+      "label": "YoY growth in agents using Ignite",
+      "context": ""
+    },
+    {
+      "number": 10,
+      "prefix": "",
+      "suffix": "+",
+      "tag": "EXPERIENCE",
+      "label": "years in growth & digital marketing",
+      "context": ""
+    },
+    {
+      "number": 10000,
+      "prefix": "",
+      "suffix": "+",
+      "tag": "IGLOO · LAUNCH",
+      "label": "agent signups in year one",
+      "context": "Across 4 SEA markets"
+    },
+    {
+      "number": 50,
+      "prefix": "$",
+      "suffix": "K+",
+      "tag": "METRIXA · PAID MEDIA",
+      "label": "monthly ad budgets managed",
+      "context": "AU · NZ · CA · US"
+    }
+  ]
 }
